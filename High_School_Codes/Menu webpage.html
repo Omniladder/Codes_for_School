@@ -1,0 +1,73 @@
+<html>
+<head>
+<title>Menu quiz</title>
+<p> batman's orgins and the joker were introduced in batman #1 but batman was introduced in dectective comics #27. This means there was period did not have a orgin villian or main villian.</p>
+<link rel="stylesheet" href="sidetogglemenu.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script src="sidetogglemenu.js">
+</script>
+<script>
+jQuery(function(){
+	menu1 = new sidetogglemenu({
+		id: 'togglemenu1',
+		marginoffset: 10,
+		downarrowsrc: 'toggledown.png'})})
+
+</script>
+<button onClick="menu1.toggle();" class="sideviewtoggle">Toggle Menu 1</button>
+<div id="togglemenu1" class="sidetogglemenu">
+	<ul class="mainnav">
+	<li><a href="http://www.dynamicdrive.com/"><i class="fa fa-bolt"></i> Dynamic Drive</a></li>
+	<li><a href="http://www.dynamicdrive.com/style/"><i class="fa fa-css3"></i> CSS Library</a>
+		<ul>
+		<li><a href="http://www.dynamicdrive.com/style/csslibrary/category/C1/">Horizontal CSS Menus</a></li>
+		<li><a href="http://www.dynamicdrive.com/style/csslibrary/category/C2/">Vertical CSS Menus</a></li>
+		<li><a href="http://www.dynamicdrive.com/style/csslibrary/category/C4/">Image CSS</a></li>
+		<li><a href="http://www.dynamicdrive.com/style/csslibrary/category/C6/">Form CSS</a></li>
+		<li><a href="http://www.dynamicdrive.com/style/csslibrary/category/C5/">DIVs and containers</a></li>
+		<li><a href="http://www.dynamicdrive.com/style/csslibrary/category/C7/">Links & Buttons</a></li>
+		<li><a href="http://www.dynamicdrive.com/style/csslibrary/category/C17/">CSS3 demos</a></li>
+		<li><a href="http://www.dynamicdrive.com/style/csslibrary/category/C8/">Other</a></li>
+		<li><a href="http://www.dynamicdrive.com/style/csslibrary/category/C8/">CSS Layouts</a>
+			<ul>
+			<li><a href="http://www.dynamicdrive.com/style/layouts/" class="title">CSS Layouts</a></li>
+			<li><a href="http://www.dynamicdrive.com/style/layouts/category/C9/">Two Columns</a></li>
+			<li><a href="http://www.dynamicdrive.com/style/layouts/category/C10/">Three Columns</a></li>
+			<li><a href="http://www.dynamicdrive.com/style/layouts/category/C12/">Fixed layouts</a></li>
+			<li><a href="http://www.dynamicdrive.com/style/layouts/category/C13/">Liquid Layouts</a></li>
+			<li><a href="http://www.dynamicdrive.com/style/layouts/category/C11/">CSS Frames</a></li>
+			</ul>
+		</li>
+		</ul>
+	</li>
+	<li><a href="http://www.dynamicdrive.com/forums/"><i class="fa fa-comment-o"></i> Help Forums</a></li>
+	<li><a href="http://tools.dynamicdrive.com/button/"><i class="fa fa-search"></i> Search</a></li>
+	<li><a href="http://tools.dynamicdrive.com/imageoptimizer/"><i class="fa fa-gears"></i> Gif Optimizer</a></li>
+	<li><a href="http://tools.dynamicdrive.com/favicon/"><i class="fa fa-gears"></i> Favicon Creator</a></li>
+	<li><a href="http://tools.dynamicdrive.com/button/"><i class="fa fa-gears"></i> Button Maker</a></li>
+	</ul>
+	<p style="padding:10px">
+	This menu's markup is defined inline on the page. With the setting <code>pushcontent: true</code>, the menu shifts the rest of the page's content to make room for itself when revealed.
+	</p>
+</div>
+<div id="togglemenu1" class="sidetogglemenu">
+<ul>
+<li><a href="Me Page.html">Me Page</a></li>
+<li><a href="Website/Web_Index.html">Robin Website</a></li>
+<li><a href="Mylittleponyproject.html">My Little Ponies</a></li>
+<li><a href="http://dynamicdrive.com/dynamicindex1/sidetogglemenu.htm">Where I Got This Menu</a></li>
+<li><a href="Menu webpage.html">This Page</a></li>
+<li><a href="http://www.bbc.co.uk/history/topics/enigma">Random Page About a Cool Thing</a></li>
+</ul>
+</div>
+<script>
+jQuery(function(){ // on DOM load
+ menu1 = new sidetogglemenu({ // initialize first menu example
+  id: 'togglemenu1',
+  pushcontent: true // <- No comma after last option!
+ })
+})
+
+</script>
+</head>
+</html>
