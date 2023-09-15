@@ -1,0 +1,56 @@
+Lab #2
+
+Task #1
+1.
+PS1 Value - \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$
+
+.bashrc
+
+2.
+Variables without value
+EDITOR, LD_LIBRARY_PATH, LESS, MAIL, MANPATH, MORE, PAGER, 
+
+Task #2
+1.
+cp .bashrc .copybashrc
+2.
+I went into .bashrc and change the /u@/h to /[COSC350 basecwd]
+3.
+Went back into .bashrc and changed it back to /u@/h
+
+Task #3
+1.
+
+Task #4
+1.
+Touch bar
+Ls DNE 2> bar
+2.
+ls DNE 2> /dev/null
+3.
+touch foo
+echo 3 > foo
+echo 5 >> foo
+echo 2 >> foo
+echo 1 >> foo
+4.
+cat foo > bar
+
+5.
+Sort foo
+The numbers did sort numerically
+
+6.
+Sort foo > bar
+
+Task #5
+1.
+I wrote a c++ code than ran a loop and printed echo i  >> numbs where i incremented by 1 every time in the loop than i copied and pasted the output into the code and then had the needed file
+2.
+Output: 100 100 292 numbs
+292 Bytes 100 lines 100 word file
+3.
+head -38 numbs | tail -14 > somenumbs
+4.
+Output: 42 14 14 somenumbs
+Bytes lines word file
