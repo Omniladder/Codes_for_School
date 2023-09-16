@@ -4,7 +4,7 @@ echo "ENTER a Directory"
 
 read direct
 
-if [ ! -d "$direct" ]; then #Check for valid Directory
+if [ ! -d $direct ]; then #Check for valid Directory
 	echo no such directory
 	exit 1
 fi
@@ -34,7 +34,7 @@ echo Enter Word to search for
 
 read word
 
-if [ grep -q $word $file ]; then
+if  grep -q $word $file ; then
 	echo "FOUND!"	
 else
 	echo "NOT FOUND"
