@@ -1,23 +1,21 @@
 
 #!/bin/bash
 
+Tail=$1
 Size=$2
 
 if [ `expr $Size % 2` -ne 1 ]; then
 
-echo "enter odd number only for head"
+echo "enter odd number only greater than 3"
 exit 1
 fi
 
-
 for i in $(seq 1 $Size)
 do
-
-
-
 	if [ $i -le `expr 1 + $Size / 2` ]; then
-		for j in $(seq 1 `expr  -2 \* $i + $Size`);
+		for j in $(seq 1 `expr  $Size / 2 - $i + 1`);
 		do
+		echo -n " "
 		echo -n " "
 		done	
 		p=`expr  $i - 1`
@@ -25,17 +23,22 @@ do
 		do
 		echo -n "*"
 		done
-
 	fi
 
-
-
+	if [ `expr $Size / 2 + 1 ` -eq $i ]; then
+		for j in $(seq 1 $Tail);
+		do
+		echo -n "*"
+		done
+		echo ""
+	fi
 
 
 	if [ $i -gt `expr $Size / 2` ]; then
 		
-		for j in $(seq 1 `expr  2 \* $i - $Size `);
+		for j in $(seq 1 `expr $i - $Size / 2`);
 		do
+		echo -n " "
 		echo -n " "
 		done	
 
@@ -51,3 +54,4 @@ echo ""
 done
 
 exit 0
+
