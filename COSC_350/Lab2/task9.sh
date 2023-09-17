@@ -13,23 +13,28 @@ echo Enter a Readable file in said Directory
 
 read file
 numTimes=1
-while [ $numTimes -lt 3 -a ! -e $file ]; do
-if [ ! -e $file ]; then
+while  [ ! -e $file -o ! -r $file ] && [ ! $numTimes -gt 2 ]; do
+if [ ! -e $file -o ! -r $file ]; then
 	echo INVALID FILE
 	read file
 	let "numTimes++"
+else
+	break
 fi
 done
 
-if [ $numTimes -eq 3 ]; then
+if [ $numTimes -gt 2 ]; then
+	if [ ! -e $file ]; then
+	
 	echo "no such file (after 3 attempts)"
 	exit 2
+	else
+		echo FILE NOT READABLE
+		exit 3
+	fi
+
 fi
 
-if [ ! -r $file ]; then
-	echo "FILE ISN'T READABLE"
-	exit 3
-fi
 echo Enter Word to search for
 
 read word
