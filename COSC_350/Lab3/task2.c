@@ -13,6 +13,7 @@ char temp; //stores one charcter for transfer
 char inFileName[256] = ""; // holds the file being read name
 char outFileName[256] = ""; // holds the file being copied too name
 
+umask(0000);
 
 printf("Enter in the file you plan on reading in \n"); //prompts user
 scanf("%s" , inFileName); // reads in the file name given by user
