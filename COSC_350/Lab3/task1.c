@@ -4,15 +4,14 @@
 int main()
 {
 
-char buffer[128];
+char buffer;
 int nread;
 
 
-while ((nread = read(0, buffer, 128)) != -1)
+while ((nread = read(0, &buffer, 1)) > 0)
 {
 
-nread = read(0, buffer, 128);
-
+write(1 , &buffer, 1);
 
 }
 
