@@ -1,0 +1,283 @@
+---
+title: "Lab 0: Objects, Functions, and Data"
+author: "Dr. Jiacheng Cai"
+date: "2023-05-22"
+output: 
+  html_document: 
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE,message=FALSE)
+
+library(tidyverse)
+```
+
+# Your Name: Dustin O'Brien
+
+# Introduction
+
+This is a R Markdown file. It is like an advanced version of word that allow you to organize your research/study with professional statistical programming results.
+
+In the R Markdown file, you have the option to select "Source" or "Visual" editing. We recommend "Visual".
+
+Your research/study report may be separated to several sections. You can use "\# Header 1", "\## Header 2", and so on, to start the corresponding sections for different levels. Just change the "Header 1", "Header 2" to the name of the sections.
+
+Try to create a section call "Chapter 1", then a subsection called "Section 1.1" under "Chapter 1"
+
+# Chapter 1
+
+## Section 1.1
+
+# Objects
+
+Now we are going into R, a professional programming language for statistical computing. In general, R provides a language for human to communicate with a computer: tell the computer do something using operators called **Function** with some **Objects**.
+
+**Object** is an element that R can understand and operate. We can define an object by using
+
+ObjectName \<- ...
+
+Here "..." means something defines the object called "ObjectName", either by directly assign some values, or store the outputs of some function operations. We can change the name of the object whatever we like, but it is highly recommended to make it reasonable.
+
+Let's try our first R command.
+
+```{r}
+
+```
+
+To define and run some R commands in the Markdown file, we can simply create a R Code Chunk by typing \`\`\`{r} then hit enter.
+
+Let's try it. And define our first object using "Five \<- 5"
+
+```{r}
+Five<-5
+```
+
+Once your finish the code, hit the green triangle on the right-hand side of the R chunk, you should be able to see the object "Five" appears on the right-top corner of the screen. That is the list of objects.
+
+Let's create another object using "VectorTest \<- 1:10", then show all the values in VectorTest by directly calling it using "VectorTest"
+
+```{r}
+VectorTest <- 1:10
+
+VectorTest
+```
+
+Now, we can do some operation to the objects. First, I want to multiply all the values in VectorTest by 5. Since I have already define the object "Five", I can do it in two ways:
+
+```{r}
+5*VectorTest
+Five*VectorTest
+```
+
+I can also store the results of such calculation into a new object
+
+result1 \<- Five\*VectorTest
+
+```{r}
+result1 <- Five*VectorTest
+result1
+```
+
+# Functions and Data
+
+In many cases, we need more advanced operations to the objects. For example, we collect a large data set from our study and want to put it into an object so that we can perform further operations to the data.
+
+Recall that we have downloaded the data file "US_STATE.csv" in your P drive - MATH214 - Lab0 (the same folder with this R Markdown file). Let's use the function "read.csv" to run the code
+
+```{r}
+
+data0 <- read.csv("US_STATES.csv")
+data0
+```
+
+Here, "read.csv(xxx)" is a function that tells R to read a csv-format data file. The xxx within the () is the input of such function, for function "read.csv", the input should be the file location and the file name of the data file. Once the function is performed, we store the output result into an object "data0" by using "\<-".
+
+In general, we can have the following code for functions:
+
+OutputName \<- FunctionName(Inputs)
+
+Back to this data file. This is a data set related to the 50 states of the USA, collected in 1970s. More details can be found in the following webpage <https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/state.html>
+
+Recall the concepts of a data set.
+
+-   **Observations**
+
+-   **Attributes/variables**
+
+-   **Data**
+
+-   **Categorical Variables**
+
+-   **Quantitative Variables**
+
+Now, we want to get the information of some particular observations and some particular variables.
+
+In general, if the object is in a format of data frame, then we can get a subset of the data by using following ways:
+
+-   ObjectName[Row Conditions, ] to get particular rows
+
+-   subset(ObjectName, Row Conditions) to get particular rows
+
+-   ObjectName\$ColumnName to get particular column
+
+-   select(ObjectName, column name1, column name 2, ...) to get particular multiple columns
+
+Let's do some practice
+
+-   Display the first row
+
+```{r}
+data0[1,]
+```
+
+-   Display the second column
+
+```{r}
+data0[,2]
+```
+
+-   Display the first 5 row and column 2-5
+
+```{r}
+
+data0[1:5,2:5]
+```
+
+-   Find the information about Maryland
+
+```{r}
+
+data0[data0$Name=="Maryland",]
+
+subset(data0, Name=="Maryland")
+
+```
+
+-   Find the information about all the names of the states
+
+    ```{r}
+    data0$Name
+    ```
+
+-   Find the information about all the states in the region "South"
+
+```{r}
+
+data0[data0$Region=="South",]
+
+subset(data0, Region=="South")
+
+
+```
+
+-   Only display the names for all the states in the region "South"
+
+```{r}
+data0[data0$Region=="South",]$Name
+
+subset(data0, Region=="South")$Name
+```
+
+-   Only display the names, Area, and Population for all the states in the region "South"
+
+```{r}
+
+select(data0[data0$Region=="South",],Name,Area,Population)
+
+select(subset(data0,Region=="South"),Name,Area,Population)
+
+```
+
+-   Only display the names, Areas, and Population for all the states in the region "South" AND have populations \>3000.
+
+```{r}
+select(data0[data0$Region=="South" & data0$Population>3000,],Name,Area,Population)
+
+select(subset(data0,Region=="South" & Population >3000),Name,Area,Population)
+```
+
+# Packages
+
+One of the advantages in R is that many professional statistician, data scientists, and computer scientists have been developing advance functions to satisfy the rapidly increasing need of data operations/presentation from the real world. They derive algorithms, implement algorithms to R functions, and put all related functions/datasets into **packages.**
+
+Today we will learn how to install and use one package called "knitr", and use one of its function "kable" to make our table outputs look more beautiful.
+
+(If error about xfun appears, go to the console below, type install.packages("xfun"), then hit enter.
+
+```{r}
+
+library(knitr)
+```
+
+```{r}
+kable(data0)
+```
+
+# Knit the R Markdown into a HTML webpage
+
+Another advantages of R Markdown is that it can present our study/research report in multiple format. Today, we will present it as HTML. Go to Knit - Knit to HTML.
+
+# Assignment
+
+1.  Define an object V1 that contains integers from 1 to 20
+
+    ```{r}
+    V1 <- 1:20
+    ```
+
+2.  Plus 5 to each elements in V1, then store the results in a new object V2
+
+    ```{r}
+    V2 <- V1+5
+    ```
+
+3.  Use read.csv function to read the file "US_STATE.csv" and store the data in a new object data1
+
+    ```{r}
+    data1 <- read.csv("US_STATES.csv")
+    ```
+
+4.  Display the 4th row
+
+    ```{r}
+    data1[4,]
+    ```
+
+5.  Display the 6th column
+
+    ```{r}
+    data1[,6]
+    ```
+
+6.  Display the row 3-10 and column 2-6
+
+    ```{r}
+    data1[3:10,2:6]
+    ```
+
+7.  Find the information about Virginia
+
+    ```{r}
+    subset(data1, Name == "Virginia")
+    ```
+
+8.  Find the information about all the states in the region "Northeast"
+
+    ```{r}
+    subset(data1, Region == "Northeast")
+    ```
+
+9.  Only display the names, Areas, and Population for all the states in the region "Northeast" AND have populations \>5000.
+
+    ```{r}
+    select(subset(data1, Region == "Northeast"& Population > 5000),Name,Area,Population)
+    ```
+
+10. Store the results of question 9 in a new object NEstates, then display that object using kable function
+
+    ```{r}
+    NEstates <- select(subset(data1, Region == "Northeast"& Population > 5000),Name,Area,Population)
+    kable(NEstates)
+    ```
