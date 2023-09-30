@@ -65,14 +65,24 @@ int main(int num_Inputs, char* FileInputs[])
 	}
    
 dup2(out, 1);   
-char letter[3];
+char letter[1];
 
 int sum = 0;
+int placeValue = 1;
 
-while(read(in, &letter, 3) >= 3)
+while(read(in, &letter, 1) > 0)
 {
-sum = convert(letter[0]) * 100 + convert(letter[1]) * 10 + convert(letter[2]);
-printf("%c", (char) sum);
+	if(letter[0] == ' ')
+	{
+		printf("%c", (char) sum);
+		placeValue = 1;
+		sum = 0;
+	}
+	else
+	{
+		sum += convert(letter[0]) * placeValue;
+		placeValue *= 10;
+	}
 }
 
 
