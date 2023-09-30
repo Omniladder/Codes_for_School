@@ -32,6 +32,7 @@ else
 printf ("ENTER NUMBERS IN ONLY \n"); 
 return -1;
 }
+return convertedNum;
 }
 
 
@@ -50,7 +51,6 @@ return -1;
 
 for (int i = 1; i < numOfNumbers; i++)
 {
-    printf("%d", fullNum[i][0]);
     stringSize = strlen(fullNum[i]);
     for (int j = 0; j < stringSize; j++)
     {

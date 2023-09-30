@@ -31,7 +31,7 @@ else  if(letter == '9')
 {convertedNum = 9;}
 else
 {
-printf ("FILE MUST CONTAIN ONLY NUMBERS \n"); 
+fprintf (stderr, "FILE MUST CONTAIN ONLY NUMBERS \n"); 
 return -1;
 }
 return convertedNum;
@@ -42,9 +42,9 @@ int main(int num_Inputs, char* FileInputs[])
 {
     umask(0000);
 
-	if(num_Inputs > 3)
+	if(num_Inputs < 3)
 	{
-		printf(stderr,"INPUT 2 Files as parameters");
+		fprintf(stderr,"INPUT 2 Files as parameters \n");
 		return 1;
 	}
 
@@ -54,7 +54,7 @@ int main(int num_Inputs, char* FileInputs[])
 
 	if(in == -1)
 	{
-		fprintf(stderr,"Infile Failed to Open");
+		fprintf(stderr,"Infile Failed to Open \n");
 		return 1;
 	}
 
@@ -62,26 +62,24 @@ int main(int num_Inputs, char* FileInputs[])
 	
     if(out == -1)
 	{
-		fprintf(stderr,"outfile Failed to Open");
+		fprintf(stderr,"outfile Failed to Open \n");
 		return 1;
 	}
    
 dup2(out, 1);   
-char letter[1];
+char letter[3];
 
 int sum = 0;
-int placeValue = 1;
 
-while(read(in, &letter, 1) > 0)
+while(read(in, &letter, 3) > 0)
 {
 	for(int i = 0; i < 3; i++)
 	{
-		sum += convert(letter[0]) * placeValue;
-		placeValue *= 10;
-		read(in, &letter, 1);
+
+		sum *= 10;
+		sum += convert(letter[i]);
 	}
 	printf("%c", (char) sum);
-	placeValue = 1;
 	sum = 0;
 }
 

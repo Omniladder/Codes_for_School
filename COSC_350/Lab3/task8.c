@@ -9,9 +9,10 @@ int main(int num_Inputs, char* FileInputs[])
 {
     umask(0000);
 
-	if(num_Inputs > 3)
+
+	if(num_Inputs < 3)
 	{
-		printf("INPUT 2 Files as parameters");
+		fprintf(stderr, "INPUT 2 Files as parameters \n");
 		return 1;
 	}
 
@@ -21,7 +22,7 @@ int main(int num_Inputs, char* FileInputs[])
 
 	if(in == -1)
 	{
-		printf("Infile Failed to Open");
+		fprintf(stderr, "Infile Failed to Open \n");
 		return 1;
 	}
 
@@ -29,7 +30,7 @@ int main(int num_Inputs, char* FileInputs[])
 	
     if(out == -1)
 	{
-		printf("outfile Failed to Open");
+		fprintf(stderr, "outfile Failed to Open \n");
 		return 1;
 	}
    
@@ -39,8 +40,7 @@ char letter[1];
 
 while(read(in, &letter, 1) > 0)
 {
-printf("%ld", (long)letter[0]);
-printf(" ");
+printf("%03ld", (long)letter[0]);
 }
 
 
