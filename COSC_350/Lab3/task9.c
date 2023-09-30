@@ -5,6 +5,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
+
 int convert(char letter)
 {
 int convertedNum;
@@ -36,13 +37,14 @@ return -1;
 return convertedNum;
 }
 
+
 int main(int num_Inputs, char* FileInputs[])
 {
     umask(0000);
 
 	if(num_Inputs > 3)
 	{
-		printf("INPUT 2 Files as parameters");
+		printf(stderr,"INPUT 2 Files as parameters");
 		return 1;
 	}
 
@@ -52,7 +54,7 @@ int main(int num_Inputs, char* FileInputs[])
 
 	if(in == -1)
 	{
-		printf("Infile Failed to Open");
+		fprintf(stderr,"Infile Failed to Open");
 		return 1;
 	}
 
@@ -60,7 +62,7 @@ int main(int num_Inputs, char* FileInputs[])
 	
     if(out == -1)
 	{
-		printf("outfile Failed to Open");
+		fprintf(stderr,"outfile Failed to Open");
 		return 1;
 	}
    
@@ -72,17 +74,15 @@ int placeValue = 1;
 
 while(read(in, &letter, 1) > 0)
 {
-	if(letter[0] == ' ')
-	{
-		printf("%c", (char) sum);
-		placeValue = 1;
-		sum = 0;
-	}
-	else
+	for(int i = 0; i < 3; i++)
 	{
 		sum += convert(letter[0]) * placeValue;
 		placeValue *= 10;
+		read(in, &letter, 1);
 	}
+	printf("%c", (char) sum);
+	placeValue = 1;
+	sum = 0;
 }
 
 
