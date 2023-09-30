@@ -4,16 +4,16 @@
 int main()
 {
 
-char buffer;
+char buffer; //Buffer used to store arrays to be sent to file
 
 
-while (read(0, &buffer, 1) > 0)
+while (read(0, &buffer, 1) > 0) // reads in every charcter
 {
 
-write(1 , &buffer, 1);
+write(1 , &buffer, 1); //writes charcter to file
 
 }
 
 
-return 0;
+return 0; //ends code
 }

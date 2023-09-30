@@ -10,6 +10,8 @@ int main()
 int inFile, outFile; //holds File ID's for reading and writing too
 char temp; //stores one charcter for transfer
 
+umask(0000);
+
 char inFileName[256] = ""; // holds the file being read name
 char outFileName[256] = ""; // holds the file being copied too name
 
@@ -26,23 +28,23 @@ scanf("%s" , outFileName); // reads in the file that data should be sent too
 
 outFile = open (outFileName, O_WRONLY|O_CREAT, 0760); //opens file used for outputting
 
-int displace = 0;
+int displace = 0;//stores distance to set cursor from front
 
-while(read(inFile, &temp, 1) > 0)
+while(read(inFile, &temp, 1) > 0) //used to store size of infile
 {
-displace++;
+displace++; //counts up size
 }
 
-displace -= 2;   
+displace -= 2;   //properly sets the displace
 
-while(displace > 0)
+while(displace > 0) //runs while cursor still in file
 {
-pread(inFile, &temp, 1, displace);
-write(outFile, &temp, 1);
-displace--;
+pread(inFile, &temp, 1, displace); //reads in the char
+write(outFile, &temp, 1);//writes that char down
+displace--;//moves cursor back 1
 }
 
-close (inFile);
+close (inFile); //closes file
 close (outFile); //closes file
- return 0;
+ return 0;//ends program
 }
