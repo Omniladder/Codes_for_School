@@ -32,7 +32,7 @@ while (read(inFile, &temp, 32) >= 1) // loops therought every charter in read fi
 write(outFile, &temp, 32); //send charcter tot thhe write file
 }
 
-close (inFile);
+close (inFile); //closes file
 close (outFile); //closes file
- return 0;
+ return 0; //ends program
 }

@@ -13,7 +13,7 @@ char temp; //stores one charcter for transfer
 char inFileName[256] = ""; // holds the file being read name
 char outFileName[256] = ""; // holds the file being copied too name
 
-umask(0000);
+umask(0000); // exits program
 
 printf("Enter in the file you plan on reading in \n"); //prompts user
 scanf("%s" , inFileName); // reads in the file name given by user
@@ -32,7 +32,7 @@ while (read(inFile, &temp, 1) == 1) // loops therought every charter in read fil
 write(outFile, &temp, 1); //send charcter tot thhe write file
 }
 
-close (inFile);
+close (inFile); //closes file
 close (outFile); //closes file
- return 0;
+ return 0; //ends program
 }

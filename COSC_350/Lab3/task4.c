@@ -7,6 +7,8 @@
 
 int main()
 {
+umask(0000); //sets default permissions
+	
 int inFile, outFile; //holds File ID's for reading and writing too
 char temp[32]; //stores one charcter for transfer
 
@@ -34,7 +36,7 @@ write(outFile, &temp, 32); //send charcter tot thhe write file
 printf("Enter in the file you plan on reading in \n"); //prompts user
 scanf("%s" , inFileName); // reads in the file name given by user
 
-lseek(outFile, 0, SEEK_END);
+lseek(outFile, 0, SEEK_END); //used to read backwards
 
 
 inFile = open(inFileName, O_RDONLY); //Opens the read file 
@@ -44,7 +46,7 @@ while (read(inFile, &temp, 32) >= 1) // loops therought every charter in read fi
 write(outFile, &temp, 32); //send charcter tot thhe write file
 }
 
-close (inFile);
+close (inFile);//closes file
 close (outFile); //closes file
- return 0;
+ return 0;//ends program
 }

@@ -10,7 +10,7 @@ int main()
 int inFile, outFile; //holds File ID's for reading and writing too
 char temp; //stores one charcter for transfer
 
-umask(0000);
+umask(0000); //default permissions
 
 char inFileName[256] = ""; // holds the file being read name
 char outFileName[256] = ""; // holds the file being copied too name
@@ -36,11 +36,11 @@ while ( (-1  * displace) - 3 < fSize) // loops therought every charter in read f
 {
 read(inFile, &temp, 1); //reads in the elements of the file given by displace
 write(outFile, &temp, 1); //send charcter tot thhe write file
-displace--;
-lseek(inFile, displace, SEEK_END);
+displace--;//assigns distance to move cursor back
+lseek(inFile, displace, SEEK_END);//sets cursor back 1
 }
 
-close (inFile);
+close (inFile);//closes file
 close (outFile); //closes file
- return 0;
+ return 0;//ends program
 }
