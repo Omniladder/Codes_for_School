@@ -287,7 +287,7 @@ Find $P(X \geq 17)$
 ```{r}
 
 
-Binom_plotter(36,.35,17,37)
+Binom_plotter(36,.35,17,9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999)
 
 ```
 
@@ -336,10 +336,16 @@ ppois(5.1,2.2) - (1 - ppois(2.2, 2.2))
 Now experiment with the parameter $\lambda$ like we did for p in the binomial distribution above. for what values of $\lambda$ is the distribution right-skewed?
 
 ```{r}
-
+Lambda = seq(0,100,by=5)
+for (i in Lambda)
+{
+  p<-rpois(1000,i)
+  hist(p, xlim=c(min(p) - 5 ,max(p) + 5))
+}
 ```
 
 ```         
+It seems that the data set always has a right ward skew with data slowly being more symmetric as Lambda grows
 ```
 
 **End Assignment 3**
@@ -351,10 +357,67 @@ Now experiment with the parameter $\lambda$ like we did for p in the binomial di
 In the file titled Samples2.csv there are three columns of data that come from three different distribution. the columns are labeled Sample_1, Sample_2, and Sample_3. They each contain data from different distributions. The three possible distributions are dU(0,20), Bin(50,.6), and Pois(10). Match each sample with the distribution it came from using histograms and descriptive statistics.
 
 ```{r}
+data <- read.csv("Samples2.csv")
+Sample1 <- data$Sample_1
+Sample2 <- data$Sample_2
+Sample3 <- data$Sample_3
+
+uniform_sample <- rdunif(100,0,20)
+
+x_uniform<-seq(0,20, length=20)
+y_uniform<- dunif(x_uniform,min=0,max=20)
+
+Poisson = rpois(100,10)
+
+Binomial <- rbinom(100, size = 50, prob = 0.6)
+
+hist(Sample1, xlim=c(min(Sample1) - 5,max(Sample1) + 5))
+hist(Sample2, xlim=c(min(Sample2) - 5 ,max(Sample2) + 5))
+hist(Sample3, xlim=c(min(Sample3) - 5 ,max(Sample3) + 5))
+
+
+hist(uniform_sample, xlim=c(-5,25))
+hist(Binomial, xlim=c(min(binomial_data) - 5 ,max(binomial_data) + 5))
+hist(Poisson, xlim=c(min(Poisson) - 5 ,max(Poisson) + 5))
+
+"Sample 1: Mean: " 
+mean(Sample1) 
+" Variance " 
+var(Sample1)
+
+""
+"Sample 2: Mean: " 
+mean(Sample2) 
+" Variance " 
+var(Sample2)
+""
+"Sample 3: Mean: "
+mean(Sample3) 
+" Variance "
+var(Sample3)
+""
+"Uniform: Mean: " 
+mean(uniform_sample) 
+" Variance " 
+var(uniform_sample)
+""
+"Binomial: Mean: "
+mean(Binomial)
+" Variance "
+var(Binomial)
+""
+"Poisson: Mean: " 
+mean(Poisson)
+ "Variance" 
+ var(Poisson)
+
 
 ```
 
 ```         
+Sample 1 is Binomial due to both having high means unlike the others ranging generally in high 20s
+Sample 2 is Poisson as both have low Means and variance
+Sample 3 is Uniform as variance of both is high while mean is low
 ```
 
 **End Assignment 4**

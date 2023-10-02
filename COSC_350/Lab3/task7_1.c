@@ -1,6 +1,5 @@
 
 
-//Fuck you Kyle
 
 
 #include <stdio.h>

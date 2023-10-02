@@ -19,6 +19,18 @@ char outFileName[256] = ""; // holds the file being copied too name
 printf("Enter in the file you plan on reading in \n"); //prompts user
 scanf("%s" , inFileName); // reads in the file name given by user
 
+if (access(inFileName, F_OK) != 0)
+{
+        printf("FILE DOESNT EXIST");  
+        exit (1);
+}
+
+if (access(inFileName, R_OK) != 0)              
+{
+        printf("FILE ISN'T READABLE");
+        exit (1);
+}
+
 
 inFile = open(inFileName, O_RDONLY); //Opens the read file 
 
@@ -40,6 +52,19 @@ lseek(outFile, 0, SEEK_END); //used to read backwards
 
 
 inFile = open(inFileName, O_RDONLY); //Opens the read file 
+
+
+if (access(inFileName, F_OK) != 0)
+{
+        printf("FILE DOESNT EXIST");  
+        exit (1);
+}
+
+if (access(inFileName, R_OK) != 0)              
+{
+        printf("FILE ISN'T READABLE");
+        exit (1);
+}
 
 while (read(inFile, &temp, 32) >= 1) // loops therought every charter in read file
 {

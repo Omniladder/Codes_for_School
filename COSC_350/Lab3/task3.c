@@ -21,15 +21,28 @@ scanf("%s" , inFileName); // reads in the file name given by user
 
 inFile = open(inFileName, O_RDONLY); //Opens the read file 
 
+
+if (access(inFileName, F_OK) != 0)
+{
+        printf("FILE DOESNT EXIST");  
+        exit (1);
+}
+
+if (access(inFileName, R_OK) != 0)              
+{
+        printf("FILE ISN'T READABLE");
+        exit (1);
+}
+
 printf("Enter in the file you plan on copying to \n"); // prompts user
 scanf("%s" , outFileName); // reads in the file that data should be sent too
-
 
 outFile = open (outFileName, O_WRONLY|O_CREAT, 0770); //opens file used for outputting
 
 while (read(inFile, &temp, 32) >= 1) // loops therought every charter in read file
 {
-write(outFile, &temp, 32); //send charcter tot thhe write file
+	for(int i = 0;i <32; i++)
+	write(outFile, &(temp[i]), 1); //send charcter tot thhe write file
 }
 
 close (inFile); //closes file

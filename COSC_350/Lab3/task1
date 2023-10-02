@@ -1,0 +1,29 @@
+
+
+if [ $# -lt 2 ]; then  #input validates
+echo enter Input and Output into parameters #prompts user
+exit 1 #exits
+fi
+
+
+
+if [ ! -e $1 ]; then #tests if file exits
+	echo ENTER EXISTING FILE #prompts user
+	exit 1 #exits
+fi
+
+if [ ! -r $1 ]; then #tests if file exits
+	echo ENTER READABLE FILE #prompts user
+	exit 1 #exits
+fi
+
+
+umask 0000 #sets default permissions
+
+gcc task1.c -o task1Code #compiles code
+
+./task1Code < $1 > $2 #takes file input and outputs it
+
+rm task1Code #cleans out the compiled code
+
+exit 0 #ends
