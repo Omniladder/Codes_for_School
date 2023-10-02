@@ -1,4 +1,5 @@
 
+
 //Fuck you Kyle
 
 
@@ -49,18 +50,31 @@ fprintf(stderr, "MUST INPUT AT LEAST 1 NUMBER PARAMETER \n");//outputs error mes
 return -1;//exits
 }
 
-
+int start =0;
+int num = 0;
+int sign =1;
 for (int i = 1; i < numOfNumbers; i++)//loops through every number in index
 {
-    stringSize = strlen(fullNum[i]);//holds number of numbers
-    for (int j = 0; j < stringSize; j++)//runs through every digit of that number
-    {
-        if (convert(fullNum[i][j]) != -1)//makes sure number properly converted
-            sum += convert(fullNum[i][j]);//adds to sum
-        else
-            return -1;//exits if number not inputted
-}
+	num = 0;
+	stringSize = strlen(fullNum[i]);//holds number of numbers
+	if(fullNum[i][0] == '-')
+	{
+	start = 1;
+	sign = -1;
+	}
+	else
+	{
+	start = 0;
+	sign = 1;
+	}
+	
+    for (int j = start; j < stringSize; j++)//runs through every digit of that number
+    	{
+		num *= 10;
+		num += convert(fullNum[i][j]);
+	}
 
+    sum += num * sign;
 
 }
 
