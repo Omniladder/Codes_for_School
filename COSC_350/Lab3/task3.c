@@ -41,7 +41,8 @@ outFile = open (outFileName, O_WRONLY|O_CREAT, 0770); //opens file used for outp
 
 while (read(inFile, &temp, 32) >= 1) // loops therought every charter in read file
 {
-write(outFile, &temp, 32); //send charcter tot thhe write file
+	for(int i = 0;i <32; i++)
+	write(outFile, &(temp[i]), 1); //send charcter tot thhe write file
 }
 
 close (inFile); //closes file

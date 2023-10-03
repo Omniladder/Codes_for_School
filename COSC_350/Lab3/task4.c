@@ -53,6 +53,19 @@ lseek(outFile, 0, SEEK_END); //used to read backwards
 
 inFile = open(inFileName, O_RDONLY); //Opens the read file 
 
+
+if (access(inFileName, F_OK) != 0)
+{
+        printf("FILE DOESNT EXIST");  
+        exit (1);
+}
+
+if (access(inFileName, R_OK) != 0)              
+{
+        printf("FILE ISN'T READABLE");
+        exit (1);
+}
+
 while (read(inFile, &temp, 32) >= 1) // loops therought every charter in read file
 {
 write(outFile, &temp, 32); //send charcter tot thhe write file
