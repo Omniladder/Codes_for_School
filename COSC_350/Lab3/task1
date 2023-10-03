@@ -18,7 +18,6 @@ if [ ! -r $1 ]; then #tests if file exits
 fi
 
 
-umask 0000 #sets default permissions
 
 gcc task1.c -o task1Code #compiles code
 

@@ -32,6 +32,7 @@ else  if(letter == '9')//checks 9
 else
 {
 fprintf (stderr, "FILE MUST CONTAIN ONLY NUMBERS \n"); //if user didn't input a number
+fprintf(stderr, "_%c_", letter);
 return -1;//signal to output something went wrong
 }
 return convertedNum;//returns proper number
@@ -71,8 +72,10 @@ char letter[3];//creates a 3 chat buffer
 
 int sum = 0;//holds the full size ASCII number
 
-while(read(in, &letter, 3) > 0) //reads in 3 intergers
+while(read(in, &letter, 3) > 2) //reads in 3 intergers
 {
+	if(letter !=  "\n")
+	{
 	for(int i = 0; i < 3; i++)//used to combine 3 integers into 1
 	{
 
@@ -81,7 +84,8 @@ while(read(in, &letter, 3) > 0) //reads in 3 intergers
 	}
 	printf("%c", (char) sum);//converts num to char and writes it in
 	sum = 0;//resets sum for next number
-}
+	}
+	}
 
 
 return 0;//ends code
