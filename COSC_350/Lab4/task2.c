@@ -25,25 +25,42 @@ if(numOfArgs >= 3)
 	exit(-1);
 }
 
-int length = strlen(Inputs[1]);
+
+int file = open(Inputs[1], O_RDONLY);
+
+int length = 0;
 int num = 0;
+char buff[1];
+
+
+while(read(file, buff, 1) > 0)
+{length++;}
+
+char Contents[length];
+
+lseek(file, 0, SEEK_SET);
+
 for(int i = 0; i < length; i++)
 {
-	if( convert(Inputs[1][i]) != -1 )
+	read(file, buff,1);
+	Contents[i] = buff[0];
+}
+
+
+for(int i = 0; i < length; i++)
+{
+	if( convert(Contents[i]) != -1 )
 	{
 		num*=10;
-		num += convert(Inputs[1][i]);
+		num += convert(Contents[i]);
 	}
 }
 
 num+=10;
 
 
-if(num > 9 || num == 0)
-write(1, data, convIntToStr(data, num));
-else
-write(1, "-1", 2);
-
+	convIntToStr(data, num);
+	printf("%s", data);
 
 exit(0);
 }
