@@ -43,7 +43,7 @@ int main()
 
 	chdir(home);
 
-       
+      
 
 	if(symlink(concatenate(home, "/Dir2/Dir21", buff), concatenate(home, "/Dir1/toDir21", buff)) < 0)
 	{
