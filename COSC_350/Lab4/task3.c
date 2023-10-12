@@ -7,7 +7,7 @@
 #include <string.h>
 
 
-int palin(int File1, int File2);
+int palind(int File1, int File2);
 int checkPalin(int File, int Start, int End);
 
 int main(int num_Para, char** Input )
@@ -34,12 +34,13 @@ int main(int num_Para, char** Input )
     if(File2 == -1)
     {
         printf("FILE DUPLICATION FAILED\n");
+    	exit(1);
     }
 
 
 
 
-    if(palin(File1, File2) == 1)
+    if(palind(File1, File2) == 1)
     {
         printf("File Contains Palinedrome\n");
     }
@@ -71,7 +72,7 @@ int checkPalin(int File, int start, int finish)
 }
 
 
-int palin(int File1, int File2)
+int palind(int File1, int File2)
 {
     char buff[1];
     int Displace1 = 0, Displace2 = 0; //Stores Location of Start and End of Word
