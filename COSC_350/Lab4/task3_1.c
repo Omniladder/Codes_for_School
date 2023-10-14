@@ -39,19 +39,17 @@ int main()
 	close(inFile);
 	close(outFile);
 
-	printf("%s", concatenate(home,"/Dir2/Dir21", buff));
 
-	chdir(home);
 
-	if(symlink(concatenate(home, "/Dir2/Dir21", buff), concatenate(home, "/Dir1/toDir21", buff)) < 0)
+	if(symlink(concatenate(home, "/Dir1/toDir21", buff), concatenate(home, "/Dir2/Dir21", buff)) < 0)
 	{
-	printf("Symbolic Link Failed");
+	perror("Symbolic Link Failed");
 	exit (-1);
 	}
 
-	if(symlink(concatenate(home, "/Dir2/Dir21/hello", buff), concatenate(home, "/Dir1/tohello", buff)) < 0)
+	if(symlink(concatenate(home, "/Dir1/tohello", buff), concatenate(home, "/Dir2/Dir21/hello", buff)) < 0)
 	{
-	printf("SYNBOLIC LINK FAILED");
+	perror("SYNBOLIC LINK FAILED");
 	exit(-1);
 	}
 }
