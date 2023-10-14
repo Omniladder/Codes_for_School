@@ -6,61 +6,66 @@
 #include <string.h>
 
 
-int convert(char);
-int convIntToStr(char*, int);
+int convert(char);//HAND MADE ATOI
+int convIntToStr(char*, int); //turns ints into string
 
 int main(int numOfArgs, char* Inputs[])
 {
-char data[256];
 
-if(numOfArgs < 2)
+if(numOfArgs < 2) //CHECKS FOR PROPER INPUTS
 {
 	printf("Please Enter a Proper Argument");
 	exit(-1);
 }
 
-if(numOfArgs >= 3)
+if(numOfArgs >= 3) //MAKES SURE PROPER NUMBER OF INPUTS ARE IN
 {
 	printf("Please Pass in Only One Argument");
 	exit(-1);
 }
 
 
-int file = open(Inputs[1], O_RDONLY);
+int file = open(Inputs[1], O_RDONLY);//OPENS FILE
 
-int length = 0;
-int num = 0;
-char buff[1];
+if(file < 0)//MAKES SURE FILE OPEN
+{
+	perror("FILE FAILED TO OPEN");
+	return (-1);
+}
+
+int length = 0;//Stores length of file
+int num = 0;//stores value in int form from file
+char buff[1];//buffer used to read in the file
 
 
-while(read(file, buff, 1) > 0)
+while(read(file, buff, 1) > 0) //gers size of file
 {length++;}
 
-char Contents[length];
+char Contents[length+1];//gets size of file for storage NOTE:: +1 is incase say a number like 999 is the file it'll need an extra char when +10 happens
 
-lseek(file, 0, SEEK_SET);
+lseek(file, 0, SEEK_SET);//sets read back at start
 
-for(int i = 0; i < length; i++)
+for(int i = 0; i < length; i++)//loops through the file and save contents
 {
 	read(file, buff,1);
 	Contents[i] = buff[0];
 }
 
 
-for(int i = 0; i < length; i++)
+for(int i = 0; i < length; i++)//loops through contents
 {
-	if( convert(Contents[i]) != -1 )
+	if( convert(Contents[i]) != -1 ) //converts to number if not a number itll equal -1 and wont be turned into number
 	{
 		num*=10;
 		num += convert(Contents[i]);
 	}
 }
 
-num+=10;
+num+=10;//adds 10 to number as requested
 
 
-	convIntToStr(data, num);
-	printf("%s", data);
+	convIntToStr(Contents, num);//converts back to string
+	printf("%s", Contents);//outputs final answer
 
 exit(0);
 }

@@ -7,7 +7,7 @@
 
 
 
-char* concatenate(const char*, const char*, char*);
+char* concatenate(const char*, const char*, char*);//USED TO CONCATENATE STRINGS TOGETHER
 
 int main(int numOfArgs, char* Inputs[])
 {
@@ -24,23 +24,23 @@ int main(int numOfArgs, char* Inputs[])
 	}
 
 
-	struct stat fileStat;
+	struct stat fileStat;//USED TO STORE DATA ON INPUTTED FILE
 
-	if(stat(Inputs[2], &fileStat) != 0)
+	if(stat(Inputs[2], &fileStat) != 0)//USED TO STORE DATA ON IF THE INPUTTED FILE IS DIRECTORY OR NOT
 	{
 	perror("Couldnt Gather information on Output Directory");
 	return -1;
 	}
 
-	char buf [strlen(Inputs[1]) + strlen(Inputs[2]) + 1];
+	char buf [strlen(Inputs[1]) + strlen(Inputs[2])];//USED TO STORE LOCATION
 
-	if(S_ISDIR(fileStat.st_mode))
+	if(S_ISDIR(fileStat.st_mode))//CHECKS IF DIRECTORY
 	{
-		concatenate(Inputs[2], Inputs[1], buf);
+		concatenate(Inputs[2], Inputs[1], buf);//IF DIRECTORY CREATES LOCATION OF WHAT NEW FILE WILL BE
 	}
 	else
 	{
-	sprintf(buf, "%s", Inputs[1]);
+	sprintf(buf, "%s", Inputs[1]);//SETS BUFFER TO JUST INPUT AS FILE LOCATION IS ALREADY SET UP
 	}	
 	
 	
@@ -51,18 +51,12 @@ int main(int numOfArgs, char* Inputs[])
 	}
 
 
-	unlink(Inputs[1]);
-
-
-
-
-	
-
+	unlink(Inputs[1]);//DELETES FILE ORIGINAL LOCATION
 }
 
 
-char* concatenate(const char* string1, const char* string2, char* newString)
+char* concatenate(const char* string1, const char* string2, char* newString)//USED TO CONCATENATE FILES
 {
-	sprintf(newString, "%s%s", string1, string2);
-	return newString;
+	sprintf(newString, "%s%s", string1, string2);//CONCATESNATES STRING
+	return newString;//RETURNS SAID STRING
 }
