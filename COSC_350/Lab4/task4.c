@@ -1,11 +1,3 @@
-
-
-<<<<<<< HEAD
-
-int main()
-{
-
-=======
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/stat.h>
@@ -14,44 +6,63 @@ int main()
 #include <string.h>
 
 
+
+char* concatenate(const char*, const char*, char*);
+
 int main(int numOfArgs, char* Inputs[])
 {
-	if(numOfArgs < 2)
+	if(numOfArgs < 2) //CHECKS TO MAKE SURE PROPER NUMBER OF INPUTS WERE INPUTTED
 	{
 	printf("PLEASE ENTER 2 INPUTS FILE NAME AND DIRECTORY\n");
 	return (-1);
 	}
 
-	if(access(Inputs[1], F_OK) != 0)
+	if(access(Inputs[1], F_OK) != 0) //Makes sure input file exists
 	{
 	printf("FILE %s IS NOT ACCESSABLE OR DOES NOT EXISTS\n", Inputs[1]);
 	return (-1);
 	}
 
-	if(link(Inputs[1], Inputs[2]) < 0 )
+
+	struct stat fileStat;
+
+	if(stat(Inputs[2], &fileStat) != 0)
 	{
-	printf("LINK FAILED \n");
+	perror("Couldnt Gather information on Output Directory");
+	return -1;
+	}
+
+	char buf [strlen(Inputs[1]) + strlen(Inputs[2]) + 1];
+
+	if(S_ISDIR(fileStat.st_mode))
+	{
+		concatenate(Inputs[2], Inputs[1], buf);
+	}
+	else
+	{
+	sprintf(buf, "%s", Inputs[1]);
+	}	
+	
+	
+	if(link(Inputs[1], buf) < 0 ) //creates link and makes sure its linked properly
+	{
+	perror("LINK FAILED: "); //Teels user what went wrong
 	return (-1);
 	}
 
-	int exists = 1;
 
-	if(access(Inputs[2], F_OK) != 0)
-	{
-	creat(Inputs[2], 0666);
-	exists = 0;
-	}
+	unlink(Inputs[1]);
+
+
+
 
 	
 
+}
 
 
-
-	if(unlink(Inputs[2] ) < 0)
-	{
-	printf("UNLINKING FAILED\n");
-	return -1;
-	}
->>>>>>> 63881e9f9ff8b01365bd82cf1bd29bb3a7182cd3
-
+char* concatenate(const char* string1, const char* string2, char* newString)
+{
+	sprintf(newString, "%s%s", string1, string2);
+	return newString;
 }
