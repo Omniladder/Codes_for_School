@@ -23,6 +23,7 @@ int main()
 	}
 
 	    char buff[500]; // A buffer to hold the directory path
+		char buff2[500];
 
         // Combine the home directory path with the desired directory name
 
@@ -40,18 +41,17 @@ int main()
 	close(outFile);
 
 
-
+	printf("%s goes too %s", concatenate(home, "/Dir2/Dir21", buff),concatenate(home,"/Dir1/toDir21", buff2));
        
-	if(symlink(concatenate(home, "/Dir2/Dir21", buff), concatenate(home, "/Dir1/toDir21", buff)) < 0)
+	if(symlink(concatenate(home, "/Dir2/Dir21", buff), concatenate(home, "/Dir1/toDir21", buff2)) < 0)
 	{
 	perror("Symbolic Link Failed");
 	exit (-1);
 	}
 
-	if(symlink(concatenate(home, "/Dir1/tohello", buff), concatenate(home, "/Dir2/Dir21/hello", buff)) < 0)
+	if(symlink(concatenate(home, "/Dir2/Dir21/hello", buff), concatenate(home, "/Dir1/tohello", buff2)) < 0)
 	{
 	perror("SYNBOLIC LINK FAILED");
-	printf("SYMBOLIC LINK FAILED");
 	exit(-1);
 	}
 }
