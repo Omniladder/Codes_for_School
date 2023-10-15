@@ -26,11 +26,7 @@ int main(int numOfArgs, char* Inputs[])
 
 	struct stat fileStat;//USED TO STORE DATA ON INPUTTED FILE
 
-	if(stat(Inputs[2], &fileStat) != 0)//USED TO STORE DATA ON IF THE INPUTTED FILE IS DIRECTORY OR NOT
-	{
-	perror("Couldnt Gather information on Output Directory");
-	return -1;
-	}
+	stat(Inputs[2], &fileStat);//USED TO STORE DATA ON IF THE INPUTTED FILE IS DIRECTORY OR NOT
 
 	char buf [strlen(Inputs[1]) + strlen(Inputs[2])];//USED TO STORE LOCATION
 
@@ -40,9 +36,10 @@ int main(int numOfArgs, char* Inputs[])
 	}
 	else
 	{
-	sprintf(buf, "%s", Inputs[1]);//SETS BUFFER TO JUST INPUT AS FILE LOCATION IS ALREADY SET UP
+	sprintf(buf, "%s", Inputs[2]);//SETS BUFFER TO JUST INPUT AS FILE LOCATION IS ALREADY SET UP
 	}	
-	
+
+
 	
 	if(link(Inputs[1], buf) < 0 ) //creates link and makes sure its linked properly
 	{
