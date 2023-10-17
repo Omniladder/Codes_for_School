@@ -58,6 +58,10 @@ So, in our case, directly type the following outside any chunk. Then click "Visu
 
 ```         
 ![QQ-plot for a normal distribution](QQ_normal.png)
+![Sample Histogram](sample_hist_normal_n30.png) 
+![Sample QQ](sample_qq_normal_n30.png)
+![Sample Histogram](sample_hist_normal_n100.png) 
+![Sample QQ](sample_qq_normal_n100.png)
 ```
 
 ![QQ-plot for a normal distribution](QQ_normal.png)
@@ -71,7 +75,7 @@ Now, insert the images "QQ_rightskewed.png", "QQ_leftskewed.png", "QQ_bimodal.pn
 1.  Insert "QQ_rightskewed.png" below.
 
     ```         
-    ![Normal](newplot.png)
+    ![Uniform](pop_uniform.png)
     ```
 
 ![Right Skewed](QQ_rightskewed.png)
@@ -84,7 +88,7 @@ you can see that its not normal in the QQ plot as points leave the line space on
 
 2.  Insert "QQ_leftskewed.png" below.
 
-    ![Left Skewed](QQ_leftskewed.png){alt="Left Skewed"}
+    ![Left Skewed](QQ_leftskewed.png)
 
 Describe your observation below.
 
@@ -94,7 +98,7 @@ you can see that its not normal in the QQ plot as points leave the line curving 
 
 3.  Insert "QQ_bimodal.png" below.
 
-    ![Bimodal](QQ_bimodal.png){alt="Bimodal"}
+    ![Bimodal](QQ_bimodal.png)
 
 Describe your observation below.
 
@@ -104,7 +108,7 @@ Here we see that the q plot creates something similar to the sigmoid function ov
 
 4.  Insert "QQ_cauchy.png" below.
 
-    ![Cauchy](QQ_cauchy.png){alt="Cauchy"}
+    ![Cauchy](QQ_cauchy.png)
 
 Describe your observation below.
 
@@ -148,34 +152,39 @@ Based on the app, we can now explore the properties of sampling distribution of 
 
 1.  Set the Population Distribution as "Normal", the Sample Size as 5, and the Number of samples as 500.
 
-2.  
+2.  Go to the "Population Distribution" tab, download the distribution plot and name it as "pop_normal.png", then insert the image below.
 
     ![Normal](newplot.png)
 
-3.  Go to the "Population Distribution" tab, download the distribution plot and name it as "pop_normal.png", then insert the image below.
-
-4.  Based on the population distribution plot, answer the questions: what is the mean and standard deviation of this "parent" distribution, does it satisfy the assumptions? (specify which conditions are satisfied, especially 3a or 3b)
+3.  Based on the population distribution plot, answer the questions: what is the mean and standard deviation of this "parent" distribution, does it satisfy the assumptions? (specify which conditions are satisfied, especially 3a or 3b)
 
     ```         
+    the mean is 0 standard deviation is .999 but most likely would be 1 likely some rounding error or a precision error it does satisfy the above assumptions as it is a finite mean a finite and follows a normal distribution
     ```
 
-5.  Go to the "Sampling Distribution - Sample Mean" tab, download the histogram and QQ-plot (for QQ-plot, you may need to right click you mouse on that plot, and click "Save image as..."). Name the plots as "sample_hist_normal_n5.png" and "sample_qq_normal_n5.png" (n5 means sample size n=5). Then insert the plots below
+4.  Go to the "Sampling Distribution - Sample Mean" tab, download the histogram and QQ-plot (for QQ-plot, you may need to right click you mouse on that plot, and click "Save image as..."). Name the plots as "sample_hist_normal_n5.png" and "sample_qq_normal_n5.png" (n5 means sample size n=5). Then insert the plots below
 
-6.  Based on the histogram and QQ_plot, answer the questions: what is the mean and standard deviation of $\overline{X}$? Do they (approximately) equal to the population mean and $\sigma/\sqrt(n)$, respectively? Based on the histogram and QQ_plot, determine whether the sampling distribution of sample means is approximately normal distributed.
+    ![Sample Histogram](sample_hist_normal_n5.png) ![Sample QQ](sample_qq_normal_n5.png)
+
+5.  Based on the histogram and QQ_plot, answer the questions: what is the mean and standard deviation of $\overline{X}$? Do they (approximately) equal to the population mean and $\sigma/\sqrt(n)$, respectively? Based on the histogram and QQ_plot, determine whether the sampling distribution of sample means is approximately normal distributed.
 
     (In the case when the calculation results on the histogram are covered by the image, move you mouse to the plot, use the "pan" pop-up icon and/or "zoom in" pop_up icon to get a clearer view)
 
     ```         
+    in the original sample we can see that it calculated standard deviation to be equal to approximately 1 and n is 5 for each data set 1 / sqrt(5) = .4472 roughly what the histogram says it is and the mean also graviates around 0 which is where it is in the normal distribution
     ```
 
-7.  Keep the Population Distribution as "Normal"and the Number of samples as 500. But change the Sample Size to 30 and 100. Then answer questions 4 and 5 respectively. (when you download the plots, make sure to adjust the name to n30 and n100, respectively)
+6.  Keep the Population Distribution as "Normal"and the Number of samples as 500. But change the Sample Size to 30 and 100. Then answer questions 4 and 5 respectively. (when you download the plots, make sure to adjust the name to n30 and n100, respectively)
+
+    ![Sample Histogram](sample_hist_normal_n30.png) ![Sample QQ](sample_qq_normal_n30.png) ![Sample Histogram](sample_hist_normal_n100.png) ![Sample QQ](sample_qq_normal_n100.png)
 
     ```         
     ```
 
-8.  Comparing results on questions 4, 5, and 6. How does the sample size affect the results?
+7.  Comparing results on questions 4, 5, and 6. How does the sample size affect the results?
 
     ```         
+    we can see that the curve becomes more and more normal as sample size increaseswe also see a decrease in standard deviaiton 
     ```
 
 **End of Assignment 2**
@@ -190,6 +199,80 @@ Type \### to specified the population, for example
 
 ```         
 ### Uniform Pop Distribution
+```
+
+![Uniform](pop_uniform.png)
+
+```         
+The mean is roughly .5 and same for mean standard deviation is .288 the uniform distribution doesn't meet assumptions as it has a finite mean and standard deviation but n isnt >= 30 yet
+```
+
+![Uniform](sample_hist_uniform_n5.png)
+
+![Uniform](sample_qq_uniform_n5.png)
+
+```         
+mean is roughly .5 and standard deviation is.129 same as normal distribution this once again has about the same mean of .501 the standard deviation lines up with no error
+```
+
+![Uniform](sample_hist_uniform_n30.png) ![Uniform](sample_qq_uniform_n30.png) ![Uniform](sample_hist_uniform_n100.png) ![Uniform](sample_qq_uniform_n100.png)
+
+```         
+once again we standard deviation shrink as n gets bigger and alsp the data more and more closely resembles a normal distribution
+```
+
+![Right](pop_Right.png)
+
+```         
+This doesnt meet the assumptions because n < 30 and its not a normal distribution mean is 1.135 and median is slightly over 1 standard deviation is .605
+```
+
+![Right](sample_hist_right_n5.png) ![Right](sample_qq_right_n5.png)
+
+```         
+the mean is 1.136 .262 is the standard deviation and it is close to sample mean and devation is close to variation / sqrt(n) however this is most clearly not normal distribution and is instead right ward skewed at such low values
+```
+
+![Right](sample_hist_right_n30.png) ![Right](sample_qq_right_n30.png) ![Right](sample_hist_right_n100.png) ![Right](sample_qq_right_n100.png)
+
+```         
+as n increases we defintely see the right ward skew disappear and appear more normal and once again SD has once again shrank as n grows
+```
+
+![Left](pop_Left.png)
+
+```         
+this one also doesnt meet asumptions as once again same size is 5 thus under 30 and isnt normal therefore breaking rule 3
+```
+
+![Left](sample_hist_left_n5.png) ![Left](sample_qq_left_n5.png)
+
+```         
+means are once again similar and variance does meet expectations the graph similar to right skewed one is copying its parent graph and being left skewed
+```
+
+![Left](sample_hist_left_n30.png) ![Left](sample_qq_left_n30.png) ![Left](sample_hist_left_n100.png) ![Left](sample_qq_left_n100.png)
+
+```         
+Once again we see the same trends emerge as n grows standard deviation shrinks and the graph gradually becomes more and more normal
+```
+
+![Bimodal](pop_Bimodal.png)
+
+```         
+This graph doesnt meet our expectations for same reasons as graphs that preceded it it has n less than 30 and isnt normal
+```
+
+![Bimodal](sample_hist_bimodal_n5.png) ![Bimodal](sample_qq_bimodal_n5.png)
+
+```         
+I think this graph is also bimodal when it has low n we can see it seperate from line around -2 and it leaves bimodal distribution
+```
+
+![Bimodal](sample_hist_bimodal_n30.png) ![Bimodal](sample_qq_bimodal_n30.png) ![Bimodal](sample_hist_bimodal_n100.png) ![Bimodal](sample_qq_bimodal_n100.png)
+
+```         
+Similar to graphs that preceded it as n begins to rise the graph becomes more and more normal and also standard deviation declines
 ```
 
 Then insert the images below that.
@@ -212,6 +295,36 @@ Set the Population Distribution to "Cauchy". Then Answer all questions in Assign
 
 So, what can we do when assumption 1 and/or 2 are not satisfied? Interestingly, we can have a "Central Limit Theorem" for **Sample Medians** (we are dealing with sample means only by far). Of course, the sample medians version CLT also require OTHER assumptions. We don't go into the details here, but for the case of Cauchy, we can say the assumptions are satisfied. In this version, the mean of the sampling distribution of the sample medians is the population median, and the standard deviation is proportional to $1/\sqrt{n}$.
 
+![Caunchy](pop_Caunchy.png)
+
+```         
+as explained above this absolutlely violates the assumptions in every way with a undefined mean standard deviaiton non normal and too small of n
+```
+
+![Caunchy](sample_hist_caunchy_n5.png) ![Caunchy](sample_qq_caunchy_n5.png)
+
+```         
+it seems the graph it creates is another caunchy graph that is incredibly skewed so much so its hard to see the actual area where all the data isthe mean is 2.6 and deviation is 39 which i think means theirs likely a few extreme outliers setting everything off
+```
+
+![Caunchy](sample_hist_caunchy_n30.png) ![Caunchy](sample_qq_caunchy_n30.png) ![Caunchy](sample_hist_caunchy_n100.png) ![Caunchy](sample_qq_caunchy_n100.png)
+
+```         
+the standard devation still seems to shrink in this as n grows similar to previous graphs we looked at but the distribution continous to stay caunchy and doesnt normalize unlike previous graphs
+```
+
+```         
+![Caunchy](pop_Caunchy.png)
+
+![Caunchy](sample_hist_caunchy_n5.png)
+![Caunchy](sample_qq_caunchy_n5.png)
+
+![Caunchy](sample_hist_caunchy_n30.png)
+![Caunchy](sample_qq_caunchy_n30.png)
+![Caunchy](sample_hist_caunchy_n100.png)
+![Caunchy](sample_qq_caunchy_n100.png)
+```
+
 ## Assignment 5
 
 1.  Go to the tab "Sampling Distribution - Sample Median"
@@ -220,14 +333,18 @@ So, what can we do when assumption 1 and/or 2 are not satisfied? Interestingly, 
 
 3.  For each selected sample size, download the histogram and QQ-plot, then insert below.
 
+    ![Caunchy](sample_median_cauchy_500.png) ![Caunchy](sample_median_cauchy_qq_500.png) ![Caunchy](sample_median_cauchy_10.png) ![Caunchy](sample_median_cauchy_qq_10.png) ![Caunchy](sample_median_cauchy_50.png) ![Caunchy](sample_median_cauchy_qq_50.png) ![Caunchy](sample_median_cauchy_100.png) ![Caunchy](sample_median_cauchy_qq_100.png) ![Caunchy](sample_median_cauchy_300.png) ![Caunchy](sample_median_cauchy_qq_300.png)
+
 4.  For each selected sample size, compare the "mean of samp_median" and "median of x" on the histogram. Then check if the "Ratio of 2nd and 6th line" are approximately equal to each others for different sample size. What is your observations.
 
     ```         
+    the second and sixth line slowly converges as n increase
     ```
 
 5.  For each selected sample size, is the sampling distribution of sample median approximately normal? How does the sample size increasing affect the normality approaching?
 
     ```         
+    the ones with fairly high ns seem to have  approximately normal medians
     ```
 
 **End of Assignment 5**
