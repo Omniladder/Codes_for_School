@@ -19,32 +19,38 @@ int main(int numInputs, char *Inputs[])
 
 	char *message;
 	int n;
-	int child_Status;
 
+	int pid = fork();
        	int Iterations = string_To_Int(Inputs[2]); 
 	n=Iterations;
 	
+	int child_status;
+
 	int Sleep = string_To_Int(Inputs[4]);
 
 
 	char path[get_String_Size(getenv("PWD")) + get_String_Size("/child")];
 
-	printf("child program starting\n");
-	if (execl(concatenate(getenv("PWD"), "/child", path), "This is the Child\n", Inputs[1], Inputs[3], NULL) == -1)
-	{	
-		perror("exec failed");
-		exit(1);
+
+	if(pid == 0)
+	{
+		printf("child program starting\n");
+		if (execl(concatenate(getenv("PWD"), "/child", path), "This is the Child", Inputs[1], Inputs[3], NULL) == -1)
+		{	
+			perror("exec failed");
+			exit(1);
+		}
 	}
-
-	message = "This is the parent\n";
-
+	else
+	{
+	message = "This is the parent";
 	for(; n > 0; n--)
 	{
-		wait(&child_Status);
-		printf("%s PID IS : %d", message, getpid());
+		wait(&child_status);
+		printf("%s PID IS : %d\n", message, getpid());
 		sleep(Sleep);
 	}
-
+	}
 	exit(0);
 }
 
