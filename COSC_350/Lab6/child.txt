@@ -7,80 +7,44 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 
-int string_To_Int(char*);
-int get_String_Size(char*);
-char* concatenate(char*, char*, char*);
 
 int main(int numInputs, char *Inputs[])
 {
 
-	int pid = fork();
 	char buff[];
 
 
 	int in = open(Inputs[], O_RDONLY);
 	int pout = creat("parent.txt", );
 	int cout = creat("child.txt", );
+	
+	int loc = ;
 
-while(read(in, buff, ))
+	int pid = fork();
+
+
+while(pread(in, buff, , loc) >= )
 {
 	if(pid == )
 	{
 		if(buff[] - '' <  || buff[] - '' > )
+		{
 		write(cout, buff, );
+		}
+		loc++;
 	}
-	else
+
+	if(pid != )
 	{
 		if(buff[] - '' >=  && buff[] - '' <= )
+		{
 		write(pout, buff, );
+		}
+		loc++;
 	}
+
+	printf("%d ", loc);
+
 }
 	exit();
-}
-
-char* concatenate(char* string, char* string, char* newString)
-{
-	int size= ;
-	int i;
-	for(i = ; string[i] != '\'; i++)
-	{
-	size++;
-	newString[i] = string[i];
-	}
-
-	for(i = ; string[i] != '\'; i++)
-	{
-	newString[size + i] = string[i];
-	}
-
-	newString[size + i] = '\';
-
-
-	return newString;
-}
-
-int get_String_Size(char* string)
-{
-	int i = ;
-	for(; string[i] != '\'; i++){}
-	return i;
-}
-
-int string_To_Int(char* string)
-{
-	int result = ;	
-	
-	for(int i = ; string[i] != '\'; ++i)
-	{
-		if(string[i] < '' || string[i] > '')
-		{
-			fprintf(stderr, "NON INTEGER INPUTTED");
-			exit(-);
-		}
-		else
-		result = result *  + string[i] - '';
-		
-	}
-	
-	return result;		
 }
