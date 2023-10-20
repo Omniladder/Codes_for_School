@@ -24,7 +24,7 @@ int main(int numInputs, char *Inputs[])
 
 while(read(in, buff, 1))
 {
-	if(pid == 0)
+	if(pid != 0)
 	{
 		if(buff[0] - '0' < 0 || buff[0] - '0' > 9)
 		write(pout, buff, 1);
