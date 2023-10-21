@@ -43,7 +43,6 @@ while(pread(in, buff, , loc) >= )
 		loc++;
 	}
 
-	printf("%d ", loc);
 
 }
 	exit();
