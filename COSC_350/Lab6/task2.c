@@ -15,11 +15,16 @@ int main(int numInputs, char *Inputs[])
 	int in = openUtmp();
 
 	struct utmp user_Data;
-
+	int count = 0;
 	while(read(in, &user_Data, sizeof(user_Data)) >= 1)
 	{
-	puts(user_Data.ut_user);
+	if (user_Data.ut_type == USER_PROCESS) 
+	{
+		printf("%s\n", user_Data.ut_user);
+        	count++;
 	}
+	}
+	printf("NUMBER OF LOGGED IN USERS IS %d\n", count);
 }
 
 
