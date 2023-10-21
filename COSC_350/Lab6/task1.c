@@ -11,9 +11,9 @@ char* mygetenv(char*);
 extern char **environ;
 static char output[500];
 
-int main(int numInputs, char *Inputs[])
+int main()
 {
-printf("%s", mygetenv("PATH"));
+printf("%s\n", mygetenv("PATH"));
 }
 
 char* mygetenv(char* varName)
@@ -39,6 +39,7 @@ char* mygetenv(char* varName)
 			{
 			output[j - env_Size] = environ[i][j + 1];
 			}
+			output[j] =  '\n';
 			return output;
 
 		}
