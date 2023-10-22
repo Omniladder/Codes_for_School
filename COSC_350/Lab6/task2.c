@@ -8,38 +8,41 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 
-int openUtmp();
+int openUtmpFile();
 
 int main(int numInputs, char *Inputs[])
 {
-	int in = openUtmp();
+	int numUsers = 0;
+	int tmp = openUtmpFile();
 
-	struct utmp user_Data;
-	int count = 0;
-	while(read(in, &user_Data, sizeof(user_Data)) >= 1)
+	struct utmp userData;	
+	
+	
+	while(read(tmp, &userData, sizeof(userData)) >= 1)
 	{
-	if (user_Data.ut_type == USER_PROCESS) 
-	{
-		printf("%s\n", user_Data.ut_user);
-        	count++;
+		if (userData.ut_type == USER_PROCESS) 
+		{
+			printf("%.*s\n" , (int)(sizeof userData.ut_user), userData.ut_user);
+        		numUsers++;
+		}
 	}
-	}
-	printf("NUMBER OF LOGGED IN USERS IS %d\n", count);
+	
+	printf("NUMBER OF LOGGED IN USERS IS %d\n", numUsers);
 }
 
 
 
-int openUtmp()
+int openUtmpFile()
 {
 
-	int in = open("/var/run/utmp", O_RDONLY);
-	if(in < 0)
+	int tmpFile = open("/var/run/utmp", O_RDONLY);
+	if(tmpFile < 0)
 	{
 		perror("FILE FAILED TO OPEN");
 		exit(-1);
 	}
 	else
 	{
-		return in;
+		return tmpFile;
 	}
 }
