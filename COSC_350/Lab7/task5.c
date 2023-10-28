@@ -1,24 +1,16 @@
-//task5.c
-//Date: 10/28/23
-//Programmer: Jase Gambrill
-
 #include <signal.h>
 #include <stdio.h>
+#include <unistd.h>
 
 int main()
 {
-	sigset_t new;
-	sigset_t old;
+	sigset_t termsToChange;
+	sigset_t storedTerms;
 	
-	sigemptyset(&new);
-	sigaddset(&new, SIGINT);
-	sigaddset(&new, SIGQUIT);
+	sigaddset(&termsToChange, SIGINT);
+	sigaddset(&termsToChange, SIGQUIT);
 	
-	sigprocmask(SIG_BLOCK, &new, &old);
-	
-	printf("Loop 1\n");
-	
-	sleep(2);
+	sigprocmask(SIG_BLOCK, &termsToChange, &storedTerms);
 	
 	for(int i = 1; i <= 5; i++)
 	{
@@ -26,16 +18,13 @@ int main()
 		sleep(1);
 	}
 	
-	sigdelset(&new, SIGQUIT);
-	sigprocmask(SIG_SETMASK, &new, NULL);
-	
-	printf("Loop 2\n");
-	
-	sleep(2);
+	sigdelset(&termsToChange, SIGINT);
+	sigprocmask(SIG_UNBLOCK, &termsToChange, &storedTerms);
 	
 	for(int i = 1; i <= 5; i++)
 	{
 		printf("%d\n", i);
 		sleep(1);
 	}
+	return 0;
 }
