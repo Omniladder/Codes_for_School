@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/wait.h>
+#include <stdlib.h>
 
 volatile int niceResponseTriggered = 0;
 volatile int meanResponseTriggered = 0;
@@ -25,35 +26,31 @@ int main()
 
 
 
-    struct sigaction niceResponse;
-    struct sigaction meanResponse;
-        
-    niceResponse.sa_handler = niceGuyResponse;
-    meanResponse.sa_handler = meanGuyResponse;
-
-    sigaction(SIGUSR1, &niceResponse, NULL);
-    sigaction(SIGUSR2, &meanResponse, NULL);
+    signal(SIGUSR1, &niceGuyResponse);
+    signal(SIGUSR2, &meanGuyResponse);
 
     favoriteChild = fork();
     
     if(favoriteChild != 0)
     {
+        waitpid(favoriteChild, 0, 0);
         actuallySatan = fork();
     }
 
     if(favoriteChild == 0)
     {
         kill(getppid(), SIGUSR1); //WHY IN GODS GREEN EARTH IS THE SEND SIGNAL COMMAND CALLED KILL
+    	exit(0);
     }
     else if(actuallySatan == 0)
     {
         kill(getppid(), SIGUSR2);
+    	exit(0);
     }
     else
     {
-        while(!(meanResponseTriggered && niceResponseTriggered))
-        {
-        }
+        waitpid(actuallySatan, 0, 0);
     }
+
     return 0;
 }
