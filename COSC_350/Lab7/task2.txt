@@ -1,0 +1,4 @@
+i ran it with ./ctrl2& which ran it in the background followed by ps to list processes and get its pid and then 
+kill with the respective PID in my case it was 14426
+
+kill -l seems to list out a list of all of the different signals
