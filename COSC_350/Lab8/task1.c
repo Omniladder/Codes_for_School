@@ -58,10 +58,4 @@ void* factorial(void* inputtedNum)
 }
 
 void* sumnation(void* num) 
-{
-	return (void *)(((* (int*) num + 1) * ((int)(*(int*)num) / 2)) + ((*(int*)num % 2) * (((*(int*)num + 1) / 2)))); 
-}
-
-
-
-
+{return (void *)(((* (int*) num + 1) * ((int)(*(int*)num) / 2)) + ((*(int*)num % 2) * (((*(int*)num + 1) / 2))));}
