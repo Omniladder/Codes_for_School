@@ -9,6 +9,11 @@ void* sumnation(void*);
 
 int main(int numInputs, char* commandLine[])
 {
+	if(numInputs != 2)
+	{
+	printf("ENTER 1 Number Argument\n");
+	return(-1);
+	}
 	pthread_t factThread, sumThread;
 
 	int inputParameters[1];
