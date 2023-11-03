@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <unistd.h>
 
+void emptySignal(int sig)
+{;}
 int main()
 {
 	sigset_t termsToChange;
@@ -17,10 +19,14 @@ int main()
 		printf("%d\n", i);
 		sleep(1);
 	}
-	
+
+	signal(SIGQUIT, &emptySignal);
+
 	sigdelset(&termsToChange, SIGINT);
 	sigprocmask(SIG_UNBLOCK, &termsToChange, &storedTerms);
 	
+	signal(SIGQUIT, SIG_DFL);
+
 	for(int i = 1; i <= 5; i++)
 	{
 		printf("%d\n", i);
