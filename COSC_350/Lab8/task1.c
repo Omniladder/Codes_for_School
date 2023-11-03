@@ -26,8 +26,6 @@ int main(int numInputs, char* commandLine[])
 		return -1;
 	}
 
-	int sumResult;
-	int factResult;
 	void* sumBuffer;
 	void* factBuffer;
 
@@ -37,8 +35,8 @@ int main(int numInputs, char* commandLine[])
 	pthread_join(factThread, &factBuffer);	
 
 	
-	printf("Final Sum Result %d", sumResult);
-	printf("Final Factorial Result %d", factResult);
+	printf("Final Sum Result %d\n", (int)(sumBuffer));
+	printf("Final Factorial Result %d\n", (int)(factBuffer));
 
 }
 
@@ -55,7 +53,9 @@ void* factorial(void* inputtedNum)
 }
 
 void* sumnation(void* num) 
-{return (void *)(((* (int*) num + 1) * ((int)(*(int*)num) / 2)) + ((*(int*)num % 2) * (((*(int*)num + 1) / 2)))); }
+{
+	return (void *)(((* (int*) num + 1) * ((int)(*(int*)num) / 2)) + ((*(int*)num % 2) * (((*(int*)num + 1) / 2)))); 
+}
 
 
 
