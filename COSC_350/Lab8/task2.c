@@ -62,7 +62,7 @@ int main()
 
 void displayArray(int size)
 {
-	for(int i = 1; i != size+1; i++)
+	for(int i = 1; i < size+1; i++)
 	{
 	printf("%d ",testScores[i]);
 	}
@@ -71,9 +71,11 @@ void displayArray(int size)
 
 void* clearArray()
 {
-	free(testScores);
-	testScores = 0;
-	displayArray(1);
+	for(int i = 1; i <= testScores[0] ; i++)
+	{
+		testScores[i] = 0;
+	}
+	displayArray(testScores[0]);
 	return (void *)testScores;
 }
 
