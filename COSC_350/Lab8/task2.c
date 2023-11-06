@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int* testScores;
+int testScores[21];
 
 void* fillArray();
 void* clearArray();
@@ -85,15 +85,18 @@ void* fillArray()
 	int size = 0;
 
 
-	testScores = (int *)malloc(sizeof(int));
+//	testScores = (int *)malloc(sizeof(int));
 
 	printf("type numbers in to add to array or anything else to end\n");
 
 	while(scanf("%d", &buff) == 1 && size != 20)
 	{
 		size++;
-		testScores = (int *)realloc(testScores, sizeof(testScores) + sizeof(int));
 		testScores[size] = buff;
+	}
+	if(size == 20)
+	{
+		printf("HIT MAX SIZE\n");
 	}
 	testScores[0] = size;
 
