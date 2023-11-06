@@ -25,7 +25,7 @@ int main()
 	
 	
 	pid_t child = fork(), grandChild;
-	
+	pid_t currentParent, previousParent;
 	if(child == 0)
 	{
 		grandChild = fork();
@@ -47,11 +47,21 @@ int main()
 	}
 	else
 	{
-		for(int i = 0; i < 10; i++)
+		previousParent = getppid();
+		int count = 1;
+		while(1)
 		{
-		printf("Grandchild Process\n");
+			printf("Grandchild Process\n");
+			
+			if(count == 10)
+			{kill(getppid(), SIGUSR1);}
+			
+			currentParent = getppid();
+			
+			if(currentParent != previousParent)
+			{return 0;}
+			count++;
 		}
-		kill(getppid(), SIGUSR1);
 	}
 	exit(0);
 }
