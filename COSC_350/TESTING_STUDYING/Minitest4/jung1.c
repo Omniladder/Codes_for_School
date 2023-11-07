@@ -11,10 +11,22 @@ void killChild(int signal)
 	abort();
 }
 
+void KYS(int signal)
+{
+
+	for(int i = 0; i < 3; i++)
+	{
+	sleep(1);
+	printf("I AM SORRY MY SON\n");
+	}
+	abort();
+}
+
 int main()
 {
 	pid_t child;
 	signal(SIGUSR1, &killChild);
+	signal(SIGCHLD,&KYS);
 	child = fork();
 	if(child == 0)
 	{
@@ -32,11 +44,6 @@ int main()
 		sleep(1);
 	}
 	kill(child, SIGUSR1);
-	for(int i = 0; i < 3; i++)
-	{
-	sleep(1);
-	printf("I AM SORRY MY SON\n");
-	}
-	exit;
+	while(1){;} //WAITS FOR SON TO DIE
 	}
 }
