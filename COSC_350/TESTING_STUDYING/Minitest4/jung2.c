@@ -7,7 +7,7 @@
 
 void thread1Kill(void* hitList)
 {
-	pthread_cancel(hitList);
+	pthread_cancel((pthread_t)hitList);
 	printf("THE FIRST THREAD JOB IS DONE\n");
 }
 
