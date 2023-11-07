@@ -153,7 +153,6 @@ void copy(int * array)
 
 void* minMaxCalc()
 {
-
 	int min = testScores[1];
 	int max = testScores[1];
 
