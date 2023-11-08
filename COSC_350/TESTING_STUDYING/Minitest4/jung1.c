@@ -8,6 +8,7 @@
 void killChild(int signal)
 {
 	printf("my said \" GO AWAY\"\n");
+	kill(getppid(), SIGUSR2);
 	abort();
 }
 
@@ -25,11 +26,10 @@ void KYS(int signal)
 int main()
 {
 	pid_t child;
-	signal(SIGUSR1, &killChild);
-	signal(SIGCHLD,&KYS);
 	child = fork();
 	if(child == 0)
 	{
+	signal(SIGUSR1, &killChild);
 	while(1)
 	{
 		printf("I AM IMMORTAL\n");
@@ -38,6 +38,7 @@ int main()
 	}
 	else
 	{
+	signal(SIGUSR2,&KYS);
 	for(int i = 0; i < 10; i++)
 	{
 		printf("THIS IS YOUR MOM\n");
