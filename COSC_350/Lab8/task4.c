@@ -54,10 +54,10 @@ int main(int numInputs, char** commandLine)
 		}	
 		close(fileDescriptor[0]);
 
-		write(fileDescriptor[1], commandLine[1], strlen(commandLine[0]));
+		write(fileDescriptor[1], commandLine[1], 999);
 		sleep(1);
 
-		write(fileDescriptor[1], commandLine[2], strlen(commandLine[1]));
+		write(fileDescriptor[1], commandLine[2], 999);
 		sleep(1);
 
 		write(fileDescriptor[1], "EOF", 3);
@@ -86,7 +86,6 @@ int string_to_int(char* string)
           {
                   if(string[i] < '0' || string[i] > '9')
                   {
-						printf("%s/n", string);
                         fprintf(stderr, "NON INTEGER INPUTTED\n");
 						exit(-1);
                   }
