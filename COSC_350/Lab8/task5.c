@@ -23,9 +23,10 @@ int main(int commandSize, char** commandLine)
 	FILE*	child = popen(bashCommand,"r"); /* creat a pipe */
 	
 
-	while(fgets(bashOutput, BUFSIZ, child)){
-            (void) printf("%s", bashOutput);
-        }
+	while(fgets(bashOutput, BUFSIZ, child))
+	{
+       printf("%s", bashOutput);
+    }
 
 	pclose(child);
 	exit(0);
