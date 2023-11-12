@@ -23,15 +23,13 @@ int main(int numInputs, char** commandLine)
 	{
 		close(fileDescriptor[1]);
 		char buff[999];
-		int numBuff;
-		int size = 0;
 		int sum = 0;
 
 
 		while(1)
 		{
-			size =read(fileDescriptor[0], buff, 999);
-			printf("%s\n", buff);
+			read(fileDescriptor[0], buff, 256);
+			sscanf("%d %d")	
 			if(strcmp(buff,"EOF") == 0)
 			{
 				break;
@@ -41,27 +39,25 @@ int main(int numInputs, char** commandLine)
 				sum += string_to_int(buff);
 			}
 		}
+	
 		printf("sum is %d\n", sum);
+		kill(getppid(), SIGTERM);
 		close(fileDescriptor[0]);
 	}
 	else
 	{
-		if(numInputs != 3)
-		{
-			printf("INPUT ONLY 2 Integers\n");
-			kill(child, SIGTERM);
-			exit(0);
-		}	
 		close(fileDescriptor[0]);
+		while(1)
+		{
+			write(fileDescriptor[1], commandLine[1], 256);
+			sleep(1);
 
-		write(fileDescriptor[1], commandLine[1], 999);
-		sleep(1);
+			write(fileDescriptor[1], commandLine[2], 256);
+			sleep(1);
 
-		write(fileDescriptor[1], commandLine[2], 999);
-		sleep(1);
-
-		write(fileDescriptor[1], "EOF", 3);
-		close(fileDescriptor[1]);
+			write(fileDescriptor[1], "EOF", 256);
+			close(fileDescriptor[1]);
+		}
 	}
 	int status;
 
