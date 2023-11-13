@@ -47,10 +47,11 @@ void thread2(void* hitList)
     while(1)
     {
         count++;
-        if(count <= 10)
+	printf("IN THE SECOND THREAD \n");
+        if(count >= 10)
         {
-            pthread_cancel((pthread_t) hitList);
-            break;
+		pthread_cancel((pthread_t) hitList);
+		break;
         }
     }
     pthread_exit(0);
