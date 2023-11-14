@@ -7,9 +7,7 @@
 #include <sys/wait.h>
 
 
-int string_to_int(char*);
 char* concatenate(const char*, const char*, char*);
-void KYSLOL(int);
 
 int main()
 {
@@ -86,33 +84,6 @@ int main()
 	return 0;
 }
 
-int string_to_int(char* string)
-  {
-          int result = 0;
-			int i = 0;
-
-			int neg = 1;
-
-			if(string[0] == '-')
-			{
-				i++;
-				neg = -1;
-			}
-
-          for(; string[i] != '\0'; i++)
-          {
-                  if(string[i] < '0' || string[i] > '9')
-                  {
-                        fprintf(stderr, "NON INTEGER INPUTTED ENTER INTEGERS ONLY::\n");
-						return 0;
-                  }
-                  else
-                  result = result * 10 + string[i] - '0';
-  
-          }
-  
-          return result * neg;
-  }
 
 
 char* concatenate(const char* string1, const char* string2, char* newString)

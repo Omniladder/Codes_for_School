@@ -1,6 +1,3 @@
-//test.c
-//Date: 11/11/23
-
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,13 +12,18 @@ int main(int commandSize, char** commandLine)
 	char bashOutput[BUFSIZ];
 	for(int i = 1; i < commandSize; i++)
 	{
-		concatenate(bashCommand, " ", bashCommand);
 		concatenate(bashCommand, commandLine[i], bashCommand);
 	}
 
+	for(int i = 1; i < strlen(bashCommand); i++)
+	{
+		bashCommand[i - 1] = bashCommand[i];
+	}
+	
+	bashCommand[strlen(bashCommand) - 1] = ' ';
 
 	FILE*	child = popen(bashCommand,"r"); /* creat a pipe */
-	
+
 
 	while(fgets(bashOutput, BUFSIZ, child))
 	{
@@ -35,6 +37,6 @@ int main(int commandSize, char** commandLine)
 
 char* concatenate(const char* string1, const char* string2, char* newString)
 {
-	sprintf(newString, "%s%s", string1, string2);//concatenates the string
+	sprintf(newString, "%s %s", string1, string2);//concatenates the string
 	return newString;//returns string
 }
