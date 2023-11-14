@@ -36,18 +36,34 @@ void Bye1(void* input)
 	exit(0);
 }
 
-void Bye(void* input)
+void Bye(void* Hit)
 {
 	printf("BYE!\n");
+	kill(SIGTERM, (pthread_t) Hit);
 	exit(0);
 }
 
 void thread1(void* Hit)
 {
-		
+	pthread_cleanup_push(Bye, Hit);
+	while(1)
+	{
+		printf("in First Thread\n");
+		pthread_testcancel();
+		sleep(1);
+	}
+	pthread_cleanup_pop(0);
 }
 
 void thread2(void* Hit)
 {
-
+	int i = 0;
+	while(1)
+	{
+		printf("In the second Thread\n");
+		if(i > 10)
+		{pthread_cancel((pthread_t)Hit);}
+		i++;
+		sleep(1);
+	}//I THINK THIS CREATES AN INFINITE LOOP NEVER BROKEN OUT OF IDK IT NEVER SAYS TO TERMINATE
 }
