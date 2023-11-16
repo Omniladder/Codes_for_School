@@ -1,0 +1,2 @@
+When you flip the order the print never reads anything and is instead waiting for something to come into the pipe this is because their is nothing inside the pipe to read and read automatically waits
+

@@ -11,7 +11,7 @@ int main(int numInputs, char *Inputs[])
 {
 	if(numInputs != 5)
 	{
-		fprintf(stderr,"Must Pass 4 Integers 1: Child Iterations 2: Parent Iterations 3: Child Sleep 4: Parent Sleep \n");
+		fprintf(stderr,"Must Pass 4 Integers 1: Child Iterations 2: Parent Iterations 3: Child Sleep 4: Parent Sleep \n");  
 		exit(1);
 	}
 

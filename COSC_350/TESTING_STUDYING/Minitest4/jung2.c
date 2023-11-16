@@ -55,5 +55,5 @@ int main()
 		sleep(1);
 	}
 	pthread_cleanup_pop(0);
-	pthread_exit(0);
+	exit(0);
 }

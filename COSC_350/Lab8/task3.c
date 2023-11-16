@@ -22,7 +22,8 @@ int main()
     while(1)
     {
         printf("IN THE ORIGINAL THREAD\n");
-        pthread_testcancel();
+        sleep(1);
+	pthread_testcancel();
     }
     pthread_cleanup_pop(0);
     pthread_exit(0);
@@ -35,7 +36,8 @@ void thread1(void* hitList)
     while(1)
     {
         printf("IN THE FIRST THREAD \n");
-        pthread_testcancel();
+        sleep(1);
+	pthread_testcancel();
     }
     pthread_cleanup_pop(0);
     pthread_exit(0);
@@ -48,6 +50,7 @@ void thread2(void* hitList)
     {
         count++;
 	printf("IN THE SECOND THREAD \n");
+	sleep(1);
         if(count >= 10)
         {
 		pthread_cancel((pthread_t) hitList);

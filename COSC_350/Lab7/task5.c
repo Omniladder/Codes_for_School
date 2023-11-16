@@ -20,13 +20,9 @@ int main()
 		sleep(1);
 	}
 
-	signal(SIGQUIT, &emptySignal);
-
 	sigdelset(&termsToChange, SIGINT);
 	sigprocmask(SIG_UNBLOCK, &termsToChange, &storedTerms);
 	
-	signal(SIGQUIT, SIG_DFL);
-
 	for(int i = 1; i <= 5; i++)
 	{
 		printf("%d\n", i);

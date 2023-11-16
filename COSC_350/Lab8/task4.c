@@ -7,7 +7,6 @@
 #include <sys/wait.h>
 
 
-char* concatenate(const char*, const char*, char*);
 
 int main()
 {
@@ -82,12 +81,4 @@ int main()
 
 	waitpid(child, &status, 0);
 	return 0;
-}
-
-
-
-char* concatenate(const char* string1, const char* string2, char* newString)
-{
-	sprintf(newString, "%s %s", string1, string2);//concatenates the string
-	return newString;//returns string
 }

@@ -1,0 +1,49 @@
+
+
+#include <sys/types.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/wait.h>
+
+
+int main(int numInputs, char *Inputs[])
+{
+
+	char buff[];
+
+
+	int in = open(Inputs[], O_RDONLY);
+	int pout = creat("parent.txt", );
+	int cout = creat("child.txt", );
+	
+	int loc = ;
+
+	int pid = fork();
+
+
+while(pread(in, buff, , loc) >= )
+{
+	if(pid == )
+	{
+		if(buff[] - '' <  || buff[] - '' > )
+		{
+		write(cout, buff, );
+		}
+		loc++;
+	}
+
+	if(pid != )
+	{
+		if(buff[] - '' >=  && buff[] - '' <= )
+		{
+		write(pout, buff, );
+		}
+		loc++;
+	}
+
+
+}
+	exit();
+}
