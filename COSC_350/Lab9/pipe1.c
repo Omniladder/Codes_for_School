@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <string.h>
 
-int READ_END = 0;
-int WRITE_END = 1;
+int const READ_END = 0;
+int const WRITE_END = 1;
 
 int main()
 {
