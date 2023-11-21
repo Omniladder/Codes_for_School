@@ -8,13 +8,14 @@ int main()
 {
 
 int data_processed;
-int file_pipes[2]; int newPipe[2];
-const char some_data[] = "123";
+int file_pipes[2]; int new_pipes[2];
+const char some_data[] = "Hi there, Kiddo";
 char buffer[BUFSIZ + 1];
+char buffer2[BUFSIZ + 1];
 pid_t fork_result;
 memset(buffer, '\0', sizeof(buffer));
 
-if (pipe(file_pipes) == 0 && pipe(newPipe) == 0) {
+if (pipe(file_pipes) == 0 && pipe(new_pipes) == 0) {
 	
 	fork_result = fork();
 
@@ -25,18 +26,23 @@ if (pipe(file_pipes) == 0 && pipe(newPipe) == 0) {
 
 	if (fork_result == 0) {
 		close(file_pipes[0]);
-		close(newPipe[1]);
-		sprintf(buffer, "%d", newPipe[0]);
-		(void)execl("pipesChild", "pipesChild", buffer, file_pipes[1], newPipe[0]);
+		close(new_pipes[1]);
+		sprintf(buffer, "%d", new_pipes[0]);
+		sprintf(buffer2, "%d", file_pipes[1]);
+		(void)execl("pipe4", "pipe4", buffer, buffer2, (char *)0);
 		exit(EXIT_FAILURE);
 	}
 	else {
+		//wait(NULL);
 		close(file_pipes[1]);
-		close(newPipe[0]);
-		data_processed = write(newPipe[1], some_data, strlen(some_data));
+		close(new_pipes[0]);
+		data_processed = write(new_pipes[1], some_data, strlen(some_data));
 		printf("%d - wrote %d bytes\n", getpid(), data_processed);
+		wait(NULL);
+		data_processed = read(file_pipes[0], buffer, 256);
+		printf("%d - read %d bytes\n", getpid(), data_processed);
+
 		}
 	}
 exit(EXIT_SUCCESS);
 }
-
