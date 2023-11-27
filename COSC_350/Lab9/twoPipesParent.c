@@ -39,7 +39,7 @@ if (pipe(file_pipes) == 0 && pipe(new_pipes) == 0) {
 		data_processed = write(new_pipes[1], some_data, strlen(some_data));
 		printf("%d - wrote %d bytes\n", getpid(), data_processed);
 		wait(NULL);
-		data_processed = read(file_pipes[0], buffer, 256);
+		while((data_processed = read(file_pipes[0], buffer, 256)) == 0) {;}
 		printf("%d - read %d bytes\n", getpid(), data_processed);
 
 		}

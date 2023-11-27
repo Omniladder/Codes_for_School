@@ -7,5 +7,9 @@
 
 int main()
 {
-    
+    char buff[80];
+    while(read(0, buff, 80) > 0)
+    {
+        write(0, buff, 80);
+    }
 }
