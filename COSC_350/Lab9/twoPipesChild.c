@@ -15,6 +15,6 @@ data_processed = read(file_descriptor, buffer, BUFSIZ);
 printf("%d - read %d bytes: %s\n", getpid(), data_processed, buffer);
 sscanf(argv[2], "%d", &file_descriptor2);
 data_processed = write(file_descriptor2, output, strlen(output));
-printf("%d - wrote bytes: %d\n", getpid(), data_processed);
+printf("%d - wrote %d bytes:\n", getpid(), data_processed);
 exit(EXIT_SUCCESS);
 }

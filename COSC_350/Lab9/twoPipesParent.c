@@ -4,6 +4,7 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+
 int main()
 {
 
@@ -29,20 +30,20 @@ if (pipe(file_pipes) == 0 && pipe(new_pipes) == 0) {
 		close(new_pipes[1]);
 		sprintf(buffer, "%d", new_pipes[0]);
 		sprintf(buffer2, "%d", file_pipes[1]);
-		(void)execl("pipe4", "pipe4", buffer, buffer2, (char *)0);
+		(void)execl("pipeChild", "pipeChild", buffer, buffer2, (char *)0);
 		exit(EXIT_FAILURE);
 	}
-	else {
-		//wait(NULL);
+	else 
+	{
 		close(file_pipes[1]);
 		close(new_pipes[0]);
 		data_processed = write(new_pipes[1], some_data, strlen(some_data));
 		printf("%d - wrote %d bytes\n", getpid(), data_processed);
 		wait(NULL);
 		while((data_processed = read(file_pipes[0], buffer, 256)) == 0) {;}
-		printf("%d - read %d bytes\n", getpid(), data_processed);
+		printf("%d - read %d bytes %s\n", getpid(), data_processed, buffer);
 
-		}
 	}
+}
 exit(EXIT_SUCCESS);
 }
