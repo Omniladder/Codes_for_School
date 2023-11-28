@@ -15,7 +15,7 @@ pid_t fork_result;
 memset(buffer, '\0', sizeof(buffer));
 
 if (pipe(file_pipes) == 0) {
-	
+
 	fork_result = fork();
 
 	if (fork_result == (pid_t)-1) {

@@ -2,39 +2,14 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-int main()
+int main(int argc, char *argv[])
 {
-
 int data_processed;
-int file_pipes[2];
-const char some_data[] = "123";
 char buffer[BUFSIZ + 1];
-pid_t fork_result;
-memset(buffer, '\0', sizeof(buffer));
-
-if (pipe(file_pipes) == 0) {
-	
-	fork_result = fork();
-
-	if (fork_result == (pid_t)-1) {
-		fprintf(stderr, "Fork failure");
-		exit(EXIT_FAILURE);
-	}
-
-	if (fork_result == 0) {
-		close(file_pipes[0]);
-		sprintf(buffer, "%d", file_pipes[0]);
-		(void)execl("pipe4", "pipe4", buffer, (char *)0);
-		exit(EXIT_FAILURE);
-	}
-	else {
-		wait(NULL);
-		close(file_pipes[1]);
-		data_processed = write(file_pipes[1], some_data, strlen(some_data));
-		printf("%d - wrote %d bytes\n", getpid(), data_processed);
-		}
-	}
+int file_descriptor;
+memset(buffer,'\0', sizeof(buffer));
+sscanf(argv[1], "%d", &file_descriptor);
+data_processed = read(file_descriptor, buffer, BUFSIZ);
+printf("%d - read %d bytes: %s\n", getpid(), data_processed, buffer);
 exit(EXIT_SUCCESS);
 }
