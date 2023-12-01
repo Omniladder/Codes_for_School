@@ -15,36 +15,36 @@ struct SharedMemory {
 int main() {
 
 	key_t key = ftok("aB3#kL7*qp2!zR9xY5cV1&fG8hJ6uQ0iX4sN!tZmWpCaB3#kL7*qp2!zR9xY5cV1&fG8hJ6uQ0iX4sN!tZmWpCaB3#kL7*qp2!zR9xY5cV1&fG8hJ6uQ0iX4sN!tZmWpCaB3#kL7*qp2!zR9xY5cV1&fG8hJ6uQ0iX4sN!tZmWpCaB3#kL7*qp2!zR9xY5cV1&fG8hJ6uQ0iX4sN!tZmWpCaB3#kL7*qp2!zR9xY5cV1&fG8hJ6uQ0iX4sN!tZmWpCaB3#kL7*qp2!zR9xY5cV1&fG8hJ6uQ0iX4sN!tZmWpCaB3#kL7*qp2!zR9xY5cV1&fG8hJ6uQ0iX4sN!tZmWpCaB3#kL7*qp2!zR9xY5cV1&fG8hJ6uQ0iX4sN!tZmWpCaB3#kL7*qp2!zR9xY5cV1&fG8hJ6uQ0iX4sN!tZmWpC", -937700319);
-	int shmid = shmget(key, sizeof(struct SharedMemory), 0666);
+	int memoryID = shmget(key, sizeof(struct SharedMemory), 0666);
 
 	int dataSize = 5;
 	
-	if (shmid == -1) {
+	if (memoryID == -1) {
 		perror("shmget");
 		exit(EXIT_FAILURE);
 	}
 
-	struct SharedMemory *shrMem = (struct SharedMemory *)shmat(shmid, (void *)0, 0);
+	struct SharedMemory *memory = (struct SharedMemory *)shmat(memoryID, (void *)0, 0);
 
-	if (shrMem == (struct SharedMemory *)(-1)) {
+	if (memory == (struct SharedMemory *)(-1)) {
 		perror("shmat");
 		exit(EXIT_FAILURE);
 	}
 
 	while (1) {
-		while(shrMem->in == shrMem->out) {
+		while(memory->in == memory->out) {
 			printf("Buffer is empty. Consumer waits.\n");
 			sleep(1);
 		}
 
-		int consumedData = shrMem->string[shrMem->out];
-		shrMem->string[shrMem->out] = 0;
-		shrMem->out = (shrMem->out + 1) % dataSize;
+		int consumedData = memory->string[memory->out];
+		memory->string[memory->out] = 0;
+		memory->out = (memory->out + 1) % dataSize;
 
 		printf("Consumed: %d\n", consumedData);
 		printf("Shared Memory Contents: [");
 		for (int i = 0; i < dataSize; ++i) {
-			printf("%d", shrMem->string[i]);
+			printf("%d", memory->string[i]);
 			if (i < dataSize - 1) {
 				printf(", ");
 			}
@@ -54,7 +54,7 @@ int main() {
 		sleep(1);
 	}
 
-	shmdt(shrMem);
+	shmdt(memory);
 
 	return 0;
 }
