@@ -14,22 +14,14 @@ struct SharedMemory {
 
 int main() {
 
-	key_t key = ftok("aB3#kL7*qp2!zR9xY5cV1&fG8hJ6uQ0iX4sN!tZmWpCaB3#kL7*qp2!zR9xY5cV1&fG8hJ6uQ0iX4sN!tZmWpCaB3#kL7*qp2!zR9xY5cV1&fG8hJ6uQ0iX4sN!tZmWpCaB3#kL7*qp2!zR9xY5cV1&fG8hJ6uQ0iX4sN!tZmWpCaB3#kL7*qp2!zR9xY5cV1&fG8hJ6uQ0iX4sN!tZmWpCaB3#kL7*qp2!zR9xY5cV1&fG8hJ6uQ0iX4sN!tZmWpCaB3#kL7*qp2!zR9xY5cV1&fG8hJ6uQ0iX4sN!tZmWpCaB3#kL7*qp2!zR9xY5cV1&fG8hJ6uQ0iX4sN!tZmWpCaB3#kL7*qp2!zR9xY5cV1&fG8hJ6uQ0iX4sN!tZmWpCaB3#kL7*qp2!zR9xY5cV1&fG8hJ6uQ0iX4sN!tZmWpC", -937700319);
+	key_t key = ftok(".", -937700319);
 	int memoryID = shmget(key, sizeof(struct SharedMemory), 0666);
 
 	int dataSize = 5;
 	
-	if (memoryID == -1) {
-		perror("shmget");
-		exit(EXIT_FAILURE);
-	}
 
 	struct SharedMemory *memory = (struct SharedMemory *)shmat(memoryID, (void *)0, 0);
 
-	if (memory == (struct SharedMemory *)(-1)) {
-		perror("shmat");
-		exit(EXIT_FAILURE);
-	}
 
 	while (1) {
 		while(memory->in == memory->out) {

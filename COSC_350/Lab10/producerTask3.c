@@ -12,7 +12,7 @@ struct SharedMemory {
 };
 
 int main() {
-	key_t key = ftok(".", -937700319);
+	key_t key = ftok(".", -937700318);
 	int memoryID = shmget(key, sizeof(struct SharedMemory), 0666);
 
 	int dataSize = 5;

@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/ipc.h>
@@ -13,7 +12,7 @@ struct SharedMemory
 
 int main()
 {
-	key_t key = ftok(".", -937700319);
+	key_t key = ftok(".", -937700318);
 
 	if(key == -1)
 	{
