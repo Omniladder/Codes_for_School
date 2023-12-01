@@ -10,7 +10,7 @@
 struct message
 {
     char msgArray[256];
-    int msgId;
+    long msgId;
 };
 
 int main()
@@ -24,7 +24,7 @@ int main()
         exit (1);
     }
 
-    int msgid, SHSIZE = 100;
+    int msgid;
 
     if ((msgid = msgget(key, 0644 | IPC_CREAT)) < 0)
     {
@@ -37,14 +37,16 @@ int main()
     msg.msgId = 1;
     int error;
 
-    do
+	printf("Input Two Integer Values\n");
+    while (fgets(msg.msgArray, sizeof(msg.msgArray), stdin) != NULL)
     {
+	if(msgsnd(msgid, (struct message *)&msg, sizeof(msg), 0) == -1)
+	{
+		perror("MESSAGE FAILED TO SEND");
+	}
         printf("Input Two Integer Values\n");
-        error = scanf("%s", msg.msgArray);
-        msgsnd(msgid, &msg, sizeof(msg), 0);
-    } while (error != -1);
-
+    }
 
     msgctl(msgid, IPC_RMID, NULL);
     exit(0);
-} 
+}
