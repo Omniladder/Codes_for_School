@@ -46,16 +46,9 @@ int main()
 	memory->in = 0;
 	memory->out = 0;
 
-
-	struct sembuf semSetter = {0, dataSize, 0};
-
-	semSetter.sem_num = 0;
-	semSetter.sem_op = 0;
-	semSetter.sem_flg = 0;
-	
-	semSetter.sem_num = 0;
-	semSetter.sem_op = 1;
-	semSetter.sem_flg = 0;
+	mutSemun.val = 1;  // adjust the value accordingly
+	emptySemun.val = 0;
+	fullSemun.val = dataSize;
 
 	shmdt(memory);
 

@@ -5,6 +5,7 @@
 #include <sys/ipc.h>
 #include <sys/shm.h>
 #include <sys/sem.h>
+#include <unistd.h>
 
 void down(int semid)
 {
@@ -45,7 +46,7 @@ int main()
 
 
 
-	if ((mutex = ftok(".", 'M')) == -1 || (empty = ftok(".", 'E')) == -1 || (full = ftok(".", 'F')) == -1 || (shMem = ftok(".", 'S')))
+	if ((mutex = ftok(".", 'M')) == -1 || (empty = ftok(".", 'E')) == -1 || (full = ftok(".", 'F')) == -1 || (shMem = ftok(".", 'S')) == -1)
 	{
 		perror("ftok Error");
 		exit(1);
@@ -77,6 +78,8 @@ int main()
 		outputMemory(memory);
 
 		printf("PRODUCED ADDED :: %d\n", consumedData);
+		
+		sleep(1);
 	}
 	
 }
