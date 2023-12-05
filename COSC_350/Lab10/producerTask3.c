@@ -7,15 +7,15 @@
 #include <sys/sem.h>
 #include <unistd.h>
 
-void down(int semid)
+void down(int semid, int index)
 {
-struct sembuf buf = {0, -1, 0};
+struct sembuf buf = {index, -1, 0};
 semop(semid, &buf, 1);
 }
 
-void up(int semid)
+void up(int semid, int index)
 {
-struct sembuf buf = {0, 1, 0};
+struct sembuf buf = {index, 1, 0};
 semop(semid, &buf, 1);
 }
 
@@ -41,18 +41,20 @@ int main()
 
 	int dataSize = 5;
 
-	key_t mutex, empty, full, shMem;
-	int mutexId, emptyId, fullId, shMemId;
+	int Mutex = 0 , Full = 1, Empty = 2;
+
+	key_t mutexKey;
+	int mutexId, shMemId;
 
 
 
-	if ((mutex = ftok(".", 'M')) == -1 || (empty = ftok(".", 'E')) == -1 || (full = ftok(".", 'F')) == -1 || (shMem = ftok(".", 'S')) == -1)
+	if ((mutexKey = ftok(".", 'M')) == -1 || (shMemId = ftok(".", 'S')) == -1)
 	{
 		perror("ftok Error");
 		exit(1);
 	}
 	
-	if ((mutexId = semget(mutex, 1, 0666)) == -1 || (emptyId = semget(empty, 1, 0666)) == -1 || (fullId = semget(full, 1, 0666)) == -1 || (shMemId = shmget(shMem, sizeof(struct SharedMemory), 0666)) == -1)
+	if ((mutexId = semget(mutexKey, 3, 0666)) == -1 || (shMemId = shmget(shMemId, sizeof(struct SharedMemory), 0666)) == -1)
 	{
 		perror("semget Error");
 		exit(1);
@@ -63,17 +65,18 @@ int main()
 
 	struct SharedMemory *memory = (struct SharedMemory *)shmat(shMemId, (void *)0, 0);
 
+
 	while(1)
 	{
-		down(fullId);
-		down(mutexId);
+		down(mutexId, Empty);
+		down(mutexId, Mutex);
 	
 		consumedData = rand() % 10 + 1;
 		memory->string[memory->out] = consumedData;
 		memory->out = (memory->out + 1) % dataSize;
 		
-		up(mutexId);
-		up(emptyId);
+		up(mutexId, Mutex);
+		up(mutexId, Full);
 
 		outputMemory(memory);
 
@@ -82,4 +85,4 @@ int main()
 		sleep(1);
 	}
 	
-}
+} 

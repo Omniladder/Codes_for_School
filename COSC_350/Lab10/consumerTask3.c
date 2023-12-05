@@ -7,15 +7,15 @@
 #include <sys/sem.h>
 #include <unistd.h>
 
-void down(int semid)
+void down(int semid, int index)
 {
-struct sembuf buf = {0, -1, 0};
+struct sembuf buf = {index, -1, 0};
 semop(semid, &buf, 1);
 }
 
-void up(int semid)
+void up(int semid, int index)
 {
-struct sembuf buf = {0, 1, 0};
+struct sembuf buf = {index, 1, 0};
 semop(semid, &buf, 1);
 }
 
@@ -42,40 +42,50 @@ int main()
 	int dataSize = 5;
 
 	key_t mutex, empty, full, shMem;
-	int mutexId, emptyId, fullId, shMemId;
+	int semId, shMemId;
+	
+	int Mutex = 0, Full = 1, Empty = 2;
 
-
-
-	if ((mutex = ftok(".", 'M')) == -1 || (empty = ftok(".", 'E')) == -1 || (full = ftok(".", 'F')) == -1 || (shMem = ftok(".", 'S')) == -1)
+	if ((mutex = ftok(".", 'M')) == -1 || (shMem = ftok(".", 'S')) == -1)
 	{
 		perror("ftok Error");
 		exit(1);
 	}
 	
-	if ((mutexId = semget(mutex, 1, 0666)) == -1 || (emptyId = semget(empty, 1, 0666)) == -1 || (fullId = semget(full, 1, 0666)) == -1 || (shMemId = shmget(shMem, sizeof(struct SharedMemory), 0666)) == -1)
+	if ((semId = semget(mutex, 3, 0666)) == -1)
 	{
 		perror("semget Error");
 		exit(1);
 	}
 
+	if(shMemId = shmget(shMem, sizeof(struct SharedMemory), 0666) == -1)
+	{
+		perror("Memory Failed");
+		exit(1);
+	}
+
 	int consumedData;
 
+	printf("BEFORE SHARED MEMOEry\n");
 
 	struct SharedMemory *memory = (struct SharedMemory *)shmat(shMemId, (void *)0, 0);
 
+	printf("BEFORE THE LOOP\n");
+
 	while(1)
 	{
-		down(emptyId);
-		down(mutexId);
+		down(semId, Full);
+		down(semId, Mutex);
 	
 		consumedData = memory->string[memory->out];
 		memory->string[memory->out] = 0;
 		memory->out = (memory->out + 1) % dataSize;
 		
-		up(mutexId);
-		up(fullId);
-
 		outputMemory(memory);
+		
+		up(semId, Mutex);
+		up(semId, Empty);
+
 
 		printf("CONSUMER REMOVED :: %d\n", consumedData);
 		
