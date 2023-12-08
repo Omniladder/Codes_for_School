@@ -66,26 +66,23 @@ int main()
     
         struct SharedMemory *memory = (struct SharedMemory *)shmat(shMemId, (void *)0, 0);   
 
-	int index = 0;
-
 	while(1)
 	{
 
 		down(mutexId, Full);
 		down(mutexId, Mutex);
-		
-		consumedData = memory->string[index];
-		memory->string[index] = 0;
-		index++;
+
+		consumedData = semctl(mutexId, Full, GETVAL);
+
+		memory->string[semctl(mutexId, Full, GETVAL)] = 0;
 
 		outputMemory(memory);
 
+		printf("CONSUMER REMOVED :: %d\n", memory->string[consumedData]);
 
 		up(mutexId, Mutex);
 		up(mutexId, Empty);
 
-
-		printf("CONSUMER REMOVED :: %d\n", consumedData);
 		
 		sleep(1);
 	}

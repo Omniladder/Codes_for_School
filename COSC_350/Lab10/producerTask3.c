@@ -61,9 +61,6 @@ int main()
 	}
 
 
-	int consumedData;
-
-
 	struct SharedMemory *memory = (struct SharedMemory *)shmat(shMemId, (void *)0, 0);
 
 
@@ -73,17 +70,16 @@ int main()
 		down(mutexId, Empty);
 		down(mutexId, Mutex);
 	
-		consumedData = rand() % 10 + 1;
-		memory->string[memory->out] = consumedData;
-		memory->out = (memory->out + 1) % dataSize;
+		memory->string[semctl(mutexId, Full, GETVAL)] = rand() % 10 + 1;
 		
 		outputMemory(memory);
+		
+		printf("PRODUCER ADDED :: %d\n", memory->string[semctl(mutexId, Full, GETVAL)]);
 		
 		up(mutexId, Mutex);
 		up(mutexId, Full);
 
 
-		printf("PRODUCER ADDED :: %d\n", consumedData);
 		
 		sleep(1);
 	}
