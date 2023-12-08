@@ -3,11 +3,10 @@
 #include <sys/ipc.h>
 #include <sys/shm.h>
 
+
 struct SharedMemory
 {
 	int string[5];
-	int in;
-	int out;
 };
 
 int main()
@@ -38,9 +37,6 @@ int main()
 		exit(-1);
 	}
 	
-
-	memory->in = 0;
-	memory->out = 0;
 
 	shmdt(memory);
 

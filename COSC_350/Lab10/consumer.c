@@ -6,10 +6,9 @@
 
 
 
-struct SharedMemory {
+struct SharedMemory 
+{
 	int string[5];
-	int in;
-	int out;
 };
 
 int main() {
@@ -23,13 +22,15 @@ int main() {
 	struct SharedMemory *memory = (struct SharedMemory *)shmat(memoryID, (void *)0, 0);
 
 
+	int consumedData;
+
 	while (1) {
 		while(memory->in == memory->out) {
 			printf("Buffer is empty. Consumer waits.\n");
 			sleep(1);
 		}
 
-		int consumedData = memory->string[memory->out];
+		consumedData = memory->string[memory->out];
 		memory->string[memory->out] = 0;
 		memory->out = (memory->out + 1) % dataSize;
 

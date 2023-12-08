@@ -17,8 +17,6 @@ union semun {
 struct SharedMemory
 {
 	int string[5];
-	int in;
-	int out;
 };
 
 int main()
@@ -56,8 +54,6 @@ int main()
 	struct SharedMemory *memory = (struct SharedMemory *)shmat(memId, (void *)0, 0);
 
 	//Initialize shared mem. variables
-	memory->in = 0;
-	memory->out = 0;
 
 	//Set initial values for semaphores
 	mutSemun.val = 1;  //Mutex semaphore, allowing one process to access the shared memory at a time

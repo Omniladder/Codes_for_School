@@ -23,8 +23,6 @@ semop(semid, &buf, 1);
 struct SharedMemory
 {
 	int string[5];
-	int in;
-	int out;
 };
 
 void outputMemory(struct SharedMemory*  memory)

@@ -23,8 +23,6 @@ semop(semid, &buf, 1);
 struct SharedMemory
 {
 	int string[5];
-	int in;
-	int out;
 };
 
 void outputMemory(struct SharedMemory*  memory)
@@ -72,13 +70,13 @@ int main()
 		down(mutexId, Full);
 		down(mutexId, Mutex);
 
-		consumedData = semctl(mutexId, Full, GETVAL);
+		consumedData = memory->string[semctl(mutexId, Full, GETVAL)];
 
 		memory->string[semctl(mutexId, Full, GETVAL)] = 0;
 
 		outputMemory(memory);
 
-		printf("CONSUMER REMOVED :: %d\n", memory->string[consumedData]);
+		printf("CONSUMER REMOVED :: %d\n", consumedData);
 
 		up(mutexId, Mutex);
 		up(mutexId, Empty);
