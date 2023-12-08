@@ -34,7 +34,7 @@ void outputMemory(struct SharedMemory*  memory)
 	{
 		printf(", %d", memory->string[i]);
 	}
-	printf("]");
+	printf("]\n");
 }
 int main()
 {
@@ -43,22 +43,23 @@ int main()
 
 	int Mutex = 0 , Full = 1, Empty = 2;
 
-	key_t mutexKey;
+	key_t mutexKey, memoryKey;
 	int mutexId, shMemId;
 
 
 
-	if ((mutexKey = ftok(".", 'M')) == -1 || (shMemId = ftok(".", 'S')) == -1)
+	if ((mutexKey = ftok(".", 'M')) == -1 || (memoryKey = ftok(".", 'S')) == -1)
 	{
 		perror("ftok Error");
 		exit(1);
 	}
-	
-	if ((mutexId = semget(mutexKey, 3, 0666)) == -1 || (shMemId = shmget(shMemId, sizeof(struct SharedMemory), 0666)) == -1)
+
+	if ((mutexId = semget(mutexKey, 3, 0666)) == -1 || (shMemId = shmget(memoryKey, sizeof(struct SharedMemory), 0666)) == -1)
 	{
 		perror("semget Error");
 		exit(1);
 	}
+
 
 	int consumedData;
 
@@ -68,6 +69,7 @@ int main()
 
 	while(1)
 	{
+
 		down(mutexId, Empty);
 		down(mutexId, Mutex);
 	
@@ -75,12 +77,13 @@ int main()
 		memory->string[memory->out] = consumedData;
 		memory->out = (memory->out + 1) % dataSize;
 		
+		outputMemory(memory);
+		
 		up(mutexId, Mutex);
 		up(mutexId, Full);
 
-		outputMemory(memory);
 
-		printf("PRODUCED ADDED :: %d\n", consumedData);
+		printf("PRODUCER ADDED :: %d\n", consumedData);
 		
 		sleep(1);
 	}

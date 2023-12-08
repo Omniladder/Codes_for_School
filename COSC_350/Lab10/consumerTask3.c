@@ -34,57 +34,55 @@ void outputMemory(struct SharedMemory*  memory)
 	{
 		printf(", %d", memory->string[i]);
 	}
-	printf("]");
+	printf("]\n");
 }
 int main()
 {
 
-	int dataSize = 5;
+        int dataSize = 5;    
+            
+        int Mutex = 0 , Full = 1, Empty = 2;    
+    
+        key_t mutexKey, memoryKey;    
+        int mutexId, shMemId;    
+    
+            
+    
+        if ((mutexKey = ftok(".", 'M')) == -1 || (memoryKey = ftok(".", 'S')) == -1)    
+        {    
+                perror("ftok Error");    
+                exit(1);    
+        }    
+            
+        if ((mutexId = semget(mutexKey, 3, 0666)) == -1 || (shMemId = shmget(memoryKey, sizeof(struct SharedMemory), 0666)) == -1)                                                                                                                              
+        {                                                                                                                       
+                perror("semget Error");    
+                exit(1);    
+        }    
+             
+    
+        int consumedData;                           
+    
+    
+        struct SharedMemory *memory = (struct SharedMemory *)shmat(shMemId, (void *)0, 0);   
 
-	key_t mutex, empty, full, shMem;
-	int semId, shMemId;
-	
-	int Mutex = 0, Full = 1, Empty = 2;
-
-	if ((mutex = ftok(".", 'M')) == -1 || (shMem = ftok(".", 'S')) == -1)
-	{
-		perror("ftok Error");
-		exit(1);
-	}
-	
-	if ((semId = semget(mutex, 3, 0666)) == -1)
-	{
-		perror("semget Error");
-		exit(1);
-	}
-
-	if(shMemId = shmget(shMem, sizeof(struct SharedMemory), 0666) == -1)
-	{
-		perror("Memory Failed");
-		exit(1);
-	}
-
-	int consumedData;
-
-	printf("BEFORE SHARED MEMOEry\n");
-
-	struct SharedMemory *memory = (struct SharedMemory *)shmat(shMemId, (void *)0, 0);
-
-	printf("BEFORE THE LOOP\n");
+	int index = 0;
 
 	while(1)
 	{
-		down(semId, Full);
-		down(semId, Mutex);
-	
-		consumedData = memory->string[memory->out];
-		memory->string[memory->out] = 0;
-		memory->out = (memory->out + 1) % dataSize;
+
+		down(mutexId, Full);
+		down(mutexId, Mutex);
 		
+		consumedData = memory->string[index];
+		memory->string[index] = 0;
+		index++;
+
 		outputMemory(memory);
-		
-		up(semId, Mutex);
-		up(semId, Empty);
+
+
+		up(mutexId, Mutex);
+		up(mutexId, Empty);
 
 
 		printf("CONSUMER REMOVED :: %d\n", consumedData);

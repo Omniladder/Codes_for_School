@@ -28,7 +28,7 @@ int main()
 
 	//Semaphore and shared mem. key variables
 	key_t mutex, empty, full, shmem;
-	int Mutex = 0, Full = 1, Empty  2;
+	int Mutex = 0, Full = 1, Empty = 2;
 	int mutexId, emptyId, fullId, memId;
 	union semun mutSemun, emptySemun, fullSemun;
 
@@ -61,20 +61,20 @@ int main()
 
 	//Set initial values for semaphores
 	mutSemun.val = 1;  //Mutex semaphore, allowing one process to access the shared memory at a time
-	emptySemun.val = 0; //Semaphore indicating empty slots in the buffer
-	fullSemun.val = dataSize; //Semaphore indicating the number of full slots in the buffer
+	fullSemun.val = 0; //Semaphore indicating empty slots in the buffer
+	emptySemun.val = dataSize; //Semaphore indicating the number of full slots in the buffer
 
 	//Detach the shared memory segment from the address space of the calling process
 	shmdt(memory);
 
-	semctl(mutexId, Full, SETVAL, 0);
-	semctl(mutexId, Mutex, SETVAL, 1);
-	semctl(mutexId, Empty, SETVAL, dataSize);
+	semctl(mutexId, Full, SETVAL, fullSemun);
+	semctl(mutexId, Mutex, SETVAL, mutSemun);
+	semctl(mutexId, Empty, SETVAL, emptySemun);
 	
 	//Set initial values for semaphores using semctl
-	if (semctl(mutexId, 0, SETVAL, mutSemun) == -1) {
+	/*if (semctl(mutexId, 0, SETVAL, mutSemun) == -1) {
 		perror("semctl Error");
 		exit(1);
-	}
+	}*/
 	return 0;
 }
