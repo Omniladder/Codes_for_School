@@ -7,9 +7,18 @@
 
 struct SharedMemory {
 	int string[5];
-	int in;
-	int out;
+	int count;
 };
+
+void outputMemory(struct SharedMemory* memory)
+{
+	printf("[");
+	for(int i = 0; i < 5; i++)
+	{
+		printf(", %d", memory->string[i]);
+	}
+	printf("]\n");
+}
 
 int main() {
 	key_t key = ftok(".", -937700319);
@@ -18,30 +27,21 @@ int main() {
 	int dataSize = 5;
 	struct SharedMemory *sharedMem = (struct SharedMemory *)shmat(memoryID, (void *)0, 0);
 
+	int newData;
 
 	while (1) {
-		int newData = rand() % 10 + 1;
+		newData = rand() % 10 + 1;
 
-		while((sharedMem->in + 1) % dataSize == sharedMem->out)
+		while(sharedMem->count >= dataSize)
 		{
-			printf("Full Buffer Waiting ...\n");
 			sleep(1);
 		}
 
-		sharedMem->string[sharedMem->in] = newData;
-		sharedMem->in = (sharedMem->in + 1) % dataSize;
+		sharedMem->string[sharedMem->count] = newData;
+		(sharedMem->count) -= 1;
 
-		printf("Produced:\n");
-
-		printf(" [");
-		for (int i = 0; i < dataSize; ++i) {
-			printf("%d", sharedMem->string[i]);
-			if (i < dataSize - 1) {
-				printf(", ");
-			}
-		}
-
-		printf("]\n");
+		printf("Produced: %d\n", newData);
+		outputMemory(sharedMem);
 
 		sleep(1);
 	}

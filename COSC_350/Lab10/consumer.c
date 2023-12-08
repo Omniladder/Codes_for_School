@@ -9,7 +9,18 @@
 struct SharedMemory 
 {
 	int string[5];
+	int count;
 };
+
+void outputMemory(struct SharedMemory*  memory)    
+{    
+        printf("[");    
+        for(int i = 0; i < 5; i++)    
+        {    
+                printf(", %d", memory->string[i]);    
+        }    
+        printf("]\n");    
+} 
 
 int main() {
 
@@ -21,28 +32,19 @@ int main() {
 
 	struct SharedMemory *memory = (struct SharedMemory *)shmat(memoryID, (void *)0, 0);
 
+	printf("TEST %d", memory);
 
 	int consumedData;
-
 	while (1) {
-		while(memory->in == memory->out) {
-			printf("Buffer is empty. Consumer waits.\n");
+		if(memory->count == 0) 
 			sleep(1);
-		}
 
-		consumedData = memory->string[memory->out];
-		memory->string[memory->out] = 0;
-		memory->out = (memory->out + 1) % dataSize;
+		memory->string[memory->count] = 0;
+		(memory->count) += 1;
 
 		printf("Consumed: %d\n", consumedData);
-		printf("Shared Memory Contents: [");
-		for (int i = 0; i < dataSize; ++i) {
-			printf("%d", memory->string[i]);
-			if (i < dataSize - 1) {
-				printf(", ");
-			}
-		}
-		printf("]\n");
+
+		outputMemory(memory);
 
 		sleep(1);
 	}

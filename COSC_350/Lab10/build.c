@@ -7,6 +7,7 @@
 struct SharedMemory
 {
 	int string[5];
+	int count; 
 };
 
 int main()
@@ -37,6 +38,7 @@ int main()
 		exit(-1);
 	}
 	
+	memory->count = 0;
 
 	shmdt(memory);
 
