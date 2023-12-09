@@ -38,7 +38,7 @@ int main() {
 		}
 
 		sharedMem->string[sharedMem->count] = newData;
-		(sharedMem->count) -= 1;
+		(sharedMem->count) += 1;
 
 		printf("Produced: %d\n", newData);
 		outputMemory(sharedMem);

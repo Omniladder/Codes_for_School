@@ -32,15 +32,15 @@ int main() {
 
 	struct SharedMemory *memory = (struct SharedMemory *)shmat(memoryID, (void *)0, 0);
 
-	printf("TEST %d", memory);
 
 	int consumedData;
 	while (1) {
-		if(memory->count == 0) 
-			sleep(1);
 
-		memory->string[memory->count] = 0;
-		(memory->count) += 1;
+		while(memory->count <= 0) 
+			sleep(1);
+		consumedData = memory->string[memory->count - 1];
+		memory->string[memory->count - 1] = 0;
+		(memory->count) -= 1;
 
 		printf("Consumed: %d\n", consumedData);
 

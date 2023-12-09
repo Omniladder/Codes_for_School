@@ -32,6 +32,8 @@ int main()
 
 	struct SharedMemory *memory = (struct SharedMemory *)shmat(memoryId, (void *)0, 0);
 
+	printf("%d\n", memory);
+
 	if(memory == (struct SharedMemory *)(-1))
 	{
 		perror("Memory filed to create");
