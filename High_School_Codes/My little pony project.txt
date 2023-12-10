@@ -1,6 +1,0 @@
-<html>
-<head>
-<title> My Little Pony Project</title>
-<p><b>Hi, my name is Joey and this is my first web page.</b> I live in New Market, Maryland and I collect My Little Pony dolls – I love them!!!</p>
-<head>
-<html>
