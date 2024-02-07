@@ -11,7 +11,7 @@ for i in range(numOfRolls):
 
 
 for i in range(2, 12 + 1):
-    print("Number of  " + str(i) + " Rolls: " + str(arr[i] / numOfRolls))
+    print("Number of  " + str(i) + " Rolls: " + str(int(100 * arr[i] / numOfRolls) / 100))
 
 
 
