@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>Tyranny of Santa</title>
+<center>
+<b><u><font size="10"face="copperplate gothic bold" color="white">The Tyranny of Santa C.</font></u></b>
+<hr>
+<br>
+<br>
+<br>
+<b><i>FAQ</i></b>
+</center>
+<ol>
+<li><b>Why does everyone Look Jolly</b>
+<p>They look Red not of joy but because there forced to work in freezing Tempatures</p>
+<li><b>Why Does He give Gifts</b>
+<p> To Make People Like him and ignore his tyrannical behaviors</p>
+<li><b>But Santa Isn't Real</b>
+<p> That's What he Wants you to think</p>
+<li><b>Do You Have  A Life</b>
+<p>This Question is irrelevant</p>
+<br>
+<br>
+<center>
+<p>Have A question</p>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf1no7riq_IeWZYkYaPpyH24X0r2bxFn6WLtqMyIfUVGuVskQ/viewform?embedded=true" width="640" height="450" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+</center>
+<table border="1">
+<tr>
+<td><A Href ="Christmas.html">Crime Against Elves</a></td>
+<td><A Href ="International criminal.html">Crimes In Other Countries</a></td>
+<td> <A Href ="Santa free.html">How hes still free</a></td>
+<td><A Href ="uprising.html">How to destroy his reign</a></td>
+<td><A Href ="gov.html">North Pole Goverment</a></td>
+<td><A Href ="mis.html">FAQ</a></td>
+<td><A Href ="more.html">More Facts</a></td>
+
+</head>
+<style>
+.drop { position: absolute; width: 3;  filter: flipV(), flipH(); font-size: 40; color: blue }
+</style>
+<script language="javascript">
+
+//Rain/Snow effect- By Craig Blanchette Craiga.topcities.com
+//Script featured on Dynamic Drive
+//Visit http://www.dynamicdrive.com for this script and more
+
+snow = false;    // false-rain;   true-snow
+snowsym = " * "  //These are the symbols for each
+rainsym = " ' "  //You can put images here.
+howmany = 10     //How many drops/snowflakes?
+
+/**************Do not need to change anything below***********/
+if(snow){sym = snowsym; speed=1; angle=10; drops=howmany}
+else{sym = rainsym; speed=50; drops=howmany; angle=6}
+movex = -speed/angle; movey = speed; count = 0;
+
+function moverain(){
+for(move = 0; move < drops; move++){
+xx[move]+=movex;  yy[move]+=mv[move];
+hmm = Math.round(Math.random()*1);
+if(xx[move] < 0){xx[move] = maxx+10;}
+if(yy[move] > maxy){yy[move] = 10;}
+drop[move].left = xx[move]
+drop[move].top = yy[move]+document.body.scrollTop;
+}setTimeout('moverain()','1')}
+
+</script>
+<body style="background-color:gray;">
+<script language="javascript">
+
+drop = new Array(); xx = new Array(); yy = new Array(); mv = new Array()
+ly = "document.all[\'"; st = "\'].style"
+for(make = 0; make < drops; make++){
+document.write('<div id="drop'+make+'" class=drop>'+sym+'</div>');
+drop[make] = eval(ly+'drop'+make+st);
+maxx = document.body.clientWidth-40
+maxy = document.body.clientHeight-40
+xx[make] = Math.random()*maxx;
+yy[make] = -100-Math.random()*maxy;
+drop[make].left = xx[make]
+drop[make].top = yy[make]
+mv[make] = (Math.random()*5)+speed/4;
+drop[make].fontSize = (Math.random()*10)+20;
+if(snow){col = 'white'}else{col = 'blue'}
+drop[make].color = col;
+}
+window.onload=moverain
+
+</script>
+</body>

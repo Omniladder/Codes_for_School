@@ -1,0 +1,2 @@
+Various Projects and Assignments for class mostly coded in Processing for High school i dont know what most of it does however water wolf
+i an encryption machine I made in python the PDF should show the code

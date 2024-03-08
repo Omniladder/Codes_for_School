@@ -9,4 +9,4 @@ for i in inFile.read().upper().replace(',','').replace(';','').replace('(','').r
         wordCount[i] = 1
 
 
-inFime.close()
+inFile.close()
