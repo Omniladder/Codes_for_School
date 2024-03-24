@@ -62,7 +62,7 @@ featureTest = scale.transform(featureTest) # Scales based on deviavtion
 
 #KNN Training 1 Neighbor
 knn = KNeighborsClassifier(n_neighbors = 1)
-knn.fit(featureTrain, classTrain)
+#knn.fit(featureTrain, classTrain)
 #predictions  = knn.predict(featureTest)'''
 
 #KNN training 3 Neighbors
@@ -75,27 +75,27 @@ knn.fit(featureTrain, classTrain)
 #mlp = MLPClassifier(hidden_layer_sizes=500, alpha=.1, random_state=1, batch_size=10)
 #mlp = MLPClassifier(hidden_layer_sizes= 501, alpha=.1, random_state=1, batch_size=30, solver = 'lbfgs', max_iter = 10000, tol = 5e-5, max_fun=50000)
 mlp = MLPClassifier(hidden_layer_sizes= 500, alpha=1e-5, random_state=1, batch_size=30, solver = 'adam', max_iter = 10000, tol=1e-5) #TEST BATCH SIZES ON MLP
-mlp.fit(featureTrain, classTrain)
+#mlp.fit(featureTrain, classTrain)
 #predictions  = mlp.predict(featureTest)
 
 
 #Decision Tree
 #randForest = RandomForestClassifier(max_depth=16, random_state=0)
 randForest = RandomForestClassifier(max_depth=16, random_state=0, n_estimators = 321)
-randForest.fit(featureTrain, classTrain)
+#randForest.fit(featureTrain, classTrain)
 #predictions  = randForest.predict(featureTest)'''
 
 #SVC
 svc = SVC(kernel='rbf', C=7, gamma="auto", probability=True, decision_function_shape='ovo')
 #svc = SVC(kernel='poly', C=500, probability=True, decision_function_shape='ovo', coef0=1.5)
-svc.fit(featureTrain, classTrain)
+#svc.fit(featureTrain, classTrain)
 #predictions  = svc.predict(featureTest)'''
 
 #Logistic Regression
 
 
 logReg = make_pipeline(PolynomialFeatures(2) ,LogisticRegression(max_iter = 10002, C=1, solver = 'lbfgs', tol=1e-6))#Remove features and add degrees
-logReg.fit(featureTrain, classTrain)
+#logReg.fit(featureTrain, classTrain)
 #predictions = logReg.predict(featureTest)
 
 
@@ -110,12 +110,12 @@ for i in range(30):
             ('MLP', mlp), 
             ('KNN', knn)
             ],
-        weights=[.1 * i + .1,1,1,1,1],
+        weights=[1.3 * 2, 1.3 * 2, 1.4 * 2, 2.2 * 2, 1 * 2],
         voting='soft'
         )
 
     votingAlgo.fit(featureTrain, classTrain)
-    print(.1 * i + .1, svc.score(featureTest, classTest))
+    print(2, votingAlgo.score(featureTest, classTest))
 
 #params = {'lr__C': [1.0, 100.0], 'rf__n_estimators': [20, 200]}
 
