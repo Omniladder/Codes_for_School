@@ -7,6 +7,7 @@ from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.naive_bayes import GaussianNB
 from sklearn.neural_network import MLPClassifier
 #from sklearn.tree import DecisionTreeClassifier
 
@@ -64,13 +65,25 @@ for i in [1, 0, -1]:
 
 
 
-coeff = [1,1e-1,1e-2,1e-3,1e-4,1e-5,1e-6,1e-7,1e-8,1e-9,1e-10]
+coeff = [1,1e-1,1e-2,1e-3,1e-4,1e-5,1e-6,1e-7,1e-8,1e-9,1e-10, 1e-11, 1e-12, 1e-13, 1e-14, 1e-15]
 cache = [i * 100 + 1 for i in range(20)]
 
+
+
+
 for i in coeff:
-    algo = HistGradientBoostingClassifier(learning_rate= 3/30, max_iter = 291, class_weight='balanced')
+    algo = GaussianNB(var_smoothing = 1e-1)
     algo.fit(featureTrain,classTrain)
     print(algo.score(featureTest, classTest))
+
+
+
+
+
+'''for i in coeff:
+    algo = HistGradientBoostingClassifier(learning_rate= 3/30, max_iter = 291, class_weight='balanced')
+    algo.fit(featureTrain,classTrain)
+    print(algo.score(featureTest, classTest))'''
 
 
 

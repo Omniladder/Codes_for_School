@@ -8,6 +8,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
+from sklearn.naive_bayes import GaussianNB
 #from sklearn.tree import DecisionTreeClassifier
 
 from sklearn.ensemble import VotingClassifier, HistGradientBoostingClassifier
@@ -85,8 +86,15 @@ def algorithm(featureTrain, featureTest, classTrain, classTest):
     #logReg.fit(featureTrain, classTrain)
     #predictions = logReg.predict(featureTest)
 
-
+#Gradient Boosting
     grad = HistGradientBoostingClassifier(learning_rate= 3/30, max_iter = 291)
+
+
+    #gauss = GaussianNB(var_smoothing = 1e-1)
+    #gauss.fit(featureTrain,classTrain)
+
+
+
 
     for i in range(30):
         votingAlgo = VotingClassifier(                                        
@@ -96,9 +104,10 @@ def algorithm(featureTrain, featureTest, classTrain, classTest):
                 ('Random Forest', randForest), 
                 ('MLP', mlp), 
                 ('KNN', knn),
-                ('grad', grad)
+                ('grad', grad),
+     #           ('gauss', gauss)
                 ],
-            weights=[1.3 * 2, 1.3 * 2, 1.4 * 2, 2.2 * 2, 1 * 2, .1 * i + .1],
+            weights=[1.3 * 2, 1.3 * 2, 1.4 * 2, 2.2 * 2, 1 * 2, 1.3],
             voting='hard'
             )
 
@@ -132,5 +141,5 @@ featureTest = scale.transform(featureTest) # Scales based on deviavtion
 
 predictions = algorithm(featureTrain, featureTest, classTrain, classTest)
 
-#confMatrix = classification_report(classTest, predictions)
-#print(confMatrix)
+confMatrix = classification_report(classTest, predictions)
+print(confMatrix)
