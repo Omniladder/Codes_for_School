@@ -10,7 +10,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
 #from sklearn.tree import DecisionTreeClassifier
 
-from sklearn.ensemble import VotingClassifier
+from sklearn.ensemble import VotingClassifier, HistGradientBoostingClassifier
 from sklearn.model_selection import GridSearchCV
 from sklearn.multiclass import OneVsRestClassifier
 
@@ -67,15 +67,17 @@ for i in [1, 0, -1]:
 coeff = [1,1e-1,1e-2,1e-3,1e-4,1e-5,1e-6,1e-7,1e-8,1e-9,1e-10]
 cache = [i * 100 + 1 for i in range(20)]
 
+for i in coeff:
+    algo = HistGradientBoostingClassifier(learning_rate= 3/30, max_iter = 291, class_weight='balanced')
+    algo.fit(featureTrain,classTrain)
+    print(algo.score(featureTest, classTest))
 
 
 
-
-
-for i in [i + 1 for i in range(20)]:
+'''for i in [i + 1 for i in range(20)]:
     knn = KNeighborsClassifier(n_neighbors = 4, weights='distance')
     knn.fit(featureTrain, classTrain)
-    print(i , knn.score(featureTest, classTest))
+    print(i , knn.score(featureTest, classTest))'''
 
 
 
@@ -128,7 +130,7 @@ mlp = MLPClassifier(hidden_layer_sizes= 500, alpha=1e-5, random_state=1, batch_s
 mlp.fit(featureTrain, classTrain)
 #print(mlp.score(featureTest, classTest))'''
 
-predictions = knn.predict(featureTest)
+predictions = algo.predict(featureTest)
 
 confMatrix = classification_report(classTest, predictions)
 print(confMatrix)
