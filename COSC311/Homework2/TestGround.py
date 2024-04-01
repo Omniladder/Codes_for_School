@@ -9,9 +9,10 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neural_network import MLPClassifier
+from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 #from sklearn.tree import DecisionTreeClassifier
 
-from sklearn.ensemble import VotingClassifier, HistGradientBoostingClassifier
+from sklearn.ensemble import VotingClassifier, HistGradientBoostingClassifier, AdaBoostClassifier
 from sklearn.model_selection import GridSearchCV
 from sklearn.multiclass import OneVsRestClassifier
 
@@ -66,17 +67,21 @@ for i in [1, 0, -1]:
 
 
 coeff = [1,1e-1,1e-2,1e-3,1e-4,1e-5,1e-6,1e-7,1e-8,1e-9,1e-10, 1e-11, 1e-12, 1e-13, 1e-14, 1e-15]
-cache = [i * 100 + 1 for i in range(20)]
+cache = [i * 100 + 1 for i in range(100)]
+learning = [i + 1 for i in range(99)]
 
 
 
 
-for i in coeff:
+'''for i in learning:
+    algo = AdaBoostClassifier(algorithm='SAMME', n_estimators=2901, learning_rate = i)
+    algo.fit(featureTrain,classTrain)
+    print(i, algo.score(featureTest, classTest))'''
+
+'''for i in coeff:
     algo = GaussianNB(var_smoothing = 1e-1)
     algo.fit(featureTrain,classTrain)
-    print(algo.score(featureTest, classTest))
-
-
+    print(algo.score(featureTest, classTest))'''
 
 
 
@@ -139,8 +144,8 @@ logReg.fit(featureTrain, classTrain)
 '''tolerance = [1 - 1e-1, 1 - 1e-2, 1 - 1e-3, 1 - 1e-4, 1 - 1e-5, 1 - 1e-6, 1 - 1e-7, 1 - 1e-8, 1 - 1e-9, 1 - 1e-10, 1 - 1e-11, 0]
 
 #    mlp = MLPClassifier(hidden_layer_sizes= 501, alpha=.1, random_state=1, batch_size=30, solver = 'lbfgs', max_iter = 10000, tol = 5e-5, max_fun=50000)
-mlp = MLPClassifier(hidden_layer_sizes= 500, alpha=1e-5, random_state=1, batch_size=30, solver = 'adam', max_iter = 10000, tol=1e-5)
-mlp.fit(featureTrain, classTrain)
+algo = MLPClassifier(hidden_layer_sizes= 500, alpha=1e-5, random_state=1, batch_size=30, solver = 'adam', max_iter = 10000, tol=1e-5)
+algo.fit(featureTrain, classTrain)
 #print(mlp.score(featureTest, classTest))'''
 
 predictions = algo.predict(featureTest)

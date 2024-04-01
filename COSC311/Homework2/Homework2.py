@@ -11,7 +11,7 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.naive_bayes import GaussianNB
 #from sklearn.tree import DecisionTreeClassifier
 
-from sklearn.ensemble import VotingClassifier, HistGradientBoostingClassifier
+from sklearn.ensemble import VotingClassifier, HistGradientBoostingClassifier, AdaBoostClassifier
 from sklearn.model_selection import GridSearchCV
 
 from sklearn.model_selection import train_test_split
@@ -93,26 +93,27 @@ def algorithm(featureTrain, featureTest, classTrain, classTest):
     #gauss = GaussianNB(var_smoothing = 1e-1)
     #gauss.fit(featureTrain,classTrain)
 
+# AdaBoost
+#    ada = AdaBoostClassifier(algorithm='SAMME', n_estimators=2901, learning_rate = 1)
 
 
-
-    for i in range(30):
-        votingAlgo = VotingClassifier(                                        
-            estimators=[
-                ('logistic', logReg),
-                ('svc', svc), 
-                ('Random Forest', randForest), 
-                ('MLP', mlp), 
-                ('KNN', knn),
-                ('grad', grad),
+    votingAlgo = VotingClassifier(                                        
+        estimators=[
+            ('logistic', logReg),
+            ('svc', svc), 
+            ('Random Forest', randForest), 
+            ('MLP', mlp), 
+            ('KNN', knn),
+            ('grad', grad),
+        #        ('ada', ada)
      #           ('gauss', gauss)
-                ],
-            weights=[1.3 * 2, 1.3 * 2, 1.4 * 2, 2.2 * 2, 1 * 2, 1.3],
-            voting='hard'
-            )
+            ],
+        weights=[1.3 * 2, 1.3 * 2, 1.4 * 2, 2.2 * 2, 1 * 2, 1.3],
+        voting='hard'
+        )
 
-        votingAlgo.fit(featureTrain, classTrain)
-        print(.1 * i + .1 ,votingAlgo.score(featureTest, classTest))
+    votingAlgo.fit(featureTrain, classTrain)
+#    print(.1 * i + .1 ,votingAlgo.score(featureTest, classTest))
 
     #params = {'lr__C': [1.0, 100.0], 'rf__n_estimators': [20, 200]}
 
@@ -141,5 +142,12 @@ featureTest = scale.transform(featureTest) # Scales based on deviavtion
 
 predictions = algorithm(featureTrain, featureTest, classTrain, classTest)
 
-confMatrix = classification_report(classTest, predictions)
-print(confMatrix)
+accuracyData = classification_report(classTest, predictions)
+print(accuracyData)
+
+confMatrix = confusion_matrix(classTest, predictions)
+
+sb.heatmap(confMatrix, annot=True)
+
+plt.show()
+
