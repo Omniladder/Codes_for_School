@@ -116,3 +116,55 @@ print("Relative Humidity Quantiles .25, .6, .75: ", humidQuantiles)
 print("Wind Speed Quantiles .25, .6, .75: ", windQuantiles)
 print("Rain Quantiles .25, .6, .75: ", rainQuantiles)
 
+
+deviations = [
+    st.std([sidiBel[i][3] for i in range(len(sidiBel))]),
+    st.std([sidiBel[i][6] for i in range(len(sidiBel))]),
+    st.std([sidiBel[i][11] for i in range(len(sidiBel))]),
+    st.std([sidiBel[i][12] for i in range(len(sidiBel))]),
+]
+
+print("\nDeviations Temp, Rain, BUI, FWI: ", deviations)
+
+RH = [bejaia[i][4] for i in range(len(sidiBel))]
+
+coorelations = [
+    st.correlation(RH, [bejaia[i][3] for i in range(len(bejaia))]),
+    st.correlation(RH, [bejaia[i][5] for i in range(len(bejaia))]),
+    st.correlation(RH, [bejaia[i][6] for i in range(len(bejaia))]),
+    st.correlation(RH, [bejaia[i][7] for i in range(len(bejaia))]),
+    st.correlation(RH, [bejaia[i][8] for i in range(len(bejaia))]),
+    st.correlation(RH, [bejaia[i][9] for i in range(len(bejaia))]),
+    st.correlation(RH, [bejaia[i][10] for i in range(len(bejaia))]),
+    st.correlation(RH, [bejaia[i][11] for i in range(len(bejaia))]),
+    st.correlation(RH, [bejaia[i][12] for i in range(len(bejaia))])
+]
+
+print("\nRelative Humidity compared to: Temperature, Wind Speed, Rain, FFMC, DMC, DC, ISI, BUI, FWI :", coorelations)
+
+
+
+'''
+
+    The strongest positive coorelation with Humidity is with Rain and the strongest negative coorelation is with Humidity and Temperature
+
+'''
+
+
+
+booleanFire = [int( bejaia[i][13] == 'fire') for i in range(len(bejaia))]
+
+#dataCategories = [i for i in range(3, len(bejaia) - 1) if i != 2]
+
+print("\nCoorelations:")
+
+for i in range(3, len(bejaia[0]) - 1):
+    print(i, st.correlation( booleanFire, [bejaia[j][i] for j in range(len(bejaia))]))
+
+'''
+
+    In this case I would choose to take the attributes FWI, ISI, FFMC
+    This is because as computer with the code above the coorelation of these 3 data sets are the 3 highest in the dataset thus are the 3 best for differentiating 
+
+'''
+
