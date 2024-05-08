@@ -223,8 +223,10 @@ print()
 
 #randForest.fit()
 
-predictions = cross_val_predict(randForest, x_train, y_train, cv=10)
+predictions = cross_val_predict(randForest, x_test, y_test, cv=10)
 
+#print(len(predictions))
+#print(len(y_train))
 print(classification_report(y_test, predictions))
 
 sb.heatmap(confusion_matrix(predictions, y_test), annot=True)
