@@ -1,7 +1,14 @@
 import pandas as pd
-from matplotlib import pyplot as plt
+import numpy as np
+import seaborn as sb
+import matplotlib.pyplot as plt
+
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import cross_val_score
+from sklearn.metrics import classification_report
+from sklearn.model_selection import cross_val_predict
+from sklearn.metrics import confusion_matrix
 
 from sklearn.neural_network import MLPClassifier
 from sklearn.svm import SVC
@@ -111,7 +118,7 @@ def testClassifiers(trainX, trainY, testX, testY):
     knn = KNeighborsClassifier()
     svc = SVC()
     randForest = RandomForestClassifier()
-    mlp = MLPClassifier(max_iter=1000)
+    mlp = MLPClassifier(max_iter=100000)
     naiveBayes = GaussianNB()
 
     algorithms = [knn, svc, randForest, mlp, naiveBayes]
@@ -147,3 +154,81 @@ x_train, x_test, y_train, y_test = train_test_split(preSegments, labels, test_si
 print()
 
 testClassifiers(x_train, y_train, x_test, y_test)
+
+print()
+
+print("Cross Test Classifier")
+
+print()
+
+def crosstestClassifiers(trainX, trainY, testX, testY):
+
+    knn = KNeighborsClassifier()
+    svc = SVC()
+    randForest = RandomForestClassifier()
+    mlp = MLPClassifier(max_iter=100000)
+    naiveBayes = GaussianNB()
+
+    algorithms = [knn, svc, randForest, mlp, naiveBayes]
+
+    for i in algorithms:
+        i.fit(trainX, trainY)
+    
+    for i in algorithms:
+        mean = np.mean(cross_val_score(i, testX, testY, cv=10))
+        print(mean)
+
+
+x_train, x_test, y_train, y_test = train_test_split(segments, labels, test_size=0.2, random_state=0)
+
+crosstestClassifiers(x_train, y_train, x_test, y_test)
+
+
+print()
+
+print("::Random Forest Classifcation Reports::")
+
+print()
+
+randForest = RandomForestClassifier()
+
+print("Self Test")
+randForest.fit(segments, labels)
+
+predictions = randForest.predict(segments)
+
+print(classification_report(labels, predictions))
+
+print()
+
+print("Independent Test")
+
+x_train, x_test, y_train, y_test = train_test_split(segments, labels, test_size=0.2, random_state=0)
+
+randForest.fit(x_train, y_train)
+
+predictions = randForest.predict(x_test)
+
+print(classification_report(y_test, predictions))
+
+sb.heatmap(confusion_matrix(predictions, y_test), annot=True)
+
+plt.show()
+
+print()
+
+print("10 Fold Test")
+
+print()
+
+#randForest.fit()
+
+predictions = cross_val_predict(randForest, x_train, y_train, cv=10)
+
+print(classification_report(y_test, predictions))
+
+sb.heatmap(confusion_matrix(predictions, y_test), annot=True)
+
+plt.show()
+
+
