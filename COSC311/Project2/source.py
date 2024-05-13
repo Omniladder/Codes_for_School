@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import seaborn as sb
 import matplotlib.pyplot as plt
+import sys
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -17,7 +18,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
 
 # This Segment of code sets up the data to be used
-dataFiles = ["COUGH.csv", "EAT.csv", "SIT.csv", "WALK.csv", "DRINK.csv", "READ.csv"]
+dataFiles = ["COUGH.csv", "DRINK.csv", "EAT.csv", "READ.csv", "SIT.csv", "WALK.csv"]
 datasets = []
 
 for i in dataFiles:
@@ -50,8 +51,8 @@ def developWindow(windowSize, datasets):
     for i, k in enumerate(datasets):
         tempSeg = slidingWindow(windowSize, k)
         segmentations.append(tempSeg)
-        for j in range(len(tempSeg)):
-            labels.append(i)
+        for j in range(0, len(tempSeg)):
+            labels.append(i + 1)
     
     
     segmentations = sum(segmentations, []) #This is craziest way of flattening a list
@@ -59,12 +60,17 @@ def developWindow(windowSize, datasets):
     for i in range(len(segmentations)):
         segmentations[i] = segmentations[i].values.flatten()
     
-    Scaler = StandardScaler()
+    '''Scaler = StandardScaler()
 
     Scaler.fit(segmentations)
 
-    segmentations = Scaler.fit_transform(segmentations)
-    #print(segmentations)
+    segmentations = Scaler.fit_transform(segmentations)'''
+    
+    segmentations = np.array(segmentations)
+    
+    print(type(segmentations))
+
+    #sys.exit()
     return segmentations, labels
 
 svc = SVC()
@@ -88,6 +94,23 @@ segments, labels = developWindow(101, datasets)
 x_train, x_test, y_train, y_test = train_test_split(segments, labels, test_size=0.99, random_state=0)
 
 
+def crosstestClassifiers(trainX, trainY, testX, testY):
+
+    knn = KNeighborsClassifier()
+    svc = SVC()
+    randForest = RandomForestClassifier()
+    mlp = MLPClassifier(max_iter=100000)
+    naiveBayes = GaussianNB()
+
+    algorithms = [knn, svc, randForest, mlp, naiveBayes]
+
+    for i in algorithms:
+        i.fit(trainX, trainY)
+    
+    for i in algorithms:
+        mean = np.mean(cross_val_score(i, testX, testY, cv=10))
+        print(mean)
+
 svc = SVC(kernel='linear')
 svc.fit(x_train, y_train)
 
@@ -105,12 +128,50 @@ indexWeights = sorted(indexWeights, reverse=True)
 
 indexesKeep = []
 
-for i in indexWeights[:20]:
+Scaler = StandardScaler()
+
+for i in indexWeights[:5]:
     indexesKeep.append(i[1])
 
 preSegments = segments
 
 segments = segments[:, indexesKeep]
+
+print(type(segments))
+
+for i in segments:
+    std = i.std
+    max = i.max
+    min = i.min
+    np.append(i, std)
+    np.append(i, max)  # Maximum value along each axis
+    np.append(i, min)  # Minimum value along each axis
+
+print("K Fold Without Standardization")
+
+
+trainX, testX, trainY, testY = train_test_split(segments, labels, test_size=0.2, random_state=0)
+
+svc.fit(trainX, trainY)
+mean = np.mean(cross_val_score(svc, testX, testY, cv=10))
+print(mean)
+
+print("K Fold With Standardization")
+
+Scaler = StandardScaler()
+
+Scaler.fit(segments)
+
+segmentations = Scaler.fit_transform(segments)
+
+trainX, testX, trainY, testY = train_test_split(segments, labels, test_size=0.2, random_state=0)
+
+svc.fit(trainX, trainY)
+mean = np.mean(cross_val_score(svc, testX, testY, cv=10))
+print(mean)
+
+print("")
+print("")
 
 
 def testClassifiers(trainX, trainY, testX, testY):
@@ -161,27 +222,16 @@ print("Cross Test Classifier")
 
 print()
 
-def crosstestClassifiers(trainX, trainY, testX, testY):
-
-    knn = KNeighborsClassifier()
-    svc = SVC()
-    randForest = RandomForestClassifier()
-    mlp = MLPClassifier(max_iter=100000)
-    naiveBayes = GaussianNB()
-
-    algorithms = [knn, svc, randForest, mlp, naiveBayes]
-
-    for i in algorithms:
-        i.fit(trainX, trainY)
-    
-    for i in algorithms:
-        mean = np.mean(cross_val_score(i, testX, testY, cv=10))
-        print(mean)
-
 
 x_train, x_test, y_train, y_test = train_test_split(segments, labels, test_size=0.2, random_state=0)
 
 crosstestClassifiers(x_train, y_train, x_test, y_test)
+
+Scaler.fit(segments)
+
+segments = Scaler.fit_transform(segments)
+
+
 
 
 print()
