@@ -10,120 +10,133 @@
 
 
 \section*{Problem 3}
-Consider the following function $f(x)$
-\[ f(x) = \sqrt{x + 1} \]
-Using Taylors Theorem we know
-\[f(x) = P_n(x) + R_n(x)\]
 
-where $P_n(x)$ and $R_n(x)$ are defined as
+	Consider the function $f_x(x)$ where
+	\[f(x) = \sqrt{1 + x^2}\]
+	Using Taylors Theorem we know
+	\[P_n(x) = \sum_{k=0}^{n}\frac{x^k}{k!}f^{(k)}(0)\]
+	
+	Let n = 6 then
 
-\[P_n(x) = \sum_{k=0}^{n} \frac{(x-x_0)^k}{k!} f^{(k)}(x_0)\]
-\[R_n(x) = \frac{(x - x_0)^{n+1}}{(n+1)!} f^{(n+1)}(\xi_x)\]
-where $ x> \xi_x >x_0$ \\\\
-Given $x_0 = 0$ and $n = 1$ these formulas simplify to
-
-\[P_1(x) = \sum_{k=0}^{1} \frac{x^k}{k!} f^{(k)}(0) = \frac{x^0}{0!} f(0) + \frac{x^{1}}{1!}f'(0) = f(0) + xf'(0)\]
-\[R_1(x) = \frac{x^{2}}{2!} f^{''}(\xi_x) = \frac{x^{2}}{2}f''(\xi_x)\]
-Where $x > \xi_x > 0$
-\\\\
-Recall that f(x) = $\sqrt{x+1}$
-
-
-\[	f(x) = \sqrt{x+1} \]
-\[	f'(x) = \frac{1}{2\sqrt{x+1}} \]
-\[	f''(x) = -\frac{1}{4\sqrt{(x+1)^3}} \]
-
-This means
-\[ P_1(x) = \sqrt{0 + 1} + \frac{x}{2\sqrt{0+1}} = 1 + \frac{x}{2}\]
-\[R_1(x) = \frac{x^2}{2} (-\frac{1}{4\sqrt{(\xi_x+1)^3}}) = -\frac{x^2}{8\sqrt{(\xi_x+1)^3}} = O(\frac{x^2}{\sqrt{(\xi_x +1)^3}})\]
-
-Since $\frac{1}{\sqrt{(\xi_x + 1)^3}}$ is a decreasing function from $(-1, \infty)$ and $\xi_x \in [0, \infty)$ the maximum of this function is at $\xi_x = 0$ and therefore bounded at that point
-
-\[\frac{1}{\sqrt{(0 + 1)^3}} = 1 \]
-
-\[O(x^2 * 1) = O(\frac{x^2}{\sqrt{(\xi_x +1)^3}})\]
-
-\[O(x^2) = O(x^2 * 1)\]
-
-Therefore, by plugging into Taylors Theroem we get
-\[\sqrt{x+1} = 1 + \frac{x}{2}+O(x^2)\]
-
-
-
-\section*{Problem 4}
-
-Consider the following function $f(x)$
-\[ f(x) = \frac{1}{x + 1} \]
-
-Using Taylors Theorem with $x_0 = 0$ and $n = 2$
-
-\[P_2(x) = \sum_{k=0}^{2} \frac{x^k}{k!} f^{(k)}(0) = \frac{x^0}{0!} f(0) + \frac{x^{1}}{1!}f'(0) + \frac{x^2}{2!}f''(0)= f(0) + xf'(0) + \frac{x^2}{2}f''(0)\]
-\[R_2(x) = {\frac{x^3}{6}f'''(\xi_x)}\]
-
-Using $f(x) = \frac{1}{x+1}$ we know
-
-\[f(x) = \frac{1}{x+1}\]
-\[f'(x) = -\frac{1}{(x+1)^2}\]
-\[f''(x) = \frac{2}{(x+1)^3}\]
-\[f'''(x) = -\frac{6}{(x+1)^4}\]
-
-Using this we know
-
-\[P_2(x) = 1 - x + \frac{x^2}{2}*2 = 1 - x + {x^2}\]
-\[R_2(x) = \frac{x^3}{6} * -\frac{6}{(\xi_x+1)^4} = O(\frac{x^3}{6} * -\frac{6}{(\xi_x+1)^4}) = O(\frac{x^3}{(\xi_x+1)^4})\]
-
-As, $ O(\frac{1}{(\xi_x+1)^4})$ is an decreasing function from $(-1 , \infty)$ and $\xi_x \in [0 ,\infty)$ the maximum value is at $\xi_x = 0$
-
-\[\frac{1}{(0+1)^4} = 1\]
-\[O(x^3) = O(x^3 * 1) = O(\frac{x^3}{(\xi_x+1)^4})\]
-
-Therefore, using Taylors Theroem we know
-
-\[\frac{1}{x+1} =  1 - x + x^2 + O(x^3)\]
-
-
-
-\section*{Problem 5}
-
-Consider the following function $f(x)$
-\[ f(x) = \sin{(x)} \]
-Using Taylors Theorem with $x_0 = 0$ and $n = 0$
-	\[f(x) = P_0(x) + R_0(x)\]
-	\[P_0(x)=\frac{x^0}{0!}f(0)=f(0)=\sin(0)=0\]
-	\[R_0(x)=\frac{(x-0)^{1}}{(0+1)!}f'(\xi_x) = xf'(\xi_x)\]
-Using the original statement we know
-\[f(x) = \sin(x)\]	
-\[f'(x) = \cos(x)\]	
-We then know,
-\[R_0(x) = x \cos(\xi_x)\]
-\[R_0(x) = O(x \cos(\xi_x))\]
-Since the function $\cos(x)$ is bounded between [-1,1] the function $R_0(x)$ can be represented as
-
-\[R_0(x)=O(x * 1) = O(x)\]
-
-Since, we know for $ \forall x > 1, x^3 > x$ This can then be used to say $O(x^3) > O(x)$
-
-This means \[R_0(x) = O(x^3)\]
-
-Therefore,
-
-\[\sin(x) = 1 + O(x^3)\]
-
-\section*{Problem 6}
-
-Consider the following function $f(x)$
-\[f(x) = \sum_{k=0}^{n}r^k\]
-Using the given sumation formula we know
-\[f(x) = \sum_{k=0}^{n}r^k = \frac{1-r^{n+1}}{1-r}=\frac{O(1-r^{n+1})}{1-r}\]
-
-Since we know the $\max(1, -r^{n+1}) = -r^{n+1}$ we can use definition of $O()$ to remove 1 meaning
-
-\[\frac{O(1-r^{n+1})}{1-r} = \frac{O(-r^{n+1})}{1-r}\]
-
-Since, $O()$ allows for $\forall $ coefficient $C$ multiplying current C by -1 will allow us to remove coefficeints Therefore,
-
-\[\frac{O(-r^{n+1})}{1-r} = \frac{O(r^{n+1})}{1-r}\]
-
-\section*{Problem 15}
+	\[P_6(x) = \sum_{k=0}^{6}\frac{x^k}{k!}f^{(k)}(0)\]
+	
+	Using the defined function we know the following
+	
+	\[f(x) = \sqrt{1 + x^2} = (1 + x^2)^{\frac{1}{2}}\]
+	\[f'(x) = x(1 + x^2)^{-\frac{1}{2}}\]
+	\[f''(x) = (1 + x^2)^{-\frac{1}{2}} - x^2(1 + x^2)^{-\frac{3}{2}}\]
+	\[f'''(x) = -3x(1 + x^2)^{-\frac{3}{2}} + 3x^3(1 + x^2)^{-\frac{5}{2}}\]
+	\[f^{(4)}(x) = -3(1 + x^2)^{-\frac{3}{2}} + 18x^2(1 + x^2)^{-\frac{5}{2}} - 15x^4(1 + x^2)^{-\frac{7}{2}}\]
+	\[f^{(5)}(x) = 45x(1 + x^2)^{-\frac{5}{2}} -150x^3(1 + x^2)^{-\frac{5}{2}} - 1056x^4(1 + x^2)^{-\frac{7}{2}}\]
+	\[f^{(6)}(x) = 45(1 + x^2)^{-\frac{5}{2}} - 675x^2(1+x^2)^{-\frac{7}{2}} + 1575x^4(1+x^2)^{-\frac{9}{2}} - 945x^6(1+x^2)^{-\frac{11}{2}}\]
+	And $P_6(x)$ expands too
+	\[P_6(x) = \frac{x^0}{0!}f(0)+\frac{x^1}{1!}f'(0)+\frac{x^2}{2!}f''(0)+\frac{x^3}{3!}f'''(0)+\frac{x^4}{4!}f^{(4)}(0)+\frac{x^5}{5!}f^{(5)}(0)+\frac{x^6}{6!}f^{(6)}(0)\]
+	\[P_6(x) = f(0)+f'(0)+\frac{x^2}{2}f''(0)+\frac{x^3}{6}f'''(0)+\frac{x^4}{24}f^{(4)}(0)+\frac{x^5}{120}f^{(5)}(0)+\frac{x^6}{720}f^{(6)}(0)\]
+	Using the previously derived equations this can then be turned into
+	\[P_6(x) = 1+\frac{x^2}{2}+\frac{x^4}{24}(-3)+\frac{x^6}{720}45\]
+	\[P_6(x) = 1+\frac{x^2}{2}-\frac{x^4}{8}+\frac{x^6}{16}\]
+	There fore the Taylor Series Polynomial is
+	\[P_6(x) = 1+\frac{x^2}{2}-\frac{x^4}{8}+\frac{x^6}{16}\]
+	
+	\section*{Problem 4}
+	Given $R(x) = \frac{|x|^6}{6!}e^\xi$ where $0 < \xi < x$ and $x \in [-1,1]$ find upperbound of $|R(x)|$
+	
+	\[R(x) = \frac{|x|^6}{6!}e^\xi\]
+	\[|R(x)| = |\frac{|x|^6}{6!}e^\xi|\]
+	
+	since the max value of $|x|$ can only be 1 and $\frac{x}{6!}$ is an increasing function the $|R(x)| \le |\frac{|1|^6}{6!}e^\xi|$
+	
+	\[|R(x)| \le |\frac{|1|^6}{6!}e^\xi|\]
+	\[|R(x)| \le |\frac{1}{720}e^\xi|\]
+	
+	And since the max value of $\xi$ is also 1 and $e^\xi$ is also an increasing function $|R(x)| \le |\frac{1}{720}e^1|$
+	
+	\[|R(x)| \le |\frac{1}{720}e^1|\]
+	\[|R(x)| \le |\frac{e}{720}|\]
+	
+	\section*{Problem 5}
+	
+		Given $R(x) = \frac{|x|^6}{6!}e^\xi$ where $0 < \xi < x$ and $x \in [-\frac{1}{2},\frac{1}{2}]$ find upperbound of $|R(x)|$
+	
+	\[R(x) = \frac{|x|^6}{6!}e^\xi\]
+	\[|R(x)| = |\frac{|x|^6}{6!}e^\xi|\]
+	
+	since the max value of $|x|$ can only be $\frac{1}{2}$ and $\frac{x}{6!}$ is an increasing function the $|R(x)| \le |\frac{|\frac{1}{2}|^6}{6!}e^\xi|$
+	
+	\[|R(x)| \le |\frac{|\frac{1}{2}|^6}{6!}e^\xi|\]
+	\[|R(x)| \le |\frac{\frac{1}{64}}{720}e^\xi|\]
+	\[|R(x)| \le |\frac{1}{16384}e^\xi|\]
+	
+	And since the max value of $\xi$ is also $\frac{1}{2}$ and $e^\xi$ is also an increasing function $|R(x)| \le |\frac{1}{16384}e^{\frac{1}{2}}|$
+	
+	\[|R(x)| \le |\frac{1}{16384}e^{\frac{1}{2}}|\]
+	\[|R(x)| \le |\frac{e^{\frac{1}{2}}}{16384}|\]
+	
+	Therefore $|R(x)|$ is bounded by $\frac{e^{\frac{1}{2}}}{16384}$
+	
+	
+		\section*{Problem 6}
+	
+	Given $R(x) = \frac{|x|^4}{4!}e^\xi$ where $0 < \xi < x$ and $x \in [-\frac{1}{2},\frac{1}{2}]$ find upperbound of $|R(x)|$
+	
+	\[R(x) = \frac{|x|^4}{4!}e^\xi\]
+	\[|R(x)| = |\frac{|x|^4}{4!}e^\xi|\]
+	
+	since the max value of $|x|$ can only be $\frac{1}{2}$ and $\frac{x}{4!}$ is an increasing function the $|R(x)| \le |\frac{|\frac{1}{2}|^4}{4!}e^\xi|$
+	
+	\[|R(x)| \le |\frac{|\frac{1}{2}|^4}{4!}e^\xi|\]
+	\[|R(x)| \le |\frac{\frac{1}{16}}{24}e^\xi|\]
+	\[|R(x)| \le |\frac{1}{384}e^\xi|\]
+	
+	And since the max value of $\xi$ is also $\frac{1}{2}$ and $e^\xi$ is also an increasing function $|R(x)| \le |\frac{1}{384}e^{\frac{1}{2}}|$
+	
+	\[|R(x)| \le |\frac{1}{384}e^{\frac{1}{2}}|\]
+	\[|R(x)| \le |\frac{e^{\frac{1}{2}}}{384}|\]
+	
+	Therefore $|R(x)|$ is bounded by $\frac{e^{\frac{1}{2}}}{384}$
+	
+	\section*{Problem 15}
+	
+	Given The statement \[\arctan(\frac{1}{239}) = 4\arctan(\frac{1}{5}) - \arctan(1)\]
+	derive formula for $\pi$ and Find The order of polynomial s.t. The errors is less than $10^{-100}$ and $10^{-1000}$
+	
+	\[\arctan(\frac{1}{239}) = 4\arctan(\frac{1}{5}) - \arctan(1)\]
+	\[ \arctan(1) = 4\arctan(\frac{1}{5}) - \arctan(\frac{1}{239})\]
+	\[ \frac{\pi}{4} = 4\arctan(\frac{1}{5}) - \arctan(\frac{1}{239})\]
+	\[ \pi = 16\arctan(\frac{1}{5}) - 4\arctan(\frac{1}{239})\]
+	
+	Using the Gregory Series we know
+	\[\arctan(x) = \sum_{k=0}^{n}((-1)^k\frac{x^{2k+1}}{(2k+1)})+\int_{0}^{x}\frac{t^{2n+2}}{1+t^2}dt\]
+	For simplicity Let their be a function $P_n(x)$ s.t.
+	
+	\[P_n(x) = \sum_{k=0}^{n}((-1)^k\frac{x^{2k+1}}{(2k+1)})\]
+	Then,
+	\[\arctan(x) = P_n(x)+\int_{0}^{x}\frac{t^{2n+2}}{1+t^2}dt\]
+	Since $1+t^2$ is always positive and always greater than 1 as long as $t \ge 0$ than it will as long as $x \ge 0$ 
+	
+	\[\arctan(x) \le P_n(x)+\int_{0}^{x}t^{2n+2}dt\]
+	
+	\[\arctan(x) \le P_n(x)+\frac{x^{2n+3}}{2n+3}\]
+	
+	Then,
+	\[ \pi \le 16(P_n(\frac{1}{5})+\frac{1}{5^{2n+3}(2n+3)}) - 4(P_n(\frac{1}{239})+\frac{1}{239^{2n+3}(2n+3)}))\]
+	
+	\[ \pi \le 16P_n(\frac{1}{5})+\frac{16}{5^{2n+3}(2n+3)} - 4P_n(\frac{1}{239})+\frac{4}{239^{2n+3}(2n+3)})\]
+	
+	\[ \pi - 16P_n(\frac{1}{5}) + 4P_n(\frac{1}{239}) \le \frac{16}{5^{2n+3}(2n+3)} +\frac{4}{239^{2n+3}(2n+3)})\]
+	
+	\[ \pi - 16P_n(\frac{1}{5}) + 4P_n(\frac{1}{239}) \le |\frac{16}{5^{2n+3}(2n+3)} +\frac{4}{239^{2n+3}(2n+3)})|\]
+	
+	Let there exist another function $R_n(x)$ s.t.
+	
+	\[R_n(x) = |\frac{16}{5^{2n+3}(2n+3)} +\frac{4}{239^{2n+3}(2n+3)})|\]
+	 
+	\[ \pi - 16P_n(\frac{1}{5}) + 4P_n(\frac{1}{239}) \le R_n(x)\]
+	
+	\[ \pi - 16P_{71}(\frac{1}{5}) + 4P_{71}(\frac{1}{239}) \le R_{71}(x) \le 10^{-101}\]
+	
+	\[ \pi - 16P_{714}(\frac{1}{5}) + 4P_{714}(\frac{1}{239}) \le R_{714}(x) \le 10^{-1001}\]
+	
+	Therefore 71 terms are required to have 100 digits of accuracy and roughlt 714 are needed for 1000 digits of accuracy
 
 \end{document}

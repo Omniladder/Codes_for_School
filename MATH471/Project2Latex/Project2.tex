@@ -1,0 +1,132 @@
+\documentclass[]{article}
+
+%opening
+\title{Project 2 Numerical Methods}
+\author{Dustin O'Brien}
+
+\begin{document}
+	
+	\maketitle
+	
+	\section*{Problem 24}
+	Given,
+	
+	\[\ln(1+x),x\in[-\frac{1}{2}, \frac{1}{2}]\]
+	
+	Use Mean Value Theorem to find a value M s.t.
+	\[f(x_1) - f(x_2) \le M|x_1 - x_2|\]
+	$\noindent\hrulefill$
+	
+	\[f(x) = \ln(1+x)\]
+	using MVT. $f'(\xi_x) = \frac{f(x_1) - f(x_2)}{x_1-x_2}$ where $\xi_x \in [-\frac{1}{2}, \frac{1}{2}]$
+	
+	\[f'(\xi_x)(x_1-x_2) = f(x_1) - f(x_2)\]
+	\[f(x_1) - f(x_2) = f'(\xi_x)(x_1-x_2)\]
+	\[f(x_1) - f(x_2) \le f'(\xi_x)|x_1-x_2|\]
+	\[f(x) = \ln(1+x)\]
+	\[f'(x) = \frac{1}{1+x}\]
+	Since $\frac{1}{1+x}$ is a decreasing function on the intervals $[-\frac{1}{2},\frac{1}{2} ]$ therefore the maximum must be the smallest term in our interval $-\frac{1}{2}$ must be the input that give the maximum output
+	\[f'(-\frac{1}{2}) = \frac{1}{1+(-\frac{1}{2})}\]
+	\[f'(-\frac{1}{2}) = \frac{1}{\frac{1}{2}}\]
+	\[f'(-\frac{1}{2}) = 2\]
+	
+	Therefore the maximum output of $f'(x) = 2$
+	\[f(x_1) - f(x_2) \le 2|x_1-x_2|\]
+	Which is what you asked for :)
+	
+		\section*{Problem 25}
+		A function is monotone if on an interveral the derivative is strictly positive or negative suppose f is continous and monotone on interval [a,b]
+ and $f(a)f(b) < 0$ prove there is exactly one value $\alpha \in$ [a,b] s.t. f($\alpha$)=0
+	\[\noindent\hrulefill\]$\noindent\hrulefill$
+	
+	Consider a function $f(x)$ that meets the defintions of the function in the question
+	
+	Since, $f(a) * f(b) < 0$ one function $f(a)$ or $f(b)$ must be negative and the other positive as if they were both positive the product would be positive and if both were negative it would also be positive.
+	
+	Hence, either
+	\[f(a) \le 0 \le f(b)\]
+	\[f(b) \le 0 \le f(a)\]
+	
+	must be true Using intermediate value theorem there must exist a point $\alpha$ s.t. $f(\alpha) = 0$ 
+	
+	
+	
+	\section*{Problem 3}
+	
+	Use Taylor Series to show
+	\[\sqrt{1+x} = 1 - x + x^2 +O(x^3)\]
+	for $x$ sufficently small
+	\[\noindent\hrulefill\]$\noindent\hrulefill$
+	
+	Let $f(x) = \sqrt{1+x}$
+	 \[f(x) = \sqrt{1+x}\]
+	 \[f'(x) = \frac{1}{2\sqrt{1+x}}\]
+	 \[f''(x) = -\frac{1}{4\sqrt{1+x}^3}\]
+
+	 
+	 Using Taylor Theroem we can derive at $x_0 = 0$
+	 
+	 \[\sqrt{1+x} = 1 + \frac{1}{2}x + \frac{x^2}{(3)!} * -\frac{1}{4\sqrt{1+\xi_x}^3}\]
+	 \[\sqrt{1+x} \le 1 + \frac{1}{2}x + |\frac{x^2}{3!} * -\frac{1}{4\sqrt{1+\xi_x}^3}|\]
+	 \[\sqrt{1+x} \le 1 + \frac{1}{2}x + |\frac{x^2}{3!} * \frac{1}{4\sqrt{1+\xi_x}^3}|\]
+	 
+	 As the function $\frac{1}{4\sqrt{1+\xi_x}^3}$ is a decreasing function on the intervals $\xi_x \in [-1, \infty)$ and $\xi_x \in [0,x]$ the maximum value of $\frac{1}{4\sqrt{1+\xi_x}^3}$ is at $\xi_x = 0$
+	 
+	 \[\frac{1}{4\sqrt{1+0}^3} = \frac{1}{4}\]
+	 To continue
+	 
+	 \[\sqrt{1+x} \le 1 + \frac{1}{2}x + |\frac{x^2}{3!} * \frac{1}{4}|\]
+	 
+	 \[\sqrt{1+x} \le 1 + \frac{1}{2}x + |\frac{x^2}{12}|\]
+	 
+	 \[\sqrt{1+x} \le 1 + \frac{1}{2}x + O(\frac{x^2}{12})\]
+	 
+	 Since $\frac{1}{12} > 0 $ it can be declared the $C$ and $x^2 = \beta(x)$ and using defintions of O()
+	
+	\[\sqrt{1+x} \le 1 + \frac{1}{2}x + O(x^2)\] 
+	
+	\section*{Problem 6}
+	
+	Recall that
+	\[1+r+r^2+r^3 ... r^n = \sum_{k=0}^{n}r^k = \frac{1-r^{n+1}}{1-r}\]
+	
+	
+	Prove that
+	\[\sum_{k=0}^{n}r^k = \frac{1}{1-r} + O(r^{n+1})\]
+	
+	\[\noindent\hrulefill\]$\noindent\hrulefill$
+	
+	\[1+r+r^2+r^3 ... r^n = \sum_{k=0}^{n}r^k = \frac{1-r^{n+1}}{1-r}\]
+	
+	\[ \frac{1-r^{n+1}}{1-r} \le \frac{1 + |-r^{n+1}|}{1-r}\]
+	\[ \frac{1-r^{n+1}}{1-r} \le \frac{1 + |r^{n+1}|}{1-r}\]
+	\[ \frac{1-r^{n+1}}{1-r} \le \frac{1 + O(r^{n+1})}{1-r}\]
+	\[ \frac{1-r^{n+1}}{1-r} \le \frac{1}{1-r} + \frac{O(r^{n+1})}{1-r} \le \frac{1}{1-r} + O(r^{n+1})\]
+	
+	Using defintion of O()
+	
+	\[\frac{1}{1-r} + O(r^{n+1}) = \frac{1-r^{n+1}}{1-r} \]
+	
+	Therefore,
+	\[1+r+r^2+r^3 ... r^n = \frac{1}{1-r} + O(r^{n+1})\]
+	
+	
+	\section*{Problem 8}
+	\[\sum_{k=0}^{n}k = \frac{n(n+1)}{2}\]
+	Use this to show
+	\[\sum_{k=0}^{n}k = \frac{1}{2}n^2 + O(n)\]
+	
+	\[\noindent\hrulefill\]$\noindent\hrulefill$
+	
+	\[\frac{n(n+1)}{2} = \frac{n^2+n}{2}\]
+	\[\frac{n^2+n}{2} = \frac{n^2}{2} + \frac{n}{2}\]
+	\[\frac{n^2}{2} + \frac{n}{2} = \frac{n^2}{2} + O(\frac{n}{2})\]
+	
+	Using the definition of O() at C = $\frac{1}{2}$ we know
+
+\[\frac{n^2}{2} + O(\frac{n}{2}) = \frac{n^2}{2} + O(n)\]
+
+Therefore,
+\[\sum_{k=0}^{n}k = \frac{1}{2}n^2 + O(n)\]
+
+\end{document}
