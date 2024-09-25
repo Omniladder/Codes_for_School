@@ -11,16 +11,16 @@ def f(x):
 x = float(Fraction(input("Please Input Your x\n")))
 h = float(Fraction(input("Please Input Your h\n")))
 
-#Formulas for calculating these things Based on formula 1.2 I think ???
+#Formulas for calculating these things Based on Forward Difference
 approx1 = (f(x + h) - f(x)) / h
 error1 = (math.pi ** 2 * h) / 2
 
-#Formulas for calculating Based on formula 1.5
-approx2 = (f(x + h) - f(x - h)) / (2*h)
+#Formulas for calculating Based on Central Difference
+approx2 = (f(x + h) - f(x - h)) / (2 * h)
 error2 = (math.pi ** 3 * h ** 2) / 6
 
 #Outputs
-print("Approximation 1: ", approx1, " Error: ", error1)
-print("Approximation 2: ", approx2, " Error: ", error2)
+print("Forward Difference Approximation: ", approx1, " Error: ", error1)
+print("Central Difference Approximation : ", approx2, " Error: ", error2)
 
 
