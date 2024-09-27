@@ -15,6 +15,15 @@ class Face(QWidget):
     self.__y = -1
     self.show()
 
+  
+  def mousePressEvent(self, event):
+    
+    print("X: ", event.x(), " Y: ", event.y())
+    self.gameGrid[0] = -1
+
+
+    return
+
   def paintEvent(self, event):
     qp = QPainter()
     qp.begin(self)
@@ -44,8 +53,6 @@ class Face(QWidget):
     
     qp.end()
 
-  def mousePressEvent(self, event):
-    pass
 
 if __name__ == '__main__':
   app = QApplication(sys.argv)
