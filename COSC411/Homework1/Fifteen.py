@@ -37,7 +37,6 @@ class gameBoard(QWidget):
         while(not self.isSolveable() and not self.isSolved()):
             self.shuffle()
 
-        self.moves = 0
 
         #Draws Grid
         self.show()
@@ -76,14 +75,17 @@ class gameBoard(QWidget):
         #Gets Index of empty cell to swap with
         emptyIndex = self.gameGrid.index(-1)
         
-        if (int(emptyIndex / self.gridWidth) == int(cellIndex / self.gridWidth) ):#or int(emptyIndex % self.gridWidth) == int(cellIndex % self.gridWidth)):
+        if (int(emptyIndex / self.gridWidth) == int(cellIndex / self.gridWidth) ):
             self.gameGrid.pop(emptyIndex)
             self.gameGrid.insert(cellIndex, -1)
+            self.moves += abs(cellIndex - emptyIndex)
         elif (int(emptyIndex % self.gridWidth) == int(cellIndex % self.gridWidth)):
             for i in range(emptyIndex, cellIndex + 2 * (emptyIndex < cellIndex) - 1, self.gridWidth *( 2 * (emptyIndex < cellIndex) - 1)):
                 self.gameGrid[emptyIndex] = self.gameGrid[i]
                 self.gameGrid[i] = -1
                 emptyIndex = i
+                self.moves += 1
+            self.moves -= 1 #Because we dont count moving empty cell
     
     
     def isSolveable(self):
@@ -168,9 +170,15 @@ class gameBoard(QWidget):
                 #painter.setBold(True)
                 painter.drawText(self.gridStartX + self.cellSize * (index % self.cellWidth) + int(self.cellSize / 2 - fontSize / 2) , self.gridStartY + self.cellSize * int(index / self.cellWidth) + int(self.cellSize / 2 + fontSize / 2),str(indexNumber))
 
+
         if(self.isSolved()):
             painter.setPen(QColor(0,150,0))
             painter.drawText(int(self.width / 2) - int(fontSize / 2) * len("YOU WIN!!!"),fontSize + 8,"YOU WIN!!!")
+            print(self.moves)
+
+        painter.setPen(QColor(0,0,0))
+        painter.setFont(QFont('Arial', 25, QFont.Bold))
+        painter.drawText(int(self.width / 2 * 1.5),fontSize + 8,f"Moves: {self.moves}")
 
         #Closes things up
         painter.end()
@@ -192,7 +200,7 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
 
     #Initializes Game board and Displays
-    game = gameBoard(gridWidth=2)
+    game = gameBoard(gridWidth=4)
     game.show()
 
     
