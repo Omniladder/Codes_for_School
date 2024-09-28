@@ -3,7 +3,7 @@ import sys
 import math as m
 import random as r
 from PyQt5.QtGui import QPainter, QPen, QBrush, QColor, QFont
-from PyQt5.QtWidgets import QWidget, QApplication, QDesktopWidget
+from PyQt5.QtWidgets import QWidget, QApplication, QDesktopWidget, QLabel
 from PyQt5.QtCore import Qt, QRect, QPoint
 
 
@@ -94,15 +94,24 @@ class gameBoard(QWidget):
         #Gets Empty index to determine row
         emptyIndex = self.gameGrid.index(-1)
 
-        for index, value in enumerate(self.gameGrid):
-            for testIndex, testValue in enumerate(self.gameGrid[index:]):
-                if(testValue > value and index != emptyIndex and testIndex != emptyIndex):
+        #Gets row that is empty counting from the bottom
+        emptyRow = self.gridWidth - int(emptyIndex / self.gridWidth) - 1
+
+        #Counts Number of Inversion
+        for index in range(len(self.gameGrid)):
+            for testIndex in range(index + 1, len(self.gameGrid)):
+                if(self.gameGrid[testIndex] > self.gameGrid[index] and index != emptyIndex and testIndex + index != emptyIndex):
                     inversions += 1
 
-        if (inversions % 2 == 0 and self.gridWidth % 2 == 0):
+
+        if (inversions % 2 == 0 and self.gridWidth % 2 == 1):
+            return True
+        elif (inversions % 2 == 1 and emptyRow % 2 == 0 and self.gridWidth % 2 == 0):
+            return True
+        elif (inversions % 2 == 0 and emptyRow % 2 == 1 and self.gridWidth % 2 == 0):
             return True
 
-        return True
+        return False
 
         
 
@@ -159,6 +168,9 @@ class gameBoard(QWidget):
                 #painter.setBold(True)
                 painter.drawText(self.gridStartX + self.cellSize * (index % self.cellWidth) + int(self.cellSize / 2 - fontSize / 2) , self.gridStartY + self.cellSize * int(index / self.cellWidth) + int(self.cellSize / 2 + fontSize / 2),str(indexNumber))
 
+        if(self.isSolved()):
+            painter.setPen(QColor(0,150,0))
+            painter.drawText(int(self.width / 2) - int(fontSize / 2) * len("YOU WIN!!!"),fontSize + 8,"YOU WIN!!!")
 
         #Closes things up
         painter.end()
