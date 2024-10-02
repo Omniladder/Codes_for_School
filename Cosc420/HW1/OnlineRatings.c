@@ -66,6 +66,11 @@ int main(int argc, char** argv)
     	{
 	  	 MPI_Send(arr[i], n, MPI_INT, i, 1, MPI_COMM_WORLD); //Sends data
     	}
+
+		for(int i = 0; i < m; i++)
+		{
+			free(arr[i]);
+		}
 		free(arr);
     }
     else //children node code
@@ -119,6 +124,7 @@ double average = 0;
 		MPI_Send(averageBuf, 1, MPI_DOUBLE, 0, 2, MPI_COMM_WORLD);
 		free(averageBuf);
 	}
+
 
   MPI_Finalize();
 
