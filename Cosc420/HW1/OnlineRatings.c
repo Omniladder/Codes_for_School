@@ -43,13 +43,6 @@ int main(int argc, char** argv)
     }
 
 
-	// if(rank >= m)
-	// {
-	// 	MPI_Barrier(MPI_COMM_WORLD);
-	// 	MPI_Finalize();
-	// 	return -1;
-	// } 
-
 	int* productArray = (int*)malloc(n * sizeof(int));
 	if(rank == 0) //Code for parent node
     {
@@ -75,11 +68,6 @@ int main(int argc, char** argv)
 	  	 MPI_Send(arr[i], n, MPI_INT, i, 1, MPI_COMM_WORLD); //Sends data
     	}
 
-		/*for(int i = 0; i < m; i++)
-		{
-			free(arr[i]);
-		}*/
-		//free(arr);
     }
     else if (rank < m) //children node code
     {
@@ -209,7 +197,6 @@ double* sort(double* arr, int arrLength, int* indexes)
 
 	free(newIndexes[0]);
 	free(newIndexes[1]);
-	//free(newIndexes);
 
 	return arr;
 }
