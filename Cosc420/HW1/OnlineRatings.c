@@ -66,6 +66,7 @@ int main(int argc, char** argv)
     	{
 	  	 MPI_Send(arr[i], n, MPI_INT, i, 1, MPI_COMM_WORLD); //Sends data
     	}
+		free(arr);
     }
     else //children node code
     {
@@ -81,6 +82,7 @@ double average = 0;
 	}
 	
 	average /= n;
+	free(productArray);
 	
 	if(rank == 0)
 	{
@@ -105,12 +107,17 @@ double average = 0;
 		double t2 = MPI_Wtime();
 
 		printf("MPI run time: %4.1f\n", t2-t1);
+		
+		free(averages);
+		free(newAvgBuf);
+		free(indexes);
 	}
 	else
 	{
 		double* averageBuf = (double*)malloc(sizeof(double));
 		averageBuf[0] = average;
 		MPI_Send(averageBuf, 1, MPI_DOUBLE, 0, 2, MPI_COMM_WORLD);
+		free(averageBuf);
 	}
 
   MPI_Finalize();
