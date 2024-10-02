@@ -67,11 +67,11 @@ int main(int argc, char** argv)
 	  	 MPI_Send(arr[i], n, MPI_INT, i, 1, MPI_COMM_WORLD); //Sends data
     	}
 
-		for(int i = 0; i < m; i++)
+		/*for(int i = 0; i < m; i++)
 		{
 			free(arr[i]);
-		}
-		free(arr);
+		}*/
+		//free(arr);
     }
     else //children node code
     {
@@ -201,7 +201,7 @@ double* sort(double* arr, int arrLength, int* indexes)
 
 	free(newIndexes[0]);
 	free(newIndexes[1]);
-	free(newIndexes);
+	//free(newIndexes);
 
 	return arr;
 }
