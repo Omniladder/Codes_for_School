@@ -171,7 +171,7 @@ double* sort(double* arr, int arrLength)
 	splitArrays[0] = sort(splitArrays[0], arrLength / 2);
 	splitArrays[1] = sort(splitArrays[1], arrLength - (arrLength / 2 ));
 
-	arr = merge(splitArrays[0], arrLength / 2 - 1, splitArrays[1], arrLength - (arrLength / 2 -1));
+	arr = merge(splitArrays[0], arrLength / 2, splitArrays[1], arrLength - (arrLength / 2));
 
 	
 
