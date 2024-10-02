@@ -4,9 +4,9 @@
 #include "mpi.h"
 
 
-double* sort(double* arr, int arrLength);
-double* merge(double* arr1, int arrLength1 ,double* arr2, int arrLength2);
-double** splitArr(double* arr, int arrLength, int splitIndex);
+double* sort(double* arr, int arrLength, int* indexes);
+double* merge(double* arr1, int arrLength1 ,double* arr2, int arrLength2, int* indexes, int** newIndexes);
+double** splitArr(double* arr, int arrLength, int splitIndex, int* indexes, int** newIndexes);
 
 int main(int argc, char** argv)
 {
@@ -88,16 +88,19 @@ double average = 0;
 		double* averages = (double*)malloc(sizeof(double) * m);
 		averages[0] = average;
 		double* newAvgBuf = (double*)malloc(sizeof(double));
+		int* indexes = (int*)malloc(sizeof(int) * m);
+		indexes[0] = 0;
 		for(int i = 1; i < m; i++)
 		{
 			MPI_Status status;
 			MPI_Recv(newAvgBuf, 1, MPI_DOUBLE, i, 2, MPI_COMM_WORLD, &status);
 			averages[i] = newAvgBuf[0];
+			indexes[i] = i;
 		}
-		averages = sort(averages, m);
+		averages = sort(averages, m, indexes);
 		for(int i = 0; i < m; i++)
 		{
-			printf("%dth highest Avg: %.1f\n", i + 1, averages[i]);
+			printf("%d Average is: %.1f\n", indexes[i], averages[i]);
 		}
 		double t2 = MPI_Wtime();
 
@@ -116,7 +119,7 @@ double average = 0;
 }
 
 
-double** splitArr(double* arr, int arrLength, int splitIndex)
+double** splitArr(double* arr, int arrLength, int splitIndex, int* indexes, int** newIndexes)
 {
 	double** arrays = (double **)malloc(sizeof(double*) * 2);
 	arrays[0] = (double*)malloc(sizeof(double) * (arrLength / 2 ));
@@ -125,16 +128,18 @@ double** splitArr(double* arr, int arrLength, int splitIndex)
 	for(int i = 0; i < arrLength / 2; i++)
 	{
 		arrays[0][i] = arr[i];
+		newIndexes[0][i] = indexes[i];
 	}
 
 	for(int i = arrLength / 2; i < arrLength; i++)
 	{
 		arrays[1][i - arrLength / 2] = arr[i];
+		newIndexes[1][i - arrLength / 2] = indexes[i];
 	}
 	return arrays;
 }
 
-double* merge(double* arr1, int arrLength1 ,double* arr2, int arrLength2)
+double* merge(double* arr1, int arrLength1 ,double* arr2, int arrLength2, int* indexes, int** newIndexes)
 {
 	double* doublearr3 = (double*)malloc(sizeof(double*) * (arrLength1 + arrLength2));
 	
@@ -146,34 +151,44 @@ double* merge(double* arr1, int arrLength1 ,double* arr2, int arrLength2)
 		if(arr1[index1] < arr2[index2])
 		{
 			doublearr3[index3] = arr2[index2];
+			indexes[index3] = newIndexes[1][index2];
 			index2++;
 		}
 		else
 		{
 			doublearr3[index3] = arr1[index1];
+			indexes[index3] = newIndexes[0][index1];
 			index1++;
 		}
 	}
+	free(arr1);
+	free(arr2);
 	return doublearr3;
 }
 
 //Merge Sort Algorithm
-double* sort(double* arr, int arrLength)
+double* sort(double* arr, int arrLength, int* indexes)
 {
 	if(arrLength == 1)
 	{
 		return arr;
 	}
 
-	double** splitArrays = splitArr(arr, arrLength, arrLength/2);
+	int** newIndexes = (int**)malloc(sizeof(int*) * 2);
+	newIndexes[0] = (int*)malloc(sizeof(int) * arrLength / 2);
+	newIndexes[1] = (int*)malloc(sizeof(int) * arrLength / 2);
+
+	double** splitArrays = splitArr(arr, arrLength, arrLength/2, indexes, newIndexes);
 
 
-	splitArrays[0] = sort(splitArrays[0], arrLength / 2);
-	splitArrays[1] = sort(splitArrays[1], arrLength - (arrLength / 2 ));
+	splitArrays[0] = sort(splitArrays[0], arrLength / 2, indexes);
+	splitArrays[1] = sort(splitArrays[1], arrLength - (arrLength / 2 ), indexes);
 
-	arr = merge(splitArrays[0], arrLength / 2, splitArrays[1], arrLength - (arrLength / 2));
+	arr = merge(splitArrays[0], arrLength / 2, splitArrays[1], arrLength - (arrLength / 2), indexes, newIndexes);
 
-	
+	free(newIndexes[0]);
+	free(newIndexes[1]);
+	free(newIndexes);
 
 	return arr;
 }
