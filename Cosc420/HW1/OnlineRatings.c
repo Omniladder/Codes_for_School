@@ -42,6 +42,12 @@ int main(int argc, char** argv)
         return -1;
     }
 
+
+	if(rank >= m)
+	{
+		MPI_Abort(MPI_COMM_WORLD, 0);
+	} 
+
 	int* productArray = (int*)malloc(n * sizeof(int));
 	if(rank == 0) //Code for parent node
     {
