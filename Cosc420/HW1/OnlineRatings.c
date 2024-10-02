@@ -43,10 +43,12 @@ int main(int argc, char** argv)
     }
 
 
-	if(rank >= m)
-	{
-		MPI_Abort(MPI_COMM_WORLD, 0);
-	} 
+	// if(rank >= m)
+	// {
+	// 	MPI_Barrier(MPI_COMM_WORLD);
+	// 	MPI_Finalize();
+	// 	return -1;
+	// } 
 
 	int* productArray = (int*)malloc(n * sizeof(int));
 	if(rank == 0) //Code for parent node
@@ -79,7 +81,7 @@ int main(int argc, char** argv)
 		}*/
 		//free(arr);
     }
-    else //children node code
+    else if (rank < m) //children node code
     {
 		MPI_Status status;
 		MPI_Recv(productArray, n, MPI_INT, 0, 1, MPI_COMM_WORLD, &status);
@@ -123,7 +125,7 @@ double average = 0;
 		free(newAvgBuf);
 		free(indexes);
 	}
-	else
+	else if (rank <= m)
 	{
 		double* averageBuf = (double*)malloc(sizeof(double));
 		averageBuf[0] = average;
