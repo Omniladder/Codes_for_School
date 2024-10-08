@@ -54,7 +54,10 @@ int main(int argc, char** argv)
 
     MPI_Bcast(&commandString, stringSizes + 1, MPI_CHAR, 0, MPI_COMM_WORLD);
 
-    system(commandString);
+    if (system(commandString) == -1)
+    {
+        printf("Command Failed\n");
+    }
     
     MPI_Finalize();
     return 0;
