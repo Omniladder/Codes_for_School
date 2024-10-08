@@ -28,11 +28,11 @@ class gameBoard(QWidget):
         #Sets Title of Game
         self.setWindowTitle('Fifteen Puzzle Game')
 
+        #Sets Various needed variables for game such as the games move count and the amount of cells wide the board is
         self.gridWidth = gridWidth
-
         self.moves = 0
 
-
+        #Shuffles Board to Random Solveable State
         self.shuffle()
         while(not self.isSolveable() and not self.isSolved()):
             self.shuffle()
@@ -57,8 +57,6 @@ class gameBoard(QWidget):
         
         self.swapCell(index)
 
-        if(self.isSolved()):
-            print("Congrats you Solved it")
 
         self.update()
         return

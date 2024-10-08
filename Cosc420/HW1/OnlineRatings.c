@@ -77,12 +77,17 @@ int main(int argc, char** argv)
 
 double average = 0;
 
+	/*
+		Dr. Jing The reason why my code doesn't overflow as fast is because I used a double which has a mantissa of 53 comapared to ints 32 bits most people kept sum in an
+		int which overflowed faster I also modified the code the a bit by distributing the / n over the sum you keep the terms smaller which means the full sum is smaller and
+		therefore overflows later
+	*/
+
 	for(int i = 0; i < n; i++)
 	{
-		average += productArray[i] * 1.0; //Sums together * 1.0 to keep it all in decimals
+		average += productArray[i] / (n * 1.0); //Sums together * 1.0 to keep it all in decimals
 	}
 	
-	average /= n;
 	free(productArray);
 	
 	if(rank == 0)

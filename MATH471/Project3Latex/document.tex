@@ -4,32 +4,11 @@
 \title{Project 3 Numerical Methods}
 \author{Dustin O'Brien}
 
-\usepackage{amssymb}
-\usepackage{longdiv}
 
 \begin{document}
 	
 	\maketitle
 	
-	\section*{Problem 13}
-	Consider the function D where
-	\[D=f(x+h) - 2 f(x) + f(x-h)\]
 	
-	Using Taylors Theorem we know that
-	\[f(x + h) = f(x) + hf'(x) + h^2 \frac{1}{2}f''(x) + h^3 \frac{1}{6}f'''(x) + O(h^4)\] 
-	\[f(x - h) = f(x) - hf'(x) + h^2 \frac{1}{2}f''(x) - h^3 \frac{1}{6}f'''(x) + O(h^4)\]
-	
-	Thus,
-	\[D = f(x) + hf'(x) + h^2 \frac{1}{2}f''(x) + h^3 \frac{1}{6}f'''(x)\]
-	\[+ f(x) - hf'(x) + h^2 \frac{1}{2}f''(x) - h^3 \frac{1}{6}f'''(x)\]
-	\[-2f(x)\]
-	
-	\[= h^2f''(x) + O(h^4) = f(x+h) - 2 f(x) + f(x-h)\]
-	\[f''(x) = \frac{f(x+h) - 2 f(x) + f(x-h) - O(h^4)}{h^2}\]
-	\[f''(x) = \frac{f(x+h) - 2 f(x) + f(x-h)}{h^2} + O(h^2)\]
-	
-	\section*{Problem 2a}
-	
-	\[\]
 	
 \end{document}
