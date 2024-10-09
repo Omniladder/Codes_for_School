@@ -102,19 +102,40 @@ graph = {
     'Norfolk' : {'Richmond': 93, 'Salisbury': 132}
 }
 
+
+cities = {'Buffalo':'Buffalo', 'Boston':'Boston', 'Pittsburgh':'Pittsburgh', 'New York':'New York', 'Philadelphia':'Philadelphia', 'Baltimore': 'Baltimore', 'Salisbury' : 'Salisbury', 'Washington DC' : 'Washington DC', 'Richmond' : 'Richmond', 'Norfolk' : 'Norfolk'}
+
+inputStartCity = str(input("Please Input Starting City Name:\n"))
+
+while(inputStartCity not in graph):
+    inputStartCity = str(input("Invalid City Please Retype Starting City:\n"))
+
+inputTargetCity = str(input("Please Input Target City Name:\n"))
+
+while(inputTargetCity not in graph):
+    inputTargetCity = str(input("Invalid City Please Retype Target City\n"))
+
+inputStartCity = inputStartCity.strip()
+inputTargetCity = inputTargetCity.strip()
+
+
+#'''
+
+#IDK WHY THIS WORKS BUT IF I REMOVE IT IT BREAKS AND IM TOO SCARED TO TOUCH IT
+startCity = cities[inputStartCity]
+targetCity = cities[inputTargetCity]
+
 '''
-startCity = input("Please Input Starting City Name:\n")
+startCity = 'New York'
+targetCity = 'Richmond'
 
-while(startCity not in graph):
-    startCity = input("Invalid City Please Retype Starting City:\n")
-
-targetCity = input("Please Input Target City Name:\n")
-
-while(targetCity not in graph):
-    targetCity = input("Invalid City Please Retype Target City\n")
+print(startCity == inputStartCity)
+print(targetCity == inputTargetCity)
 '''
+print('\n')
 
-shortestPath = BFS(graph, 'New York', 'Richmond')
+
+shortestPath = BFS(graph, startCity, targetCity)
 distance = 0
 for i in range(len(shortestPath) - 1):
     distance += graph[shortestPath[i]][shortestPath[i+1]]
@@ -123,7 +144,7 @@ print(f"Shortest Path Distance : {distance} \nShortest Path: ", shortestPath)
 
 print('\n')
 
-DFSPATH = DFS(graph, 'New York', 'Richmond')
+DFSPATH = DFS(graph, startCity, targetCity)
 distance = 0
 for i in range(len(DFSPATH) - 1):
     distance += graph[DFSPATH[i]][DFSPATH[i+1]]
@@ -132,9 +153,10 @@ print(f"Depth First Search Distance : {distance} \nDFS Path: ", DFSPATH)
 
 print('\n')
 
-UFSPATH = UFS(graph, 'New York', 'Richmond')
+UFSPATH = UFS(graph, startCity, targetCity)
 distance = 0
 for i in range(len(UFSPATH) - 1):
     distance += graph[UFSPATH[i]][UFSPATH[i+1]]
 
 print(f"Uniform Cost Search Distance : {distance} \nUFS Path: ", UFSPATH)
+#'''
