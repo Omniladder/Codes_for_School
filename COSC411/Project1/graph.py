@@ -17,25 +17,74 @@ def BFS(graph, startCity, targetCity):
     visitedSet.add(startCity)
 
     parents = {}
+    nodesChecked = 0
 
     while(cityQueue):
-        currentCity = cityQueue.pop()
+        currentCity = cityQueue.pop(0)
 
         for city in list(graph[currentCity].keys()):
+            nodesChecked += 1
             if city not in visitedSet:
                 cityQueue.append(city)
                 visitedSet.add(city)
                 parents[city] = currentCity
             
             if city is targetCity:
+                print("BFS Number of Nodes Checked: ", nodesChecked)
                 return trackBack(parents, startCity, targetCity)
 
 
     
+def DFS(graph, startCity, targetCity):
+   
+    cityStack = []
+    cityStack.append(startCity)
 
-    
-    
+    visitedSet = set()
+    visitedSet.add(startCity)
 
+    parents = {}
+    nodesChecked = 0
+
+    while(cityStack):
+        currentCity = cityStack.pop()
+
+        for city in list(graph[currentCity].keys()):
+            nodesChecked += 1
+            if city not in visitedSet:
+                cityStack.append(city)
+                visitedSet.add(city)
+                parents[city] = currentCity
+            
+            if city is targetCity:
+                print("DFS Number of Nodes Checked: ", nodesChecked)
+                return trackBack(parents, startCity, targetCity)
+    
+from queue import PriorityQueue
+def UFS(graph, startCity, targetCity):
+   
+    cityPQ = PriorityQueue()
+    cityPQ.put((0,startCity))
+
+    visitedSet = set()
+    visitedSet.add(startCity)
+
+    parents = {}
+    nodesChecked = 0
+
+    while(cityPQ):
+        cost, currentCity = cityPQ.get()
+
+        for city in list(graph[currentCity].keys()):
+            nodesChecked += 1
+            if city not in visitedSet:
+                cityPQ.put((graph[currentCity][city] ,city))
+                visitedSet.add(city)
+                parents[city] = currentCity
+            
+            if city is targetCity:
+                print("UFS Number of Nodes Checked: ", nodesChecked)
+                return trackBack(parents, startCity, targetCity)
     
 
 
@@ -65,4 +114,27 @@ while(targetCity not in graph):
     targetCity = input("Invalid City Please Retype Target City\n")
 '''
 
-print(BFS(graph, 'New York', 'Richmond'))
+shortestPath = BFS(graph, 'New York', 'Richmond')
+distance = 0
+for i in range(len(shortestPath) - 1):
+    distance += graph[shortestPath[i]][shortestPath[i+1]]
+
+print(f"Shortest Path Distance : {distance} \nShortest Path: ", shortestPath)
+
+print('\n')
+
+DFSPATH = DFS(graph, 'New York', 'Richmond')
+distance = 0
+for i in range(len(DFSPATH) - 1):
+    distance += graph[DFSPATH[i]][DFSPATH[i+1]]
+
+print(f"Depth First Search Distance : {distance} \nDFS Path: ", DFSPATH)
+
+print('\n')
+
+UFSPATH = UFS(graph, 'New York', 'Richmond')
+distance = 0
+for i in range(len(UFSPATH) - 1):
+    distance += graph[UFSPATH[i]][UFSPATH[i+1]]
+
+print(f"Uniform Cost Search Distance : {distance} \nUFS Path: ", UFSPATH)
