@@ -90,53 +90,21 @@ def UFS(graph, startCity, targetCity):
 
 
 graph = {
-    'Buffalo' : {'Boston': 450, 'Pittsburgh': 219},
-    'Boston' : {'Buffalo': 450 , 'New York': 216},
-    'Pittsburgh' : {'New York': 370, 'Buffalo': 219, 'Philadelphia' : 304, 'Baltimore' : 248},
-    'New York' : {'Boston': 216, 'Pittsburgh': 370, 'Philadelphia' :94},
-    'Philadelphia' : {'New York': 94, 'Pittsburgh' : 304, 'Baltimore': 101, 'Salisbury': 138},
-    'Baltimore' : {'Philadelphia': 101, 'Pittsburgh' : 248, 'Washington DC': 45, 'Salisbury': 117},
-    'Salisbury' : {'Philadelphia': 138, 'Baltimore': 117, 'Washington DC': 116, 'Norfolk': 132},
-    'Washington DC' : {'Baltimore': 45, 'Salisbury': 116, 'Richmond': 110},
-    'Richmond' : {'Washington DC': 110, 'Norfolk': 93},
-    'Norfolk' : {'Richmond': 93, 'Salisbury': 132}
+    'A' : {'B': 9, 'C': 6, 'D' : 8},
+    'B' : {'F': 4},
+    'C' : {'E': 6, 'G': 7},
+    'D' : {'E' : 6},
+    'E' : {'H': 7},
+    'F' : {'G' : 10},
+    'G' : {'H' : 5},
+    'H' : {}
 }
 
 
-cities = {'Buffalo':'Buffalo', 'Boston':'Boston', 'Pittsburgh':'Pittsburgh', 'New York':'New York', 'Philadelphia':'Philadelphia', 'Baltimore': 'Baltimore', 'Salisbury' : 'Salisbury', 'Washington DC' : 'Washington DC', 'Richmond' : 'Richmond', 'Norfolk' : 'Norfolk'}
-
-inputStartCity = (input("Please Input Starting City Name:\n"))
-
-while(inputStartCity not in graph):
-    inputStartCity = (input("Invalid City Please Retype Starting City:\n"))
-
-inputTargetCity = (input("Please Input Target City Name:\n"))
-
-while(inputTargetCity not in graph):
-    inputTargetCity = (input("Invalid City Please Retype Target City\n"))
-
-inputStartCity = inputStartCity.strip()
-inputTargetCity = inputTargetCity.strip()
-
-
-#'''
-
-#IDK WHY THIS WORKS BUT IF I REMOVE IT IT BREAKS AND IM TOO SCARED TO TOUCH IT
-startCity = cities[inputStartCity]
-targetCity = cities[inputTargetCity]
-
-'''
-startCity = 'New York'
-targetCity = 'Richmond'
-
-print(startCity == inputStartCity)
-print(targetCity == inputTargetCity)
-'''
-print('\n')
 
 
 start = time.perf_counter()
-shortestPath = BFS(graph, startCity, targetCity)
+shortestPath = BFS(graph, 'A', 'H')
 distance = 0
 for i in range(len(shortestPath) - 1):
     distance += graph[shortestPath[i]][shortestPath[i+1]]
@@ -151,7 +119,7 @@ print('\n')
 
 start = time.perf_counter()
 
-DFSPATH = DFS(graph, startCity, targetCity)
+DFSPATH = DFS(graph, 'A', 'H')
 distance = 0
 for i in range(len(DFSPATH) - 1):
     distance += graph[DFSPATH[i]][DFSPATH[i+1]]
@@ -164,7 +132,7 @@ print('\n')
 
 start = time.perf_counter()
 
-UFSPATH = UFS(graph, startCity, targetCity)
+UFSPATH = UFS(graph, 'A', 'H')
 distance = 0
 for i in range(len(UFSPATH) - 1):
     distance += graph[UFSPATH[i]][UFSPATH[i+1]]

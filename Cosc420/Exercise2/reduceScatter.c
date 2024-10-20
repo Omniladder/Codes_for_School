@@ -5,9 +5,7 @@
 #include <time.h>
 #include <unistd.h>
 
-/*
-Modified version of the Summation program using gather in order to collect all the sums
-*/
+//Collects sums and averages of a bunch of random numbers
 
 int main(int argc, char** argv){
 
