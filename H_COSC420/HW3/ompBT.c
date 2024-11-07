@@ -20,7 +20,7 @@ struct node* createTree(struct node* currentNode, int levels)
     currentNode->l = currentNode->r = NULL;
 
     // Recursively create child nodes if more levels remain
-    
+    //printf("Created Node\n");
     if (levels != 1)
     {
         #pragma omp parallel sections
@@ -90,7 +90,6 @@ int countNodes(struct node* root)
     return count;
 }
 
-
 int main()
 {
     srand(time(NULL));
@@ -101,7 +100,7 @@ int main()
 
     // Create a binary tree with a depth of 20
     tree = createTree(tree, 20);
-
+    
     // Count nodes with values less than 0.5
     int count = countNodes(tree);
 
