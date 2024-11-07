@@ -48,14 +48,13 @@ int main(int argc, char** argv){
     {
         segSum += f(a + i * deltaX);
     }
-
     MPI_Reduce(&segSum, &sum, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
-    double compTime = MPI_Wtime() - startTime;
 
     double Tn = deltaX * ((f(b) + f(a)) / 2 + sum);
 
     Tn -= deltaX * f(a); //Remoces f(a) from sum
 
+    double compTime = MPI_Wtime() - startTime;
 
     double timeMin, timeMax, timeAvg;
 
@@ -65,10 +64,11 @@ int main(int argc, char** argv){
 
     if(rank == 0)
     {
+        printf("Number of Processors %d\n", numComm);
         printf("Approximation: %fe%d\n", (Tn /pow(10,(int)log10(abs(Tn)))), (int)(log10(abs(Tn))) ); //Prints in scientific Notation
-        printf("Minimum Comptuational Time: %fs\n", timeMin);
-        printf("Maximum Comptuational Time: %fs\n", timeMax);
-        printf("Average Comptuational Time: %fs\n", timeAvg / numComm);
+        printf("Minimum Comptuational Time: %f seconds\n", timeMin);
+        printf("Maximum Comptuational Time: %f seconds\n", timeMax);
+        printf("Average Comptuational Time: %f seconds\n", timeAvg / numComm);
     }
 
 
