@@ -1,0 +1,8 @@
+Kaggle-v6-ElectionData.csv - https://www.kaggle.com/datasets/ahsanmemon/elections-pakistan-most-comprehensive-yet/data?select=Kaggle+v6+-+Election+Data.csv
+Pak_Election_Voting_Results_Dawn_API_Combine.xlsx - https://www.kaggle.com/datasets/mesumraza/pakistan-elections-data-2024/data
+
+
+PredictPaki https://www.kaggle.com/datasets/zusmani/predict-pakistan-elections-2018?select=National+Assembly+2013+-+Updated%28v11%29.csv:
+NA*
+
+

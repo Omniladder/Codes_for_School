@@ -1,0 +1,23 @@
+
+
+ompSumA:
+    Time: .0006 - .0011
+    The Answer is often inaccurate although correct sometimes
+
+
+ompSumB:
+    Time: .0011 - .009
+    Generally Slower than SumA
+    The Answer is consistently correct
+
+ompSumC:
+    Time: Time: .0012 - .009
+    Generally Slower than SumA about same as SumB
+    The Answer is consistently correct
+
+Summary:
+    ompSumA is the fastest, with execution times ranging from 0.0006 to 0.0011 seconds, 
+    but its results are sometimes inaccurate. In contrast, ompSumB and ompSumC are slower, 
+    with times between 0.0011 and 0.009 seconds and 0.0012 to 0.009 seconds, respectively, 
+    but both consistently produce correct answers. While ompSumA prioritizes speed at the 
+    cost of occasional inaccuracies, ompSumB and ompSumC trade some speed for reliable accuracy.
