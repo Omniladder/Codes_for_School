@@ -1,7 +1,7 @@
 import math as m
 
 def f(x):
-    return m.sqrt(1 - x**2)
+    return m.sqrt(4 - x**2)
 
 
 def midpointRule(f, a, b, n):
@@ -17,4 +17,4 @@ def midpointRule(f, a, b, n):
     return h * sum * .5
 
 
-print(midpointRule(f, -1,1, 100000) * 2)
+print(midpointRule(f, 0,2, 100000))

@@ -1,7 +1,7 @@
 import math as m
 
 def f(x):
-    return m.sqrt(1 - x**2)
+    return m.sqrt(4 - x**2)
 
 
 def simpsonsRule(f, a, b, n):
@@ -12,7 +12,7 @@ def simpsonsRule(f, a, b, n):
     
     h = (b - a) /n
 
-    for i in range(n):
+    for i in range(1, n):
         if(i % 2 == 0):
             sum += 4 * f(a + i * h)
         else:
@@ -23,4 +23,4 @@ def simpsonsRule(f, a, b, n):
     return sum
 
 
-print(simpsonsRule(f, -1,1, 100000) * 2)
+print(simpsonsRule(f, 0,2, 100000))
