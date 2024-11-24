@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "stringconcat": "cpp",
+        "stdlib.h": "c"
+    }
+}
