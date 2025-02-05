@@ -125,7 +125,7 @@ Homework 1: Background Review + Building a classifier
             \begin{bmatrix}
                 6 \\
                 10 \\
-                5 \\
+                14 \\
             \end{bmatrix}
         $}
 
@@ -188,7 +188,7 @@ Homework 1: Background Review + Building a classifier
         \solution{true}
         
         \item $\x^\top \x = \x\x^\top$.
-        \solution{true}
+        \solution{false}
         
         \item $(\x-\y)^\top(\y-\x) = \norm{\x}^2 - 2\x^\top \y + \norm{\y}^2$.
         \solution{true}
@@ -330,9 +330,9 @@ Homework 1: Background Review + Building a classifier
     \begin{enumerate}
         \item What is $\expec{X}$?
         \solution{
-            $\\.5 \times .3 + .5 \times .7 = .5$ thus we know there is a 
+            $\\.5 \times .3 + .5 \times .9 = .6$ thus we know there is a 
             50\%  chance of a choosing a coin and it landing on heads given 
-            this with 3 flips we have $3 \times .5 = 1.5$ which is $\mu$ 
+            this with 3 flips we have $3 \times .6 = 1.8$ which is $\mu$ 
             and the expected value
         }
         \item What is $\var{X}$?
@@ -340,13 +340,13 @@ Homework 1: Background Review + Building a classifier
             \\Using the formula for the probability of probability distribution we know 
             $\sum_{i=0}^n \left( P(x_i) \cdot (x_i - \mu)^2\right)$ We have $2^3$ permutations of 
             head flips and $\binom{x_i}{3}$ permutations of each number of heads $x_i$ knowing this
-            we have the following formulas $\frac{1}{8} \left( 0-1.5 \right)^2 + \frac{3}{8} 
-            \left( 1-1.5 \right)^2  + \frac{3}{8} \left( 2-1.5 \right)^2 + \frac{1}{8} 
-            \left( 3-1.5 \right)^2 = .75 \\ \therefore \var{X} = .75$
+            we have the following formulas $\frac{1}{8} \left( 0-1.8 \right)^2 + \frac{3}{8} 
+            \left( 1-1.8 \right)^2  + \frac{3}{8} \left( 2-1.8 \right)^2 + \frac{1}{8} 
+            \left( 3-1.8 \right)^2 = .84 \\ \therefore \var{X} = .84$
         }
         \item Based on the number of heads we get, we earn $Y = \frac{1}{2 + X}$ dollars. 
         What is $\expec{Y}$?
-        \solution{\\Plugging in the answer from problem 1 we know $E(X) = .5$ thus, $E(Y) = \frac{1}{2 + .75} = .\overline{36}$}
+        \solution{\\Plugging in the answer from problem 1 we know $E(X) = .6$ thus, $E(Y) = \frac{1}{2 + .6} = .384\dots$}
     \end{enumerate}
 
     \subsection{A Variance Paradox?}
