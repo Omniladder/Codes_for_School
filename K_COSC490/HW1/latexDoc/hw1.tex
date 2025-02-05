@@ -665,15 +665,16 @@ Homework 1: Background Review + Building a classifier
     \noindent \textbf{Hint}: Do you observe any discrepancy between the trend of train loss and dev loss? What it might indicate?
     \\\\
     \noindent {\color{red}{your plots and answer:}}\\
-    % uncomment the following lines and add the path to your figure in {}
-    %\begin{figure}[h]
-    %    \centering
-    %    \includegraphics[width=0.45\textwidth]{}
-    %    \caption{train and dev loss}
-    %\end{figure}
+    uncomment the following lines and add the path to your figure in {}
+    \begin{figure}[h]
+       \centering
+       \includegraphics[width=0.45\textwidth]{single_run_loss.png}
+       \caption{train and dev loss}
+    \end{figure}
 
-    \noindent\solution{}
+    \noindent\solution{The Dev loss is generally consistently higher than the training loss implting that there is a degree of overfitting. we also see that at some point such as epoch 2 and 15 are noticeable in there increase while the training data is decreased implying overfitting got worse in those two examples}
 
+    \pagebreak
     \subsubsection{Run the pipeline: Explore Different Word Embeddings}
     As discussed earlier, we initialize the embedding layer of the classifier with pre-trained word embeddings. We have provided in \texttt{main.py} 4 different types of pre-trained word embeddings as different representational options for you to explore their effects on model performance. Again, we provide a visualization function \texttt{visualize\_configs} to depict the performance (dev loss and dev accurracy) across model configurations with different embedding choices. \\\\
 
@@ -682,20 +683,20 @@ Homework 1: Background Review + Building a classifier
     \\\\
     \noindent {\color{red}{your plot and answer:}}\\
     % uncomment the following lines and add the path to your figure in the two {}s
-    %\begin{figure}[h] 
-    %    \centering
-    %    \subfloat[dev loss]{
-    %        \includegraphics[width=0.45\textwidth]{}
-    %        }
-    %    \hfill
-    %    \subfloat[dev accuracy]{
-    %        \includegraphics[width=0.45\textwidth]{}
-    %        \label{fig:b}
-    %        }
-    %    \caption{loss and accuracy of different pre-trained embeddings}
-    %\end{figure}
+    \begin{figure}[h] 
+       \centering
+       \subfloat[dev loss]{
+           \includegraphics[width=0.45\textwidth]{embedding_loss.png}
+           }
+       \hfill
+       \subfloat[dev accuracy]{
+           \includegraphics[width=0.45\textwidth]{embedding_acc.png}
+           \label{fig:b}
+           }
+       \caption{loss and accuracy of different pre-trained embeddings}
+    \end{figure}
 
-    \noindent\solution{}
+    \noindent\solution{We can see that wordtovec is consistently the best embedding and generally gets better over time this is likely because of the seemingly larger nature of the embedding dataset and the more professional nature of google news over twitter.}
 
     \newpage
     \bibliographystyle{apalike}
