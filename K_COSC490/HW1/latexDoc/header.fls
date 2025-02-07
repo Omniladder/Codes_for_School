@@ -1,9 +1,9 @@
-PWD /home/omniladder/Codes_for_School/K_COSC490/HW1
+PWD /home/omniladder/Codes_for_School/K_COSC490/HW1/latexDoc
 INPUT /etc/texmf/web2c/texmf.cnf
 INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/omniladder/Codes_for_School/K_COSC490/HW1/header.tex
+INPUT /home/omniladder/Codes_for_School/K_COSC490/HW1/latexDoc/header.tex
 OUTPUT header.log
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls

@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1738459820.79328 "/home/omniladder/Codes_for_School/K_COSC490/HW1/header.tex" "header.pdf" "header" 1738459821.45358 2
+["pdflatex"] 1738785709.97051 "/home/omniladder/Codes_for_School/K_COSC490/HW1/latexDoc/header.tex" "header.pdf" "header" 1738785711.16413 2
   "/etc/texmf/web2c/texmf.cnf" 1726114605.93834 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/omniladder/Codes_for_School/K_COSC490/HW1/header.tex" 1738459819.82828 3136 60f45f72b8862052f3420b6c6fc82111 ""
+  "/home/omniladder/Codes_for_School/K_COSC490/HW1/latexDoc/header.tex" 1738459819.82828 3136 60f45f72b8862052f3420b6c6fc82111 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1000.tfm" 1136768653 3584 adb004a0c8e7c46ee66cad73671f37b4 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/xypic/xyatip10.tfm" 1381187214 608 50246cc71b0635b0ba0a5c10a0bf4257 ""
@@ -215,7 +215,7 @@
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1738115513 8213271 2693aecdcea75fd9f20a05200c4c003b ""
-  "header.aux" 1738459820.79022 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "header.aux" 1738785709.96816 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
   "header.tex" 1738459819.82828 3136 60f45f72b8862052f3420b6c6fc82111 ""
   (generated)
   "header.aux"
