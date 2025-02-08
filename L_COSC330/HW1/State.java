@@ -1,3 +1,6 @@
+import javax.swing.JFrame;
+import Server.Server;
+import Server.Client;
 
 public class State {
 
@@ -9,8 +12,11 @@ public class State {
     char playerIcon;
     int currentTurn;
     int numPlayers;
+    char currentPlayer;
 
-    public State(int NEW_BOARD_SIZE, char[] players, int first_player) {
+    JFrame clientServer;
+
+    public State(int NEW_BOARD_SIZE, char[] players, char newCurrentPlayer, String[] args) {
 
         BOARD_SIZE = NEW_BOARD_SIZE;
         gameBoard = new char[BOARD_SIZE][BOARD_SIZE];
@@ -18,7 +24,7 @@ public class State {
         PLAYER_ICONS = players;
         numPlayers = PLAYER_ICONS.length;
 
-        currentTurn = first_player;
+        currentPlayer = newCurrentPlayer;
 
         for (int x = 0; x < BOARD_SIZE; x++) {
             for (int y = 0; y < BOARD_SIZE; y++) {
@@ -27,15 +33,19 @@ public class State {
         }
     }
 
+    public void assignServer(JFrame newClientServer) {
+        clientServer = newClientServer;
+    }
+
     public void makeMove(int x, int y) {
         gameBoard[x][y] = PLAYER_ICONS[currentTurn];
         currentTurn = (currentTurn + 1) % numPlayers;
-        //TODO: Send Board through Server
+        // TODO: Send Board through Server
     }
 
-    public int[] getServerMove(){
+    public int[] getServerMove() {
         int[] serverMove = new int[2];
-        //TODO: Get server Input
+        // TODO: Get server Input
         currentTurn = (currentTurn + 1) % numPlayers;
         return serverMove;
     }
@@ -48,7 +58,7 @@ public class State {
         return PLAYER_ICONS[currentTurn];
     }
 
-    public boolean isPlayersTurn(){
+    public boolean isPlayersTurn() {
         return PLAYER_ICONS[currentTurn] == playerIcon;
     }
 

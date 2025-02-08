@@ -14,11 +14,10 @@ public class Controller {
 
         while (!gameState.isGameOver()) {
             gameDisplay.displayBoard(gameState.getBoard());
-            
-            if(gameState.isPlayersTurn()) {
+
+            if (gameState.isPlayersTurn()) {
                 userPlacement = gameDisplay.getPlayerMove(gameState.getBoard(), gameState.getCurrentTurn());
-            }
-            else {
+            } else {
                 userPlacement = gameState.getServerMove();
             }
             gameState.makeMove(userPlacement[0], userPlacement[1]);

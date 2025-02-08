@@ -1,5 +1,10 @@
 import java.util.Scanner;
 
+import javax.swing.JFrame;
+
+import Server.Client;
+import Server.Server;
+
 public class Display {
 
     Scanner kb_input = new Scanner(System.in);
@@ -43,9 +48,68 @@ public class Display {
         drawLine(gameboard[0].length);
     }
 
+    /**
+     * Simple function for clearing screen of all text
+     */
     private void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
+    }
+
+    /**
+     * Handles getting next move no matter whos turn it is
+     * 
+     * @param gameState
+     */
+    public void nextMove(State gameState) {
+        if (gameState.isCurrentTurn()) {
+            int[] userPlacement = getUserInput(gameState.getBoard(), gameState.getCurrentTurn());
+            gameState.makeMove(userPlacement[0], userPlacement[1]);
+        } else {
+
+        }
+    }
+
+    public JFrame makeClientServer(String[] args) {
+        JFrame clientServer;
+        String serverType = chooseServerType(args);
+
+        if (serverType.equals("Client")) {
+            if (args.length < 2) {
+                clientServer = new Client(getClientIP());
+            } else {
+                clientServer = new Client(args[1]);
+            }
+        } else {
+            clientServer = new Server();
+        }
+
+        return clientServer;
+    }
+
+    private String getClientIP() {
+        System.out.println("Input Client IP");
+        String userInput = kb_input.nextLine();
+        return userInput;
+    }
+
+    private String chooseServerType(String[] args) {
+        String userInput;
+
+        if (args.length >= 1) {
+            if (args[0].equals("Server") || args[0].equals("Client")) {
+                return args[0];
+            }
+        }
+
+        while (true) {
+            System.out.println("Type 'Server' to run as a server or 'Client' to connect to a server:");
+            userInput = kb_input.nextLine();
+            if (userInput.equals("Server") || userInput.equals("Client")) {
+                return userInput;
+            }
+            System.out.println("Invalid input Please type Server or Client");
+        }
     }
 
     /**
