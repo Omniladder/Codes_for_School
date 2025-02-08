@@ -56,7 +56,7 @@ public class Display {
      *                  size
      * @return user selected coordinate [x, y]
      */
-    public int[] getUserInput(char[][] gameboard, char currentPlayer) {
+    public int[] getPlayerMove(char[][] gameboard, char currentPlayer) {
 
         int user_input_X, user_input_Y;
 

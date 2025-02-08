@@ -6,6 +6,7 @@ public class State {
 
     // Player Related Data
     final char[] PLAYER_ICONS;
+    char playerIcon;
     int currentTurn;
     int numPlayers;
 
@@ -29,6 +30,14 @@ public class State {
     public void makeMove(int x, int y) {
         gameBoard[x][y] = PLAYER_ICONS[currentTurn];
         currentTurn = (currentTurn + 1) % numPlayers;
+        //TODO: Send Board through Server
+    }
+
+    public int[] getServerMove(){
+        int[] serverMove = new int[2];
+        //TODO: Get server Input
+        currentTurn = (currentTurn + 1) % numPlayers;
+        return serverMove;
     }
 
     public char[][] getBoard() {
@@ -37,6 +46,10 @@ public class State {
 
     public char getCurrentTurn() {
         return PLAYER_ICONS[currentTurn];
+    }
+
+    public boolean isPlayersTurn(){
+        return PLAYER_ICONS[currentTurn] == playerIcon;
     }
 
     public boolean isGameOver() {

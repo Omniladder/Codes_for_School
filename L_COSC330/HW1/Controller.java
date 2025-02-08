@@ -10,9 +10,17 @@ public class Controller {
 
     public void playGame() {
 
+        int[] userPlacement;
+
         while (!gameState.isGameOver()) {
             gameDisplay.displayBoard(gameState.getBoard());
-            int[] userPlacement = gameDisplay.getUserInput(gameState.getBoard(), gameState.getCurrentTurn());
+            
+            if(gameState.isPlayersTurn()) {
+                userPlacement = gameDisplay.getPlayerMove(gameState.getBoard(), gameState.getCurrentTurn());
+            }
+            else {
+                userPlacement = gameState.getServerMove();
+            }
             gameState.makeMove(userPlacement[0], userPlacement[1]);
         }
         gameDisplay.displayBoard(gameState.getBoard());
