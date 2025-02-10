@@ -185,6 +185,20 @@ public class State {
 
         boolean currentCondition = true;
 
+        // Checks the board condition of if its full
+        for (int row = 0; row < BOARD_SIZE; row++) {
+            for (int column = 0; column < BOARD_SIZE; column++) {
+                if (gameBoard[row][column] == ' ') {
+                    currentCondition = false;
+                    break;
+                }
+            }
+        }
+        if (currentCondition == true) {
+            gameWinner = '_'; // Indicates Draw
+            return true;
+        }
+
         // This section checks all rows for a win condition
 
         for (int row = 0; row < BOARD_SIZE; row++) {
@@ -257,20 +271,6 @@ public class State {
         }
         if (currentCondition == true) {
             gameWinner = gameBoard[0][BOARD_SIZE - 1];
-            return true;
-        }
-
-        // Checks the board condition of if its full
-        for (int row = 0; row < BOARD_SIZE; row++) {
-            for (int column = 0; column < BOARD_SIZE; column++) {
-                if (gameBoard[row][column] == ' ') {
-                    currentCondition = false;
-                    break;
-                }
-            }
-        }
-        if (currentCondition == true) {
-            gameWinner = '_'; // Indicates Draw
             return true;
         }
 
