@@ -23,6 +23,8 @@ public class State {
     Client gameClient;
     String serverType;
 
+    char gameWinner;
+
     /**
      * Constructor method for game State
      * 
@@ -163,27 +165,25 @@ public class State {
     }
 
     /**
+     * Gets the winner of the game if decided
+     * 
+     * @return winner of game
+     */
+    public char getWinner() {
+        return gameWinner;
+    }
+
+    /**
      * Determines if the game has been one or if all tiles are full such that it is
      * a draw.
+     * 
+     * Printing who won was an after thought so its not in display like is should be
      * 
      * @return
      */
     public boolean isGameOver() {
 
         boolean currentCondition = true;
-
-        // Checks the board condition of if its full
-        for (int row = 0; row < BOARD_SIZE; row++) {
-            for (int column = 0; column < BOARD_SIZE; column++) {
-                if (gameBoard[row][column] == ' ') {
-                    currentCondition = false;
-                    break;
-                }
-            }
-        }
-        if (currentCondition == true) {
-            return true;
-        }
 
         // This section checks all rows for a win condition
 
@@ -200,6 +200,7 @@ public class State {
                 }
             }
             if (currentCondition == true) {
+                gameWinner = gameBoard[row][0];
                 return true;
             }
         }
@@ -219,6 +220,7 @@ public class State {
             }
 
             if (currentCondition == true) {
+                gameWinner = gameBoard[0][column];
                 return true;
             }
         }
@@ -236,6 +238,7 @@ public class State {
             }
         }
         if (currentCondition == true) {
+            gameWinner = gameBoard[0][0];
             return true;
         }
 
@@ -253,6 +256,21 @@ public class State {
             }
         }
         if (currentCondition == true) {
+            gameWinner = gameBoard[0][BOARD_SIZE - 1];
+            return true;
+        }
+
+        // Checks the board condition of if its full
+        for (int row = 0; row < BOARD_SIZE; row++) {
+            for (int column = 0; column < BOARD_SIZE; column++) {
+                if (gameBoard[row][column] == ' ') {
+                    currentCondition = false;
+                    break;
+                }
+            }
+        }
+        if (currentCondition == true) {
+            gameWinner = '_'; // Indicates Draw
             return true;
         }
 

@@ -15,6 +15,12 @@ public class Display {
      * @param gameState
      */
     public void endGame(State gameState) {
+        char winner = gameState.getWinner();
+        if (winner == '_') {
+            System.out.println("Game is a Draw");
+        } else {
+            System.out.println("Player " + winner + " Won");
+        }
         System.out.println("::GAME OVER::");
         gameState.closeGame();
     }
