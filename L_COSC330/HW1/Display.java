@@ -140,7 +140,6 @@ public class Display {
      */
     public void nextMove(State gameState) {
         int[] movePlacement;
-        System.out.println(gameState.isPlayersTurn());
         if (gameState.isPlayersTurn()) {
             movePlacement = getPlayerMove(gameState.getBoard(), gameState.getCurrentTurn());
         } else {
