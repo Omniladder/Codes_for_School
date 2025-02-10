@@ -1,10 +1,5 @@
 import java.util.Scanner;
 
-import javax.swing.JFrame;
-
-import Server.Client;
-import Server.Server;
-
 public class Display {
 
     Scanner kb_input = new Scanner(System.in);
@@ -62,29 +57,32 @@ public class Display {
      * @param gameState
      */
     public void nextMove(State gameState) {
-        if (gameState.isCurrentTurn()) {
-            int[] userPlacement = getUserInput(gameState.getBoard(), gameState.getCurrentTurn());
-            gameState.makeMove(userPlacement[0], userPlacement[1]);
+        int[] movePlacement;
+        System.out.println(gameState.isPlayersTurn());
+        if (gameState.isPlayersTurn()) {
+            movePlacement = getPlayerMove(gameState.getBoard(), gameState.getCurrentTurn());
         } else {
-
+            movePlacement = gameState.getServerMove();
         }
+        gameState.makeMove(movePlacement[0], movePlacement[1]);
     }
 
-    public JFrame makeClientServer(String[] args) {
-        JFrame clientServer;
+    public void makeClientServer(State gameState, String[] args) {
         String serverType = chooseServerType(args);
 
         if (serverType.equals("Client")) {
+            Client gameClient;
             if (args.length < 2) {
-                clientServer = new Client(getClientIP());
+                gameClient = new Client(getClientIP());
             } else {
-                clientServer = new Client(args[1]);
+                gameClient = new Client(args[1]);
             }
+            gameState.assignClient(gameClient);
         } else {
-            clientServer = new Server();
+            Server gameServer;
+            gameServer = new Server();
+            gameState.assignServer(gameServer);
         }
-
-        return clientServer;
     }
 
     private String getClientIP() {
@@ -120,7 +118,7 @@ public class Display {
      *                  size
      * @return user selected coordinate [x, y]
      */
-    public int[] getPlayerMove(char[][] gameboard, char currentPlayer) {
+    private int[] getPlayerMove(char[][] gameboard, char currentPlayer) {
 
         int user_input_X, user_input_Y;
 

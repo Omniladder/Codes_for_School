@@ -1,6 +1,3 @@
-import javax.swing.JFrame;
-import Server.Server;
-import Server.Client;
 
 public class State {
 
@@ -10,21 +7,21 @@ public class State {
     // Player Related Data
     final char[] PLAYER_ICONS;
     char playerIcon;
-    int currentTurn;
+    int currentTurn = 0;
     int numPlayers;
-    char currentPlayer;
 
-    JFrame clientServer;
+    Server gameServer;
+    Client gameClient;
 
-    public State(int NEW_BOARD_SIZE, char[] players, char newCurrentPlayer, String[] args) {
+    String serverType;
+
+    public State(int NEW_BOARD_SIZE, char[] players, String[] args) {
 
         BOARD_SIZE = NEW_BOARD_SIZE;
         gameBoard = new char[BOARD_SIZE][BOARD_SIZE];
 
         PLAYER_ICONS = players;
         numPlayers = PLAYER_ICONS.length;
-
-        currentPlayer = newCurrentPlayer;
 
         for (int x = 0; x < BOARD_SIZE; x++) {
             for (int y = 0; y < BOARD_SIZE; y++) {
@@ -33,21 +30,54 @@ public class State {
         }
     }
 
-    public void assignServer(JFrame newClientServer) {
-        clientServer = newClientServer;
+    public void assignServer(Server newServer) {
+        gameServer = newServer;
+        gameServer.runServer();
+        serverType = "Server";
+        playerIcon = PLAYER_ICONS[0];
+    }
+
+    public void assignClient(Client newClient) {
+        gameClient = newClient;
+        gameClient.runClient();
+        serverType = "Client";
+        playerIcon = PLAYER_ICONS[1];
     }
 
     public void makeMove(int x, int y) {
         gameBoard[x][y] = PLAYER_ICONS[currentTurn];
+        if (isPlayersTurn())
+            sendMove(x, y, PLAYER_ICONS[currentTurn]);
         currentTurn = (currentTurn + 1) % numPlayers;
-        // TODO: Send Board through Server
     }
 
     public int[] getServerMove() {
         int[] serverMove = new int[2];
-        // TODO: Get server Input
-        currentTurn = (currentTurn + 1) % numPlayers;
+        String serverInput;
+
+        if (serverType.equals("Client")) {
+            serverInput = gameClient.readData();
+        } else {
+            serverInput = gameServer.readData();
+        }
+
+        String[] splitString = serverInput.split("|");
+
+        System.out.println("First Split String" + splitString[2]);
+
+        serverMove[0] = Integer.parseInt(splitString[0]);
+        serverMove[1] = Integer.parseInt(splitString[2]);
+
         return serverMove;
+    }
+
+    private void sendMove(int x, int y, char playerIcon) {
+        String dataString = x + "|" + y + "|" + playerIcon;
+        if (serverType.equals("Client")) {
+            gameClient.sendData(dataString);
+        } else {
+            gameServer.sendData(dataString);
+        }
     }
 
     public char[][] getBoard() {

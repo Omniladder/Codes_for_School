@@ -1,4 +1,3 @@
-import javax.swing.JFrame;
 
 public class run {
     public static void main(String[] args) {
@@ -7,8 +6,8 @@ public class run {
         final int BOARD_SIZE = 3;
 
         Display uiDisplay = new Display();
-        State gameState = new State(BOARD_SIZE, PLAYER_ICONS, 'X', args);
-        gameState.assignServer(uiDisplay.makeClientServer(args));
+        State gameState = new State(BOARD_SIZE, PLAYER_ICONS, args);
+        uiDisplay.makeClientServer(gameState, args);
 
         Controller ticTacToe = new Controller(gameState, uiDisplay);
 
