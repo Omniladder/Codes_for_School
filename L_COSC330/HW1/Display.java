@@ -5,6 +5,26 @@ public class Display {
     Scanner kb_input = new Scanner(System.in);
 
     /**
+     * Handles UI and Ends game
+     * 
+     * @param gameState
+     */
+    public void endGame(State gameState) {
+        System.out.println("::GAME OVER::");
+        gameState.closeGame();
+    }
+
+    // Section Dedicated to Board Display
+
+    /**
+     * Simple function for clearing screen of all text
+     */
+    private void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+    /**
      * Draws a horizontal line to segment the board with.
      * 
      * @param boardSize size of the board in the X direction used to calculate
@@ -43,30 +63,15 @@ public class Display {
         drawLine(gameboard[0].length);
     }
 
-    /**
-     * Simple function for clearing screen of all text
-     */
-    private void clearScreen() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
+    // Section Dedicated to Creation of Server
 
     /**
-     * Handles getting next move no matter whos turn it is
+     * Functionality for creating and setting Client or Server variables for State
      * 
-     * @param gameState
+     * @param gameState - Game State to assign server too
+     * @param args      - Command line arguments to allow for speedy input of Game
+     *                  State
      */
-    public void nextMove(State gameState) {
-        int[] movePlacement;
-        System.out.println(gameState.isPlayersTurn());
-        if (gameState.isPlayersTurn()) {
-            movePlacement = getPlayerMove(gameState.getBoard(), gameState.getCurrentTurn());
-        } else {
-            movePlacement = gameState.getServerMove();
-        }
-        gameState.makeMove(movePlacement[0], movePlacement[1]);
-    }
-
     public void makeClientServer(State gameState, String[] args) {
         String serverType = chooseServerType(args);
 
@@ -85,12 +90,14 @@ public class Display {
         }
     }
 
-    private String getClientIP() {
-        System.out.println("Input Client IP");
-        String userInput = kb_input.nextLine();
-        return userInput;
-    }
-
+    /**
+     * 
+     * Function dedicated to prompting of user to get desired Server type
+     * 
+     * @param args List of commandline arguments allowing for faster intiation of
+     *             program
+     * @return Users Desired Server type
+     */
     private String chooseServerType(String[] args) {
         String userInput;
 
@@ -108,6 +115,33 @@ public class Display {
             }
             System.out.println("Invalid input Please type Server or Client");
         }
+    }
+
+    /**
+     * Handles the Prompting and handling of grabbing players hostname
+     * 
+     * @return String HostName
+     */
+    private String getClientIP() {
+        System.out.println("Input Client IP");
+        String userInput = kb_input.nextLine();
+        return userInput;
+    }
+
+    /**
+     * Handles getting next move no matter whos turn it is
+     * 
+     * @param gameState
+     */
+    public void nextMove(State gameState) {
+        int[] movePlacement;
+        System.out.println(gameState.isPlayersTurn());
+        if (gameState.isPlayersTurn()) {
+            movePlacement = getPlayerMove(gameState.getBoard(), gameState.getCurrentTurn());
+        } else {
+            movePlacement = gameState.getServerMove();
+        }
+        gameState.makeMove(movePlacement[0], movePlacement[1]);
     }
 
     /**
@@ -158,8 +192,8 @@ public class Display {
                 }
             }
             if (gameboard[user_input_X][user_input_Y] != ' ') {
-                System.out.println("::Invalid Placement:: Space Already Taken Please Try Again");
                 displayBoard(gameboard);
+                System.out.println("::Invalid Placement:: Space Already Taken Please Try Again");
             }
         } while (gameboard[user_input_Y][user_input_X] != ' ');
         int[] user_input = { user_input_Y, user_input_X };

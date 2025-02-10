@@ -115,7 +115,7 @@ public class Client extends JFrame {
    } // end method processConnection
 
    // close streams and socket
-   private void closeConnection() {
+   public void closeConnection() {
       displayMessage("\nClosing connection");
       setTextFieldEditable(false); // disable enterField
 

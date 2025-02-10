@@ -15,7 +15,7 @@ public class Controller {
             gameDisplay.nextMove(gameState);
         }
         gameDisplay.displayBoard(gameState.getBoard());
-        System.out.println("::GAME OVER::");
+        gameDisplay.endGame(gameState);
     }
 
 }
