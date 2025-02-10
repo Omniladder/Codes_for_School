@@ -1,4 +1,7 @@
-
+/**
+ * Handles the actual game functionality and calls functions approiately based
+ * on rules
+ */
 public class Controller {
     State gameState;
     Display gameDisplay;

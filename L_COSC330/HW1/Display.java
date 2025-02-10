@@ -1,3 +1,8 @@
+
+/**
+ * Object relating to the user prompting and game board display
+ */
+
 import java.util.Scanner;
 
 public class Display {

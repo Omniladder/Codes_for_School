@@ -1,5 +1,5 @@
 /**
- * Main Method Object
+ * Main Method Object Creates proper objects and begins game
  */
 public class run {
     public static void main(String[] args) {
