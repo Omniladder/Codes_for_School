@@ -10,7 +10,7 @@ import java.awt.BorderLayout;
 
 public class View extends JFrame {
 
-    State gameState;
+    Model gameState;
     GameGrid gameGrid;
     JLabel gameOverLabel;
 
@@ -19,7 +19,7 @@ public class View extends JFrame {
      * 
      * @param newGameState
      */
-    public View(State newGameState) {
+    public View(Model newGameState) {
         super("Tic Tac Toe");
         gameState = newGameState;
 

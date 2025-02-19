@@ -5,12 +5,12 @@ import java.util.Scanner;
  * on rules
  */
 public class Controller {
-    State gameState;
+    Model gameState;
     View gameDisplay;
     String[] args;
     Scanner kb_input = new Scanner(System.in);
 
-    public Controller(State initialState, View initialDisplay, String[] initialArgs) {
+    public Controller(Model initialState, View initialDisplay, String[] initialArgs) {
         gameState = initialState;
         gameDisplay = initialDisplay;
         args = initialArgs;

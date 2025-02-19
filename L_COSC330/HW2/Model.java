@@ -6,7 +6,7 @@
  * 
  */
 
-public class State {
+public class Model {
 
     // Game Board based Data
     char[][] gameBoard;
@@ -33,7 +33,7 @@ public class State {
      * @param players        - A Char Array for Player Tokens allowing for different
      *                       usage.
      */
-    public State(int NEW_BOARD_SIZE, char[] players) {
+    public Model(int NEW_BOARD_SIZE, char[] players) {
 
         BOARD_SIZE = NEW_BOARD_SIZE;
         gameBoard = new char[BOARD_SIZE][BOARD_SIZE];

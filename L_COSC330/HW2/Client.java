@@ -95,25 +95,6 @@ public class Client extends JFrame {
       displayMessage("\nGot I/O streams\n");
    } // end method getStreams
 
-   // process connection with server
-   private void processConnection() throws IOException {
-      // enable enterField so client user can send messages
-      setTextFieldEditable(true);
-
-      do // process messages sent from server
-      {
-         try // read message and display it
-         {
-            message = (String) input.readObject(); // read new message
-            displayMessage("\n" + message); // display message
-         } // end try
-         catch (ClassNotFoundException classNotFoundException) {
-            displayMessage("\nUnknown object type received");
-         } // end catch
-
-      } while (!message.equals("SERVER>>> TERMINATE"));
-   } // end method processConnection
-
    // close streams and socket
    public void closeConnection() {
       displayMessage("\nClosing connection");

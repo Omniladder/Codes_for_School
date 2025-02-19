@@ -10,7 +10,7 @@ public class GameGrid extends JPanel {
     ImageIcon oIcon = new ImageIcon("pics/OShape.png");
     ImageIcon emptyIcon = new ImageIcon("pics/EmptySquare.png");
 
-    State currentState;
+    Model currentState;
     View gameDisplay;
 
     /**
@@ -19,7 +19,7 @@ public class GameGrid extends JPanel {
     public class MoveAction implements ActionListener {
         final int thisX;
         final int thisY;
-        State gameState;
+        Model gameState;
         View gameDisplay;
 
         /**
@@ -30,7 +30,7 @@ public class GameGrid extends JPanel {
          * @param X
          * @param Y
          */
-        public MoveAction(State newGameState, View newGameDisplay, int X, int Y) {
+        public MoveAction(Model newGameState, View newGameDisplay, int X, int Y) {
             thisX = X;
             thisY = Y;
             gameState = newGameState;
@@ -56,7 +56,7 @@ public class GameGrid extends JPanel {
      * @param gameState
      * @param newGameView
      */
-    public GameGrid(State gameState, View newGameView) {
+    public GameGrid(Model gameState, View newGameView) {
 
         currentState = gameState;
 
@@ -82,7 +82,7 @@ public class GameGrid extends JPanel {
      * 
      * @param gameState
      */
-    public void updateGameGrid(State gameState) {
+    public void updateGameGrid(Model gameState) {
         for (int x = 0; x < 3; x++) {
             for (int y = 0; y < 3; y++) {
                 char symbol = gameState.getBoard()[x][y];

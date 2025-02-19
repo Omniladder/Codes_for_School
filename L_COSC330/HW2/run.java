@@ -7,7 +7,7 @@ public class run {
         final char[] PLAYER_ICONS = { 'X', 'O' };
         final int BOARD_SIZE = 3;
 
-        State gameState = new State(BOARD_SIZE, PLAYER_ICONS);
+        Model gameState = new Model(BOARD_SIZE, PLAYER_ICONS);
         View uiDisplay = new View(gameState);
 
         Controller ticTacToe = new Controller(gameState, uiDisplay, args);
