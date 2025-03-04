@@ -1,3 +1,8 @@
+import java.io.File;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+
 /**
  * Main Method Object Creates proper objects and begins game
  */
