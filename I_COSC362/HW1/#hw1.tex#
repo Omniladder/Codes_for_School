@@ -1,0 +1,79 @@
+\documentclass{article}
+
+% Packages
+\usepackage[utf8]{inputenc} % Encoding
+\usepackage{amsmath, amssymb} % Math symbols
+\usepackage{graphicx} % Images
+\usepackage{hyperref} % hyperlinks
+\usepackage{float}
+
+% Title and Author
+\title{homework 1 - COSC 362}
+\author{Dustin O'Brien}
+\date{\today}
+
+\begin{document}
+
+    \maketitle
+
+    \section*{Question 1}
+    \[
+        ab^2(a+b)^\ast b^2
+    \]
+
+    \section*{Question 2}
+    \[
+        (a+b)(a+b) \left( (a+b)(a+b)(a+b) \right)^\ast
+    \]
+
+    \section*{Question 3}
+    \[
+        (a+b)^\ast a^2 (a+b)^\ast
+    \]
+
+    \section*{Question 4}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{question_4.png}
+        \label{fig:sample}
+    \end{figure}
+
+    \section*{Question 5}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{question_5.png}
+        \label{fig:sample}
+    \end{figure}
+
+    \section*{Question 6}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{question_6.png}
+        \label{fig:sample}
+    \end{figure}
+
+    \section*{Question 7}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{question_7.png}
+        \label{fig:sample}
+    \end{figure}
+
+    \section*{Question 8a}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{question_8.png}
+        \label{fig:sample}
+    \end{figure}
+
+    \section*{Question 8b/c}
+    Accepted String Ex. \texttt{(010101)}  
+    q\textsubscript{2} → q\textsubscript{1} → q\textsubscript{2} → q\textsubscript{1} → q\textsubscript{2} → q\textsubscript{1} → q\textsubscript{2}\\ (ACCEPTED)  
+    \\
+    Declined String Ex. \texttt{(00000)}  
+    q\textsubscript{2} → q\textsubscript{1} → q\textsubscript{0} → q\textsubscript{0} → q\textsubscript{0}\\ (DECLINED)
+    
+
+
+
+\end{document}

@@ -113,8 +113,14 @@ class SentimentClassifier(nn.Module):
         # activation function
         if activation == "Sigmoid":
             self.activation = nn.Sigmoid()
+        elif activation == "Tanh":
+            self.activation = nn.Tanh()
+        elif activation == "ReLU":
+            self.activation = nn.ReLU()
+        elif activation == "GeLU":
+            self.activation = nn.GELU()
         else:
-            raise NotImplementedError
+            raise ValueError("Invalid Activation Function Used")
 
         # linear layers for the MLP
         self.linears = nn.ModuleList()
@@ -127,7 +133,11 @@ class SentimentClassifier(nn.Module):
         # Hint:
         # - Remember to consider the case when there are no hidden layers (i.e. hidden_dims is an empty list)
         #       in this case, it essentially degrades to the architecture we used in hw 1
-        raise NotImplementedError
+        # If no hidden layers, directly connect input to output
+        layer_sizes = [embed_dim] + hidden_dims + [num_classes]
+
+        for i in range(len(layer_sizes) - 1):
+            self.linears.append(nn.Linear(layer_sizes[i], layer_sizes[i + 1]))
         # your code ends here
 
         self.loss = nn.CrossEntropyLoss(reduction="mean")
@@ -136,7 +146,9 @@ class SentimentClassifier(nn.Module):
 
         # TODO: complete the forward function
         # Hint remember to apply the activation function to all hidden layers except the last one
-        raise NotImplementedError
+        for linear in self.linears[:-1]:  # Apply activation after each hidden layer
+            inp = self.activation(linear(inp))
+        logits = self.linears[-1](inp)  # Final layer without activation (for logits)
         # your code ends here
 
         return logits
@@ -148,7 +160,7 @@ def accuracy(logits: torch.FloatTensor, labels: torch.LongTensor) -> torch.Float
     # Hint: follow the hints in the pdf description, the return should be a tensor of 0s and 1s with the same shape as labels
     # labels is a tensor of shape (batch_size,)
     # logits is a tensor of shape (batch_size, num_classes)
-    raise NotImplementedError
+    return torch.argmax(logits, dim=1) == labels
 
 
 def evaluate(

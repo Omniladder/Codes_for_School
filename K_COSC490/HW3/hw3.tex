@@ -512,14 +512,12 @@ Draw the computation graph for $f(x, y, z) = \ln x + \exp(y) \cdot z$. Each node
 
 
 \clearpage
-  
 
 \section{Programming}
 In this programming homework, we will
 \begin{itemize}
     \item implement MLP-based classifiers for the sentiment classification task of homework 1.
 \end{itemize}
-
 \noindent \paragraph{Skeleton Code and Structure:}
 The code base for this homework can be found at MyClasses Files under the \texttt{hw3} directory. Your task is to fill in the missing parts in the skeleton code, following the requirements, guidance, and tips provided in this pdf and the comments in the corresponding .py files.
 The code base has the following structure:
@@ -528,28 +526,21 @@ The code base has the following structure:
     \item \texttt{main.py} provides the entry point to run your implementations \texttt{mlp.py}
     \item \texttt{hw3.md} provides instructions on how to setup the environment and run each part of the homework in \texttt{main.py}
 \end{itemize}
-
 \noindent \todo{} ---
 Your tasks include
 1) generate plots and/or write short answers based on the results of running the code; 2) fill in the blanks in the skeleton to complete the code. We will explicitly mark these plotting, written answer, and filling-in-the-blank tasks as \todo{} in the following descriptions, as well as a \textcolor{blue}{\texttt{\textbf{\#~TODO}}} at the corresponding blank in the code. \\
-
 \noindent \todo{} (Copy from your HW1). We are reusing most of the \texttt{model.py} from homework 1 as the starting point for the \texttt{mlp.py} - you will see in the skeleton that they look very similar. Moreover, in order to make the skeleton complete, for all the \textcolor{blue}{\texttt{\textbf{\#~TODO (Copy from your HW1)}}}, please fill in the blank below them by copying and pasting the corresponding implementations you wrote for homework 1 (i.e. the corresponding \textcolor{blue}{\texttt{\textbf{\#~TODO}}} in homework 1.)
-
 \noindent \paragraph{Submission:} Your submission should contain two parts: 1) plots and short answers under the corresponding questions below; and 2) your completion of the skeleton code base, in a \texttt{.zip} file
-
 \subsection{MLP-based Sentiment Classifier}
 In both homework 1 \& 2, our implementation of the \texttt{SentimentClassifer} is essentially a single-layer feedforward neural network that maps input features directly to 2-dimensional output logits. In this part of the programming homework, we will expand the architecture of our classifier to multi-layer perceptron (MLP). 
-
 \subsubsection{Reuse Your HW1 Implementation}
 \todo{} (Copy from your HW1): for all the \textcolor{blue}{\texttt{\textbf{\#~TODO (Copy from your HW1)}}} in \texttt{mlp.py}, please fill in the blank below them by copying and pasting the corresponding implementations you wrote for homework 1 (i.e. the corresponding \textcolor{blue}{\texttt{\textbf{\#~TODO}}} in the \texttt{model.py} in homework 1).
-
 \subsubsection{Build MLPs}
 \label{subsubsec: build mlps}
 Remember from the lecture that MLP is a multi-layer feedforward network with perceptrons as its nodes. A perceptron consists of non-linear activation of the affine (linear) transformation of inputs.
 \\\\
 \noindent \todo{}: Complete the \texttt{\_\_init\_\_} and \texttt{forward} function of the \texttt{SentimentClassifier} class in \texttt{mlp.py} to build MLP classifiers that supports custom specification of architecture (i.e. number and dimension of hidden layers)\\
 \noindent \textbf{Hint}: check the comments in the code for specific requirements about input, output, and implementation. Also, check out the document of \href{https://pytorch.org/docs/stable/generated/torch.nn.ModuleList.html}{nn.ModuleList} about how to define and implement forward pass of MLPs as a stack of layers.
-
 \subsubsection{Train and Evaluate MLPs}
 We provide in \texttt{main.py} several MLP configurations and corresponding recipes for training them.\\\\
 \noindent\todo{} Once you finished \autoref{subsubsec: build mlps}, you can run \texttt{load\_data\_mlp} and \texttt{explore\_mlp\_structures} to train and evaluate these MLPs and paste two sets of plots here:
@@ -561,41 +552,41 @@ and describe in 2-3 sentences your findings.\\
 \noindent \textbf{Hint}: what are the trends of train \& dev loss and are they consistent across different configurations? Is deeper models always better? Why?\\
 \noindent {\color{red}{your plots and answer:}}\\
 % uncomment the following blocks to include your plots
-\begin{comment}
-
 \begin{figure}[h] 
     \centering
     \subfloat[No Hidden Layer]{
-        \includegraphics[width=0.23\textwidth]{}
+        \includegraphics[width=0.23\textwidth]{mlp_structure_None_loss.png}
         }
     \hfill
     \subfloat[1 Hidden Layer]{
-        \includegraphics[width=0.23\textwidth]{}
+        \includegraphics[width=0.23\textwidth]{mlp_structure_512_loss.png}
         }
     \hfill
     \subfloat[2 Hidden Layers]{
-        \includegraphics[width=0.23\textwidth]{}
+        \includegraphics[width=0.23\textwidth]{mlp_structure_512 -> 512_loss.png}
         }
     \hfill
     \subfloat[3 Hidden Layers]{
-        \includegraphics[width=0.23\textwidth]{}
+        \includegraphics[width=0.23\textwidth]{mlp_structure_512 -> 512 -> 512_loss.png}
         }
     \caption{loss of different MLP architectures}
 \end{figure}
 \begin{figure}[h] 
     \centering
     \subfloat[dev loss of different MLP architectures]{
-        \includegraphics[width=0.45\textwidth]{}
+        \includegraphics[width=0.45\textwidth]{all_mlp_structures_loss.png}
         }
     \hfill
     \subfloat[dev acc of different MLP architectures]{
-        \includegraphics[width=0.45\textwidth]{}
+        \includegraphics[width=0.45\textwidth]{all_mlp_structures_acc.png}
         }
     \caption{loss and acc of different MLP architectures}
 \end{figure}    
-\end{comment}
-\solution{}
-
+\solution{
+    We can see off the models below a quite surprising result that smaller models seem to perform better having generally higher accuracy and lower loss. 
+    One potential reason for this is Vanishing and exploding gradients where increased layers result in reduced ability to train models. We can also see that
+    the initial accuacies of the smaller models perform better potentially due to ability to train smaller models quicker given less parameters.
+}
 \subsubsection{Embrace Non-linearity: The Activation Functions}
 Remember we have learned why adding non-linearity is useful in neural nets and gotten familiar with several non-linear activation functions both in the class and \autoref{sec: activation}. Now it is time to try them out in our MLPs! \\
 \textbf{Note: for the following TODO and the TODO in \autoref{subsubsec: lr}, we fix the MLP structure to be with a single 512-dimension hidden layer, as specified in the code. You only need to run experiments on this architecture}.\\\\
@@ -609,21 +600,21 @@ Remember we have learned why adding non-linearity is useful in neural nets and g
 Once you complete the above functions, run \texttt{explore\_mlp\_activations} and paste the two generated plots here. Describe in 2-3 sentences your findings.\\
 \noindent {\color{red}{your plots and answer:}}\\
 % uncomment the following blocks to include your plots
-\begin{comment}
 \begin{figure}[h] 
     \centering
     \subfloat[dev loss of different activations]{
-        \includegraphics[width=0.45\textwidth]{}
+        \includegraphics[width=0.45\textwidth]{all_mlp_activations_loss.png}
         }
     \hfill
     \subfloat[dev acc of different MLP architectures]{
-        \includegraphics[width=0.45\textwidth]{}
+        \includegraphics[width=0.45\textwidth]{all_mlp_activations_acc.png}
         }
     \caption{loss and acc of different activations}
 \end{figure}\\
-\end{comment}
-\solution{}
-
+\solution{
+    Based on results we see Sigmoid and ReLu are the best activation functions on average with Sigmoid generally performing better. We also can see that
+    That these functions tend to be the more stable of the four.
+}
 \subsubsection{Hyper-parameter Tuning: Learning Rate}
 \label{subsubsec: lr}
 The training process mostly involves learning model parameters, which are automatically performed by gradient-based methods. However, certain parameters are ``unlearnable" through gradient optimization while playing a crucial role in affecting model performance, for example, learning rate and batch size. We typically refer to these parameters as \textit{Hyper-parameters}.
@@ -634,26 +625,24 @@ We will now take the first step to tune these hyper-parameters by exploring the 
 Once you complete the above functions, run \texttt{explore\_mlp\_learning\_rates} and paste the two generated plots here. Describe in 2-3 sentences your findings.\\
 \noindent {\color{red}{your plots and answer:}}\\
 % uncomment the following blocks to include your plots
-\begin{comment}
 \begin{figure}[h] 
     \centering
     \subfloat[dev loss of different learning rates]{
-        \includegraphics[width=0.45\textwidth]{}
+        \includegraphics[width=0.45\textwidth]{all_mlp_lrs_acc.png}
         }
     \hfill
     \subfloat[dev acc of different MLP architectures]{
-        \includegraphics[width=0.45\textwidth]{}
+        \includegraphics[width=0.45\textwidth]{all_mlp_lrs_loss.png}
         }
     \caption{loss and acc of different learning rates}
 \end{figure}\\
-
 \bibliographystyle{apalike}
 \bibliography{ref}
-\end{comment}
-\noindent\solution{}
+\noindent\solution{
+    In the long run given a high number of epochs there isnt much difference between learning rates which makes sense as they should all be converging to the same value.
+    However in the short term we see high learning rates results in more spratic changes but in general faster convergence while lower learning rates are the opposite.
+}
 \end{document}
-
 \bibliographystyle{apalike}
 \bibliography{ref}
-
 \end{document}
