@@ -447,6 +447,11 @@ Now, let's run this algorithm on a larger scale. In particular, we will run on m
 \end{enumerate}
 Explain why these subwords have come about. (no more than 10 sentences)
 
+To start complete words come out often because these are words that occur commonly in the given text and therefore will be seen together often and are caught by the Byte Pair Encoding
+For the second part with parts of words these are going to be stuff like common prefix suffix and like root words that are often in writing and are often togther and make up longer
+uncommon words that will not be picked up by Byte Pair Encoding. Lastly Non english words and special charcters are commonly alone because they occur very rarely and therefore do not 
+have many occurences to go off of in order to be able to properly be caught by Byte Encoding.
+
 \subsubsection{Additonal Readings: Other Tokenization Algorithms}
 \paragraph{WordPiece}\mbox{}\\
 WordPiece is the subword tokenization algorithm used for \href{https://huggingface.co/docs/transformers/main/en/model_doc/bert}{BERT}, \href{https://huggingface.co/docs/transformers/main/en/model_doc/distilbert}{DistilBERT}, and \href{https://huggingface.co/docs/transformers/main/en/model_doc/electra}{Electra}. The algorithm was outlined in \citep{Schuster2012JapaneseAK} and is very similar to
@@ -532,19 +537,19 @@ Note we are using Adam \textbf{(Adaptive Moment Estimation)} \citep{kingma2015ad
 \noindent \todo{} Once you finished all the implementations, run \texttt{load\_data\_mlp\_lm} and \texttt{single\_run\_mlp\_lm} in \texttt{main.py} to train and evaluate the model and paste the plots of loss and Perplexity here.\\
 \noindent {\color{red}{your plots}}\\
 % uncomment the following lines to add your plot
-\begin{comment}
+
 \begin{figure}[h] 
     \centering
     \subfloat[train and dev loss of the MLP LM]{
-        \includegraphics[width=0.45\textwidth]{}
+        \includegraphics[width=0.45\textwidth]{"./mlp_lm_loss.png"}
         }
     \hfill
     \subfloat[train and dev ppl of the MLP LM]{
-        \includegraphics[width=0.45\textwidth]{}
+        \includegraphics[width=0.45\textwidth]{"./mlp_lm_ppl.png"}
         }
     \caption{loss and ppl of the MLP LM}
 \end{figure}
-\end{comment}
+
 
 \subsubsection{Sample From a Pre-trained LM}
 Note that compared with the original NPLM implementation, we reduce the model size by shrinking both the width and depth of our model, and we only use a small subset of the data. It is expected to take an hour or so to train the model on the CPU of your PC. Training the above LM with full size model and data might take hours to days. To save you time, we have trained a language model for you to play with. All you have to do is to download its weight parameters. Download the 
@@ -578,10 +583,15 @@ However, we also have an option of filtering the low-probability tokens, and ins
 \noindent \textbf{Hint}: compare the output of the above generations, which one is your favorite? Explain why this choice of sampling leads to better text generation.
 
 \noindent \solution{\\
-greedy: \qquad \qquad \qquad \,\,\, The best perks of living on the east\\
-top-p sampling (p=0.0): The best perks of living on the east\\
-top-p sampling (p=0.3): The best perks of living on the east\\
-top-p sampling (p=1.0): The best perks of living on the east\\
+{'-' * 10} greedy {'-' * 10}\\
+Generated text: The best perks of living on the east., the the, the the the, the the the, the the the, the the the, the the the, the the the, the \\
+---------- sampling with p=0.0 ----------\\
+Generated text: The best perks of living on the east., the the, the the the, the the the, the the the, the the the, the the the, the the the, the \\
+---------- sampling with p=0.3 ----------\\
+Generated text: The best perks of living on the east of the of.. the, the,,. the,. the and the the, the the of of the. the. of., \\
+---------- sampling with p=1.0 ---------- \\
+Generated text: The best perks of living on the east sense that ( Valley.ker by. her million @ wasted of. on of north, and have the all between. animated, of several.s
+Out of these outputs I find that the last one is most preferable as it is simply the only one that doesnt repeat the and tries to create some sort of speech
 }
 
 
