@@ -1,0 +1,240 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.1.28)  5 APR 2025 15:21
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**HW2.tex
+(./HW2.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count187
+\c@section=\count188
+\c@subsection=\count189
+\c@subsubsection=\count190
+\c@paragraph=\count191
+\c@subparagraph=\count192
+\c@figure=\count193
+\c@table=\count194
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\bibindent=\dimen140
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen141
+\Gin@req@width=\dimen142
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count195
+\l__pdf_internal_box=\box51
+)
+(./HW2.aux)
+\openout1 = `HW2.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+ (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count196
+\scratchdimen=\dimen143
+\scratchbox=\box52
+\nofMPsegments=\count197
+\nofMParguments=\count198
+\everyMPshowfont=\toks18
+\MPscratchCnt=\count199
+\MPscratchDim=\dimen144
+\MPnumerator=\count266
+\makeMPintoPDFobject=\count267
+\everyMPtoPDFconversion=\toks19
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 6.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 6.
+<figures/tree.jpg, id=1, 4015.0pt x 3011.25pt>
+File: figures/tree.jpg Graphic file (type jpg)
+<use figures/tree.jpg>
+Package pdftex.def Info: figures/tree.jpg  used on input line 18.
+(pdftex.def)             Requested size: 172.5pt x 129.34338pt.
+
+Overfull \hbox (86.8715pt too wide) detected at line 22
+\OML/cmm/m/it/10 S \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 abAB \OMS/cmsy/m/n/10 ! 
+\OML/cmm/m/it/10 abBCB \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 abBAaCB \OMS/cmsy/m/
+n/10 ! \OML/cmm/m/it/10 abAaCB \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 abaCB \OMS/c
+msy/m/n/10 ! \OML/cmm/m/it/10 abaAbB \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 ababB 
+\OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 ababA \OMS/cmsy/m/n/10 !
+ []
+
+
+Overfull \hbox (15.94113pt too wide) detected at line 23
+\OML/cmm/m/it/10 ababBC \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 ababC \OMS/cmsy/m/n
+/10 ! \OML/cmm/m/it/10 ababAb \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 ababBCb \OMS/
+cmsy/m/n/10 ! \OML/cmm/m/it/10 ababaCb \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 abab
+aAbb \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 abababb
+ []
+
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./figures/tree.jpg>]
+Overfull \hbox (17.77235pt too wide) in paragraph at lines 37--41
+\OT1/cmr/m/n/10 Find a con-text free gram-mar and draw a push down au-tomata fo
+r $\OML/cmm/m/it/10 L \OT1/cmr/m/n/10 = []$
+ []
+
+<figures/figures_PDA1.jpg, id=11, 3011.25pt x 4015.0pt>
+File: figures/figures_PDA1.jpg Graphic file (type jpg)
+<use figures/figures_PDA1.jpg>
+Package pdftex.def Info: figures/figures_PDA1.jpg  used on input line 45.
+(pdftex.def)             Requested size: 172.5pt x 229.98463pt.
+[2 <./figures/figures_PDA1.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 66--67
+
+ []
+
+[3]
+<figures/figures_PDA2.jpg, id=22, 3011.25pt x 4015.0pt>
+File: figures/figures_PDA2.jpg Graphic file (type jpg)
+<use figures/figures_PDA2.jpg>
+Package pdftex.def Info: figures/figures_PDA2.jpg  used on input line 73.
+(pdftex.def)             Requested size: 172.5pt x 229.98463pt.
+ [4 <./figures/figures_PDA2.jpg>]
+<figures/figures_PDA3.jpg, id=26, 3011.25pt x 4015.0pt>
+File: figures/figures_PDA3.jpg Graphic file (type jpg)
+<use figures/figures_PDA3.jpg>
+Package pdftex.def Info: figures/figures_PDA3.jpg  used on input line 96.
+(pdftex.def)             Requested size: 172.5pt x 229.98463pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--100
+
+ []
+
+[5 <./figures/figures_PDA3.jpg>]
+<figures/DFA1.jpg, id=30, 3011.25pt x 4015.0pt>
+File: figures/DFA1.jpg Graphic file (type jpg)
+<use figures/DFA1.jpg>
+Package pdftex.def Info: figures/DFA1.jpg  used on input line 120.
+(pdftex.def)             Requested size: 172.5pt x 229.98463pt.
+<figures/DFA2.jpg, id=31, 3011.25pt x 4015.0pt>
+File: figures/DFA2.jpg Graphic file (type jpg)
+<use figures/DFA2.jpg>
+Package pdftex.def Info: figures/DFA2.jpg  used on input line 134.
+(pdftex.def)             Requested size: 172.5pt x 229.98463pt.
+ [6 <./figures/DFA1.jpg>] [7 <./figures/DFA2.jpg>]
+<figures/DFA3.jpg, id=39, 3011.25pt x 4015.0pt>
+File: figures/DFA3.jpg Graphic file (type jpg)
+<use figures/DFA3.jpg>
+Package pdftex.def Info: figures/DFA3.jpg  used on input line 149.
+(pdftex.def)             Requested size: 172.5pt x 229.98463pt.
+ [8 <./figures/DFA3.jpg>]
+<figures/DFA4.jpg, id=43, 3011.25pt x 4015.0pt>
+File: figures/DFA4.jpg Graphic file (type jpg)
+<use figures/DFA4.jpg>
+Package pdftex.def Info: figures/DFA4.jpg  used on input line 164.
+(pdftex.def)             Requested size: 172.5pt x 229.98463pt.
+
+Overfull \hbox (19.03098pt too wide) detected at line 170
+\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 S; a\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; \OT1/
+cmr/m/n/10 (\OML/cmm/m/it/10 S; b\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; \OT1/cmr/m
+/n/10 (\OML/cmm/m/it/10 S; b\OT1/cmr/m/n/10 2)\OML/cmm/m/it/10 ; \OT1/cmr/m/n/1
+0 (\OML/cmm/m/it/10 R; b \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 A\OT1/cmr/m/n/10 )
+\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 S; c\OT1/cmr/m/n/10 )\OML/
+cmm/m/it/10 ; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 R; \OT1/cmr/m/n/10 (\OML/cmm/m/
+it/10 c; A\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 S\OT1/cmr/m/n/1
+0 )\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 R; \OT1/cmr/m/n/10 (\OM
+L/cmm/m/it/10 S; a; b\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 S\OT
+1/cmr/m/n/10 )\OML/cmm/m/it/10 ; ACC
+ []
+
+
+Overfull \hbox (19.03908pt too wide) detected at line 172
+\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 S; a\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; \OT1/
+cmr/m/n/10 (\OML/cmm/m/it/10 S; b\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; \OT1/cmr/m
+/n/10 (\OML/cmm/m/it/10 S; b\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10
+ (\OML/cmm/m/it/10 R; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 b \OMS/cmsy/m/n/10 ! \O
+ML/cmm/m/it/10 A\OT1/cmr/m/n/10 ))\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 (\OML/cmm/
+m/it/10 S; c\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 (\OML/cmm/m/it/
+10 R; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 c; a\OT1/cmr/m/n/10 )) \OMS/cmsy/m/n/10
+ ! \OML/cmm/m/it/10 S; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 R; \OT1/cmr/m/n/10 (\O
+ML/cmm/m/it/10 S; b; a\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 S\O
+T1/cmr/m/n/10 )\OML/cmm/m/it/10 ; ACC
+ []
+
+[9 <./figures/DFA4.jpg>] [10]
+<figures/DFA5.jpg, id=50, 3011.25pt x 4015.0pt>
+File: figures/DFA5.jpg Graphic file (type jpg)
+<use figures/DFA5.jpg>
+Package pdftex.def Info: figures/DFA5.jpg  used on input line 197.
+(pdftex.def)             Requested size: 172.5pt x 229.98463pt.
+ [11 <./figures/DFA5.jpg>] (./HW2.aux)
+ ***********
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+ ***********
+ ) 
+Here is how much of TeX's memory you used:
+ 1334 strings out of 474222
+ 22379 string characters out of 5748733
+ 1927975 words of memory out of 5000000
+ 23634 multiletter control sequences out of 15000+600000
+ 558674 words of font info for 38 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 57i,6n,65p,210b,267s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmsy7.pfb>
+Output written on HW2.pdf (11 pages, 14721178 bytes).
+PDF statistics:
+ 89 PDF objects out of 1000 (max. 8388607)
+ 50 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+
