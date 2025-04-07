@@ -546,8 +546,8 @@ To get a more direct comparison, let's run our model for 50 training steps with 
 
 \noindent\todo{} Run the \texttt{cpu\_gpu\_comparison} in \texttt{main.py}, and fill in the running time below (will be printed out on the console):\\
 \noindent\solution{\\
-CPU - Trainer Time Elapsed:\\
-GPU - Trainer Time Elapsed:
+CPU - Trainer Time Elapsed: 50.22 seconds\\
+GPU - Trainer Time Elapsed: 3.34 seconds
 }
 \\\\
 \noindent Finally, let's run the full training and evaluation on GPU.\\
@@ -555,19 +555,17 @@ GPU - Trainer Time Elapsed:
 \noindent\todo{} Run the \texttt{gpu\_full\_run} function in \texttt{main.py} to train the GPT language model, paste the two generated plots here. This function will also sample from the trained GPT LM. paste the completion to the prefix after the plots.\\
 \noindent {\color{red}{your plots}}\\
 % uncomment the following lines to add your plots.
-\begin{comment}
-\begin{figure}[h] 
+\begin{figure}[h]
     \centering
     \subfloat[train and dev loss of the GPT LM]{
-        \includegraphics[width=0.45\textwidth]{}
+        \includegraphics[width=0.45\textwidth]{figures/loss.png}
         }
     \hfill
     \subfloat[train and dev ppl of the MLP LM]{
-        \includegraphics[width=0.45\textwidth]{}
+        \includegraphics[width=0.45\textwidth]{figures/ppl.png}
         }
     \caption{loss and ppl of the GPT LM}
 \end{figure}
-\end{comment}
 \noindent\solution{\\
 iter 20000: validation loss 0.14691 validation ppl 1.159\\
 ---------- Trainer Time Elapsed: 1228.19s ----------\\
