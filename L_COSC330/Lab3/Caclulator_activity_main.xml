@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        >
+
+        <TextView
+            android:id="@+id/input_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Input"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/number_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="number"
+            android:text="10"
+            tools:layout_editor_absoluteX="180dp"
+            tools:layout_editor_absoluteY="234dp" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        tools:context="com.hfad.beeradviser.FindBeerActivity"
+        >
+
+        <TextView
+            android:id="@+id/total_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="Total"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/total_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="end"
+            android:text="@string/current_value" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        tools:context="com.hfad.beeradviser.FindBeerActivity"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <Button
+            android:id="@+id/multiply_button"
+            android:layout_width="123dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Multiply"
+            tools:layout_editor_absoluteX="21dp"
+            tools:layout_editor_absoluteY="51dp"
+            android:onClick="onMultiplyButtonClick"/>
+
+
+        <Button
+            android:id="@+id/clear_button"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minWidth="1000dp"
+            android:text="Clear"
+            tools:layout_editor_absoluteX="179dp"
+            tools:layout_editor_absoluteY="341dp"
+            android:onClick="onClearButtonClick"/>
+    </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
